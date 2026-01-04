@@ -72,11 +72,11 @@ void display(GLFWwindow* window, double currentTime) {
 	for (int i = 0; i < 24; ++i) {
 
 		// Time Factor
-		float tf = currentTime + i;
+		float tf = (float) currentTime + i;
 
-	// Use Current Time to Computer Different Translation in x, y, and z
+		// Use Current Time to Computer Different Translation in x, y, and z
 		tMat = glm::translate(glm::mat4(1.0f), glm::vec3(sin(0.35f * tf) * 8.0f, cos(0.52f * tf) * 8.0f, sin(0.7f * tf) * 8.0f));
-
+		
 		rMat = glm::rotate(glm::mat4(1.0f), 1.75f * tf, glm::vec3(0.0f, 1.0f, 0.0f));
 		rMat = glm::rotate(rMat, 1.75f * tf, glm::vec3(1.0f, 0.0f, 0.0f));
 		rMat = glm::rotate(rMat, 1.75f * tf, glm::vec3(0.0f, 0.0f, 1.0f));
