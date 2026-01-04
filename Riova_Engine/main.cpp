@@ -1,86 +1,103 @@
 #include <iostream>
 #include "libraries.h"
-#include "Utils.h"
 #define numVAOs 1
+#define numVBOs 2
+
+float cameraX, cameraY, cameraZ;
+float cubeLocX, cubeLocY, cubeLocZ;
 
 GLuint renderingProgram;
 GLuint vao[numVAOs];
+GLuint vbo[numVBOs];
 
-// Method to Output Shader Log
-void printShaderLog(GLuint shader) {
-	int len = 0;
-	int chWrittn = 0;
-	char* log;
-	glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &len);
-	if (len > 0) {
-		log = (char*)malloc(len);
-		glGetShaderInfoLog(shader, len, &chWrittn, log);
-		std::cout << "Shader Info Log: " << log << std::endl;
-		free(log);
-	}
-}
+// Allocate variables used in display() function
+GLuint mvLoc, pLoc;
+int width, height;
+float aspect;
+glm::mat4 pMat, vMat, mMat, mvMat, tMat, rMat;
 
-// Method to Output Program Log
-void printProgramLog(int prog) {
-	int len = 0;
-	int chWrittn = 0;
-	char* log;
-	glGetProgramiv(prog, GL_INFO_LOG_LENGTH, &len);
-	if (len > 0) {
-		log = (char*)malloc(len);
-		glGetProgramInfoLog(prog, len, &chWrittn, log);
-		std::cout << "Program Info Log: " << log << std::endl;
-		free(log);
-	}
-}
+void setupVertices(void) {
+	float vertexPositions[108] = {
+		-1.0f, 1.0f, -1.0f, -1.0f, -1.0f, -1.0f, 1.0f, -1.0f, -1.0f,
+		1.0f, -1.0f, -1.0f, 1.0f, 1.0f, -1.0f, -1.0f, 1.0f, -1.0f,
+		1.0f, -1.0f, -1.0f, 1.0f, -1.0f, 1.0f, 1.0f, 1.0f, -1.0f,
+		1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, -1.0f,
+		1.0f, -1.0f, 1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+		-1.0f, -1.0f, 1.0f, -1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f,
+		-1.0f, -1.0f, 1.0f, -1.0f, -1.0f, -1.0f, -1.0f, 1.0f, 1.0f,
+		-1.0f, -1.0f, -1.0f, -1.0f, 1.0f, -1.0f, -1.0f, 1.0f, 1.0f,
+		-1.0f, -1.0f, 1.0f, 1.0f, -1.0f, 1.0f, 1.0f, -1.0f, -1.0f,
+		1.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f, -1.0f, 1.0f,
+		-1.0f, 1.0f, -1.0f, 1.0f, 1.0f, -1.0f, 1.0f, 1.0f, 1.0f,
+		1.0f, 1.0f, 1.0f, -1.0f, 1.0f, 1.0f, -1.0f, 1.0f, -1.0f
+	};
 
-// Method to Output OpenGL Errorrs
-bool checkOpenGLError() {
-	bool foundError = false;
-	int glErr = glGetError();
-	while (glErr != GL_NO_ERROR) {
-		std::cout << "glError: " << glErr << std::endl;
-		foundError = true;
-		glErr = glGetError();
-	}
-	return foundError;
+	glGenVertexArrays(1, vao);
+	glBindVertexArray(vao[0]);
+	glGenBuffers(numVBOs, vbo);
+
+	glBindBuffer(GL_ARRAY_BUFFER, vbo[0]);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertexPositions), vertexPositions, GL_STATIC_DRAW);
+
 }
 
 // Method to Initialize OpenGL window
 void init(GLFWwindow* window) {
 	renderingProgram = Utils::createShaderProgram("vertShader.glsl", "fragShader.glsl");
-	glGenVertexArrays(numVAOs, vao);
-	glBindVertexArray(vao[0]);
+	cameraX = 0.0f; cameraY = 0.0f; cameraZ = 30.0f;
+	cubeLocX = 0.0f; cubeLocX = -2.0f; cubeLocZ = 0.0f;
+	setupVertices();
 }
 
+
 // Method to Display OpenGL Window
-
-float x = 0.0f;
-float inc = 0.01f;
-
 void display(GLFWwindow* window, double currentTime) {
 
 	glClear(GL_DEPTH_BUFFER_BIT);
-	glClearColor(0.0, 0.0, 0.0, 1.0);
 	glClear(GL_COLOR_BUFFER_BIT);
-
 	glUseProgram(renderingProgram);
+	
+	// Get Uniform Variables for MV and Projection Matrices
+	mvLoc = glGetUniformLocation(renderingProgram, "mv_matrix");
+	pLoc = glGetUniformLocation(renderingProgram, "p_matrix");
 
-	x += inc;
-	if (x > 1.0f) inc = -0.01f;
+	// Build Perspective Matrix
+	glfwGetFramebufferSize(window, &width, &height);
+	aspect = (float)width / (float)height;
+	pMat = glm::perspective(1.0472f, aspect, 0.1f, 1000.0f); // 1.0472 radians = 60 degrees
 
-	if (x < -1.0f) inc = 0.01f;
+	// build view Matrix, Model Matrix, and Model-View Matrix
+	vMat = glm::translate(glm::mat4(1.0f), glm::vec3(-cameraX, -cameraY, -cameraZ));
 
-	GLuint offsetLoc = glGetUniformLocation(renderingProgram, "offset");
-	glProgramUniform1f(renderingProgram, offsetLoc, x);
+	for (int i = 0; i < 24; ++i) {
 
-	glDrawArrays(GL_TRIANGLES, 0, 3);
+		// Time Factor
+		float tf = currentTime + i;
 
-	glPointSize(90.0f);
-	glPolygonMode(GL_FRONT, GL_LINE);
+	// Use Current Time to Computer Different Translation in x, y, and z
+		tMat = glm::translate(glm::mat4(1.0f), glm::vec3(sin(0.35f * tf) * 8.0f, cos(0.52f * tf) * 8.0f, sin(0.7f * tf) * 8.0f));
 
-	//glDrawArrays(GL_POINTS, 0, 1);
-	glDrawArrays(GL_TRIANGLES, 0, 3);
+		rMat = glm::rotate(glm::mat4(1.0f), 1.75f * tf, glm::vec3(0.0f, 1.0f, 0.0f));
+		rMat = glm::rotate(rMat, 1.75f * tf, glm::vec3(1.0f, 0.0f, 0.0f));
+		rMat = glm::rotate(rMat, 1.75f * tf, glm::vec3(0.0f, 0.0f, 1.0f));
+		mMat = tMat * rMat;
+		mvMat = vMat * mMat;
+
+		// Copy Perspective and MV matrices to coressponding uniform Variables
+		glUniformMatrix4fv(mvLoc, 1, GL_FALSE, glm::value_ptr(mvMat));
+		glUniformMatrix4fv(pLoc, 1, GL_FALSE, glm::value_ptr(pMat));
+
+		// Associate VBO with the Corresponding Vertex Attribute in the Vertex Shader
+		glBindBuffer(GL_ARRAY_BUFFER, vbo[0]);
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
+		glEnableVertexAttribArray(0);
+
+		// Adjust OpenGL settings and draw model
+		glEnable(GL_DEPTH_TEST);
+		glDepthFunc(GL_LEQUAL);
+		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+	}
 }
 
 // Method of Entry
