@@ -9,4 +9,11 @@ Programmers {
   4. 
 }
 
-About: 
+Features {
+  1. Journaling
+  2. Meditation
+  3. Mindfulness Excercises
+  4. Cognitive Behavioral Therapy Activities
+}
+
+About: A program that promotes general wellbeing.
