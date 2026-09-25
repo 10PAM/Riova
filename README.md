@@ -14,10 +14,12 @@ Features {
   2. Meditation
   3. Mindfulness Excercises
   4. Cognitive Behavioral Therapy Activities
+
 }
 
 Data Handling {
   - Database Server (Firebase Database): Used to store and access user logins and save journaling data.
+
 }
 
 About: A program that promotes general wellbeing.
