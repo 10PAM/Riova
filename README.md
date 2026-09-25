@@ -22,4 +22,4 @@ Data Handling {
 
 }
 
-About: A program that promotes general wellbeing.
+About: An app that promotes general wellbeing.
