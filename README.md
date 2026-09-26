@@ -2,7 +2,7 @@
 
 Programmers {
   1. Mario Aguilera Piceno
-  2. 
+  2. Elliott Perez Ramos
   3. 
   4. 
 }
