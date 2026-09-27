@@ -1,4 +1,4 @@
-<img width="300" height="300" alt="Riova_Logo" src="https://github.com/user-attachments/assets/9fd9a5c3-7011-49e8-8dab-dcc435f645e0" onclick="window.open('https://github.com/10PAM/Riova/');">
+<img width="100" height="100" alt="Riova_Logo" src="https://github.com/user-attachments/assets/9fd9a5c3-7011-49e8-8dab-dcc435f645e0" onclick="window.open('https://github.com/10PAM/Riova/');">
 
 Programmers {
   1. Mario Aguilera Piceno
