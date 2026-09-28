@@ -5,7 +5,7 @@ Riova. An app that promotes general wellbeing.
 Programmers {
   1. Mario Aguilera Piceno
   2. Elliott Perez Ramos
-  3. 
+  3. Fulya Bilgin 
   4. 
 }
 
