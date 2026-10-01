@@ -1,10 +1,13 @@
-<img width="300" height="300" alt="Riova_Logo" src="https://github.com/user-attachments/assets/e7101a9e-13d9-455f-aae2-611c47d62dd7" onclick="window.open('https://github.com/10PAM/Riova/');">
+<img width="100" height="100" alt="Riova_Logo" src="https://github.com/user-attachments/assets/9fd9a5c3-7011-49e8-8dab-dcc435f645e0" onclick="window.open('https://github.com/10PAM/Riova/');">
+
+Riova. An app that promotes general wellbeing.
 
 Programmers {
   1. Mario Aguilera Piceno
-  2. 
-  3. 
-  4. 
+  2. Elliott Perez Ramos
+  3. Fulya Bilgin 
+  4. Brayan Villanueva Garcia
+
 }
 
 Features {
@@ -19,5 +22,3 @@ Data Handling {
   - Database Server (Firebase Database): Used to store and access user logins and save journaling data.
 
 }
-
-About: An app that promotes general wellbeing.
