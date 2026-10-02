@@ -93,6 +93,6 @@
             app:layout_constraintTop_toTopOf="parent" />
         <!--Meditation End-->
 
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
