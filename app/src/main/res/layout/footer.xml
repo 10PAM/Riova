@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_background">
+
+    <!--Navigation Menu-->
+    <LinearLayout
+        android:layout_margin="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/white"
+        android:id="@+id/header_layout">
+
+        <!--Journal Start-->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:contentDescription="Journal"
+            android:id="@+id/button_journal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            style="@style/Widget.AppCompat.ImageButton"
+            app:layout_constraintBottom_toTopOf="@id/textview_first"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:backgroundTint="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <!--Journal End-->
+
+        <!--Mindfullness Start-->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:contentDescription="Mindfullness"
+            android:id="@+id/button_mindfullness"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            app:layout_constraintBottom_toTopOf="@id/textview_first"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:backgroundTint="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ic_action_inactive_button"
+            app:layout_constraintTop_toTopOf="parent" />
+        <!--Mindfullness End-->
+
+        <!--Dashboard Start-->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:contentDescription="Dashboard"
+            android:id="@+id/button_dashboard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            app:backgroundTint="@android:color/transparent"/>
+
+        <!--Dashboard End-->
+        <!--Meditation Start-->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:contentDescription="Meditation"
+            android:id="@+id/button_meditation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            app:layout_constraintBottom_toTopOf="@id/textview_first"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:backgroundTint="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ic_action_inactive_button"
+            app:layout_constraintTop_toTopOf="parent" />
+        <!--Meditation End-->
+
+        <!--General Wellness Start-->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:contentDescription="GeneralWellness"
+            android:id="@+id/button_generalWellness"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            app:layout_constraintBottom_toTopOf="@id/textview_first"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:backgroundTint="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/ic_action_inactive_button"
+            app:layout_constraintTop_toTopOf="parent" />
+        <!--Meditation End-->
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
