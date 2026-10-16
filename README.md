@@ -19,6 +19,6 @@ Features {
 }
 
 Data Handling {
-  - Database Server (Firebase Database): Used to store and access user logins and save journaling data.
+  - Database Server (Firebase Database): Used to store and access user logins, settings, and journaling data.
 
 }
