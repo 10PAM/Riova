@@ -2,23 +2,17 @@
 
 Riova. An app that promotes general wellbeing.
 
-Programmers {
-  1. Mario Aguilera Piceno
-  2. Elliott Perez Ramos
-  3. Fulya Bilgin 
-  4. Brayan Villanueva Garcia
+## Programmed by Team Novelty
+- Mario Aguilera Piceno
+- Elliott Perez Ramos
+- Fulya Bilgin 
+- Brayan Villanueva Garcia
 
-}
+## Features
+1. Journaling
+2. Meditation
+3. Mindfulness Exercises + Encouragement Quotes
+5. General Wellness Suggestions
 
-Features {
-  1. Journaling
-  2. Meditation
-  3. Mindfulness Excercises
-  4. Cognitive Behavioral Therapy Activities
-
-}
-
-Data Handling {
-  - Database Server (Firebase Database): Used to store and access user logins, settings, and journaling data.
-
-}
+## Data Handling
+- Database Server (Firebase Database): Used to store and access user logins, settings, and journaling data.
