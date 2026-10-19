@@ -32,12 +32,12 @@
         </LinearLayout>
         <!--Journal End-->
 
-        <!--Mindfullness Start-->
+        <!--Mindfulness Start-->
         <LinearLayout
             style="@style/nav_button_linear_layout">
 
             <ImageButton
-                android:contentDescription="@string/mindfullness"
+                android:contentDescription="Mindfulness"
                 android:id="@+id/button_mindfullness"
                 android:src=""
                 app:backgroundTint="@null"
@@ -46,7 +46,7 @@
                 style="@style/nav_button_text"
                 android:text="Mindful"/>
         </LinearLayout>
-        <!--Mindfullness End-->
+        <!--Mindfulness End-->
 
         <!--Dashboard Start-->
         <LinearLayout
