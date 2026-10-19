@@ -23,7 +23,7 @@
             <ImageButton
                 android:contentDescription="@string/journal"
                 android:id="@+id/button_journal"
-                android:src=""
+                android:src="@drawable/ic_action_inactive_button"
                 app:backgroundTint="@null"
                 style="@style/nav_button"/>
             <TextView
@@ -39,7 +39,7 @@
             <ImageButton
                 android:contentDescription="Mindfulness"
                 android:id="@+id/button_mindfullness"
-                android:src=""
+                android:src="@drawable/ic_action_inactive_button"
                 app:backgroundTint="@null"
                 style="@style/nav_button"/>
             <TextView
@@ -69,7 +69,7 @@
             <ImageButton
                 android:contentDescription="@string/meditation"
                 android:id="@+id/button_meditation"
-                android:src=""
+                android:src="@drawable/ic_action_inactive_button"
                 app:backgroundTint="@null"
                 style="@style/nav_button"/>
             <TextView
@@ -84,7 +84,7 @@
             <ImageButton
                 android:contentDescription="@string/general_wellness"
                 android:id="@+id/button_generalWellness"
-                android:src=""
+                android:src="@drawable/ic_action_inactive_button"
                 app:backgroundTint="@null"
                 style="@style/nav_button"/>
             <TextView
