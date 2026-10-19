@@ -27,7 +27,9 @@
                 android:textColor="@color/white"
                 android:textSize="20dp"
                 android:layout_marginRight="200dp"
-                android:text="MENU_NAME"/>
+                android:text="MENU_NAME"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif"/>
             <ImageButton
                 android:layout_width="50dp"
                 android:layout_height="50dp"
