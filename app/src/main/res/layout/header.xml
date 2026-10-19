@@ -17,18 +17,19 @@
         android:background="@color/footer_back"
         android:id="@+id/header_layout">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="225dp"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
+            android:id="@+id/header_description"
             android:textSize="20sp"
-            android:layout_marginEnd="200dp"
+            android:layout_marginEnd="150dp"
             android:text="@string/menu_name"
             style="account_settings_button.xml"
             android:textStyle="bold"
+            android:textAlignment="textStart"
             android:fontFamily="sans-serif"/>
         <ImageButton
             android:id="@+id/accountSettings"
-            android:clickable="true"
             android:contentDescription="@string/user_account"
             style="@style/account_settings_button_style"
             app:backgroundTint="@null"
