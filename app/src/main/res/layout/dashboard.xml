@@ -8,6 +8,7 @@
     android:background="@color/black"
     tools:context=".MainActivity">
 
+    <include layout="@layout/header" />
     <include layout="@layout/footer" />
 
 
