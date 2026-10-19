@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/app_background"
-    android:padding="0dp"
-    tools:context=".SecondFragment">
-</androidx.core.widget.NestedScrollView>
+    android:fitsSystemWindows="true"
+    android:background="@color/footer_back"
+    tools:context=".MainActivity">
+
+    <!--Navigation Menu Start-->
+    <include layout="@layout/header" />
+    <include layout="@layout/footer" />
+    <!--Navigation Menu End-->
+
+    <!--IMPORTANT: This will be the central display; Add components inside here-->
+    <!--Content Start-->
+    <FrameLayout
+        style="@style/content_layout">
+
+    </FrameLayout>
+    <!--Content End-->
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

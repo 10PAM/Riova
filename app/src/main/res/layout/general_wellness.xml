@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <include layout="@layout/footer" />
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/footer_back"
+    tools:context=".MainActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!--Navigation Menu Start-->
+    <include layout="@layout/header" />
+    <include layout="@layout/footer" />
+    <!--Navigation Menu End-->
+
+    <!--IMPORTANT: This will be the central display; Add components inside here-->
+    <!--Content Start-->
+    <FrameLayout
+        style="@style/content_layout">
+
+    </FrameLayout>
+    <!--Content End-->
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
