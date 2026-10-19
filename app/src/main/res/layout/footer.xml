@@ -2,13 +2,14 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:background="@color/black"
     android:layout_height="match_parent">
 
     <!--Navigation Menu-->
     <LinearLayout
         android:layout_margin="0dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="90dp"
         android:orientation="horizontal"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -19,11 +20,7 @@
 
         <!--Journal Start-->
         <LinearLayout
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:orientation="vertical"
-            android:gravity="center">
-
+            style="@style/nav_button_linear_layout">
             <ImageButton
                 android:contentDescription="@string/journal"
                 android:id="@+id/button_journal"
@@ -31,49 +28,70 @@
                 app:backgroundTint="@null"
                 style="@style/nav_button"/>
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Dashboard"
-                android:textSize="15sp"
-                android:textColor="@color/white"/>
-
+                style="@style/nav_button_text"
+                android:text="Journal"/>
         </LinearLayout>
         <!--Journal End-->
 
         <!--Mindfullness Start-->
-        <ImageButton
-            android:contentDescription="@string/mindfullness"
-            android:id="@+id/button_mindfullness"
-            android:src=""
-            app:backgroundTint="@null"
-            style="@style/nav_button"/>
+        <LinearLayout
+            style="@style/nav_button_linear_layout">
+
+            <ImageButton
+                android:contentDescription="@string/mindfullness"
+                android:id="@+id/button_mindfullness"
+                android:src=""
+                app:backgroundTint="@null"
+                style="@style/nav_button"/>
+            <TextView
+                style="@style/nav_button_text"
+                android:text="Mindful"/>
+        </LinearLayout>
         <!--Mindfullness End-->
 
         <!--Dashboard Start-->
-        <ImageButton
-            android:contentDescription="@string/dashboard"
-            android:id="@+id/button_dashboard"
-            android:src="@drawable/ic_action_name"
-            app:backgroundTint="@null"
-            style="@style/nav_button"/>
-
+        <LinearLayout
+            style="@style/nav_button_linear_layout">
+            <ImageButton
+                android:contentDescription="@string/dashboard"
+                android:id="@+id/button_dashboard"
+                android:src="@drawable/ic_action_name"
+                app:backgroundTint="@null"
+                style="@style/nav_button"/>
+            <TextView
+                style="@style/nav_button_text"
+                android:text="Dashboard"/>
+        </LinearLayout>
         <!--Dashboard End-->
+
         <!--Meditation Start-->
-        <ImageButton
-            android:contentDescription="@string/meditation"
-            android:id="@+id/button_meditation"
-            android:src=""
-            app:backgroundTint="@null"
-            style="@style/nav_button"/>
+        <LinearLayout
+            style="@style/nav_button_linear_layout">
+            <ImageButton
+                android:contentDescription="@string/meditation"
+                android:id="@+id/button_meditation"
+                android:src=""
+                app:backgroundTint="@null"
+                style="@style/nav_button"/>
+            <TextView
+                style="@style/nav_button_text"
+                android:text="Meditation"/>
+        </LinearLayout>
         <!--Meditation End-->
 
         <!--General Wellness Start-->
-        <ImageButton
-            android:contentDescription="@string/general_wellness"
-            android:id="@+id/button_generalWellness"
-            android:src=""
-            app:backgroundTint="@null"
-            style="@style/nav_button"/>
+        <LinearLayout
+            style="@style/nav_button_linear_layout">
+            <ImageButton
+                android:contentDescription="@string/general_wellness"
+                android:id="@+id/button_generalWellness"
+                android:src=""
+                app:backgroundTint="@null"
+                style="@style/nav_button"/>
+            <TextView
+                style="@style/nav_button_text"
+                android:text="Gen Well"/>
+        </LinearLayout>
         <!--Meditation End-->
 
     </LinearLayout>
