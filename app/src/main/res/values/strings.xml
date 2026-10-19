@@ -44,4 +44,9 @@
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
     <string name="home">Home</string>
+    <string name="journal">Journal</string>
+    <string name="mindfullness">Mindfullness</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="meditation">Meditation</string>
+    <string name="general_wellness">General Wellness</string>
 </resources>
