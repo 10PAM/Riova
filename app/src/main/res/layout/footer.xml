@@ -21,6 +21,8 @@
         <LinearLayout
             style="@style/nav_button_linear_layout">
             <ImageButton
+                android:clickable="true"
+                android:focusable="true"
                 android:contentDescription="@string/journal"
                 android:id="@+id/button_journal"
                 android:src="@drawable/ic_action_inactive_button"
@@ -37,6 +39,8 @@
             style="@style/nav_button_linear_layout">
 
             <ImageButton
+                android:clickable="true"
+                android:focusable="true"
                 android:contentDescription="Mindfulness"
                 android:id="@+id/button_mindfullness"
                 android:src="@drawable/ic_action_inactive_button"
@@ -52,6 +56,8 @@
         <LinearLayout
             style="@style/nav_button_linear_layout">
             <ImageButton
+                android:clickable="true"
+                android:focusable="true"
                 android:contentDescription="@string/dashboard"
                 android:id="@+id/button_dashboard"
                 android:src="@drawable/ic_action_name"
@@ -67,6 +73,8 @@
         <LinearLayout
             style="@style/nav_button_linear_layout">
             <ImageButton
+                android:clickable="true"
+                android:focusable="true"
                 android:contentDescription="@string/meditation"
                 android:id="@+id/button_meditation"
                 android:src="@drawable/ic_action_inactive_button"
@@ -82,8 +90,9 @@
         <LinearLayout
             style="@style/nav_button_linear_layout">
             <ImageButton
+                android:clickable="true"
+                android:focusable="true"
                 android:contentDescription="@string/general_wellness"
-                android:id="@+id/button_generalWellness"
                 android:src="@drawable/ic_action_inactive_button"
                 app:backgroundTint="@null"
                 style="@style/nav_button"/>

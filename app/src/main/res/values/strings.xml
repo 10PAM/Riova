@@ -49,4 +49,6 @@
     <string name="dashboard">Dashboard</string>
     <string name="meditation">Meditation</string>
     <string name="general_wellness">General Wellness</string>
+    <string name="user_account">User Account</string>
+    <string name="menu_name">MENU_NAME</string>
 </resources>
