@@ -9,10 +9,10 @@ Riova. An app that promotes general wellbeing.
 - Brayan Villanueva Garcia
 
 ## Features
-1. Journaling
-2. Meditation
-3. Mindfulness Exercises + Encouragement Quotes
-5. General Wellness Suggestions
+- Journaling
+- Meditation
+- Mindfulness Exercises + Encouragement Quotes
+- General Wellness Suggestions
 
 ## Data Handling
 - Database Server (Firebase Database): Used to store and access user logins, settings, and journaling data.
