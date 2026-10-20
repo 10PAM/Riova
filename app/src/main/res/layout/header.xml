@@ -9,33 +9,46 @@
         android:layout_margin="0dp"
         android:layout_width="match_parent"
         android:layout_height="90dp"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:gravity="center"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:background="@color/footer_back"
         android:id="@+id/header_layout">
-        <TextView
-            android:layout_width="225dp"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:id="@+id/header_description"
-            android:textSize="20sp"
-            android:layout_marginEnd="150dp"
-            android:text="@string/menu_name"
-            style="account_settings_button.xml"
-            android:textStyle="bold"
-            android:textAlignment="textStart"
-            android:fontFamily="sans-serif"/>
-        <ImageButton
-            android:id="@+id/accountSettings"
-            android:contentDescription="@string/user_account"
-            style="@style/account_settings_button_style"
-            app:backgroundTint="@null"
-            android:scaleType="fitCenter"
-            android:clipToOutline="true"
-            android:src="@drawable/user_icon"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                app:layout_constraintWidth_percent="0.5"
+                android:layout_margin="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:id="@+id/header_description"
+                android:textSize="20sp"
+                android:text="@string/menu_name"
+                style="account_settings_button.xml"
+                android:textStyle="bold"
+                android:textAlignment="textStart"
+                android:fontFamily="sans-serif"/>
+            <ImageButton
+                android:layout_margin="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:id="@+id/accountSettings"
+                android:contentDescription="@string/user_account"
+                style="@style/account_settings_button_style"
+                app:backgroundTint="@null"
+                android:scaleType="fitCenter"
+                android:clipToOutline="true"
+                android:src="@drawable/user_icon"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
 
