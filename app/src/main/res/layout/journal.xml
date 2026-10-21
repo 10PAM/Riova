@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/fragment_journal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,17 +10,31 @@
     tools:context=".Journal">
 
     <!--Content Start-->
-    <FrameLayout
+    <Button
+        android:id="@+id/button_addJournal"
+        android:layout_gravity="center"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:text="@string/plus"
+        android:textSize="40sp"
+        android:background="@color/black"
+        app:layout_anchor="parent"/>
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <TextView
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColor="@color/white"
-            android:textSize="30sp"
-            android:text="JOURNAL..."/>
+            android:layout_height="200dp"
+            android:background="@color/black">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/journaly_entry"
+                android:textColor="@color/white"/>
 
-    </FrameLayout>
+        </FrameLayout>
+
+    </ScrollView>
     <!--Content End-->
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

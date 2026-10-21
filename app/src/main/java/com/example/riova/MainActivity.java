@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG_MEDITATION = "page_meditation";
     private static final String TAG_MINDFULNESS = "page_mindfulness";
     private static final String TAG_SETTINGS = "page_settings";
-    private String previousPageTAG = "";
     private String currentPage = TAG_DASHBOARD;
 
     /**
@@ -89,8 +88,8 @@ public class MainActivity extends AppCompatActivity {
         header_active_title = findViewById(R.id.header_description);
 
         // Setup initial page. NOTE: setInitialView() called once only before viewChange().
-        setInitialView();
-        viewChange(button_dashboard, TAG_DASHBOARD);
+        setInitialView(currentPage);
+        viewChange(button_dashboard, currentPage);
         header_active_title.setText(button_dashboard.getContentDescription());
 
         // Define footer navigation buttons' functionality
@@ -106,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      *
      */
-    private void setInitialView() {
+    private void setInitialView(final String PAGE_TAG) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
 
@@ -116,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
         transaction.hide(fragmentManager.findFragmentByTag(TAG_GENWELL));
         transaction.hide(fragmentManager.findFragmentByTag(TAG_MINDFULNESS));
         transaction.hide(fragmentManager.findFragmentByTag(TAG_MEDITATION));
-        transaction.show(fragmentManager.findFragmentByTag(TAG_DASHBOARD));
+        transaction.show(fragmentManager.findFragmentByTag(PAGE_TAG));
         transaction.commit();
     }
 
@@ -152,7 +151,6 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.hide(fragmentManager.findFragmentByTag(currentPage));
         transaction.show(fragmentManager.findFragmentByTag(TAG_FRAGMENT));
-        previousPageTAG = currentPage;
         currentPage = TAG_FRAGMENT;
         transaction.commit();
 

@@ -51,4 +51,6 @@
     <string name="general_wellness">General Wellness</string>
     <string name="user_account">User Account</string>
     <string name="menu_name">MENU_NAME</string>
+    <string name="plus">+</string>
+    <string name="journaly_entry">JOURNALY_ENTRY</string>
 </resources>
