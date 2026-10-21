@@ -101,11 +101,11 @@ public class MainActivity extends AppCompatActivity {
         button_settings = findViewById(R.id.button_settings);
         header_active_title = findViewById(R.id.header_description);
 
-        // Setup initial page
+        // Setup initial page. NOTE: setInitialView() called once only before viewChange().
+        setInitialView();
         viewChange(button_dashboard, TAG_DASHBOARD);
-        header_active_title.setText(button_dashboard.getContentDescription());
 
-        // Define footer navigation button functionality
+        // Define footer navigation buttons' functionality
         button_dashboard.setOnClickListener(v -> viewChange(button_dashboard, TAG_DASHBOARD));
         button_settings.setOnClickListener(v -> viewChange(button_settings, TAG_SETTINGS));
         button_mindful.setOnClickListener(v -> viewChange(button_mindful, TAG_MINDFULNESS));
@@ -116,11 +116,33 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
+     *
+     */
+    private void setInitialView() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+        // Hides all visible fragments, then shows specified fragment
+        transaction.hide(fragmentManager.findFragmentByTag(TAG_JOURNAL));
+        transaction.hide(fragmentManager.findFragmentByTag(TAG_SETTINGS));
+        transaction.hide(fragmentManager.findFragmentByTag(TAG_GENWELL));
+        transaction.hide(fragmentManager.findFragmentByTag(TAG_MINDFULNESS));
+        transaction.hide(fragmentManager.findFragmentByTag(TAG_MEDITATION));
+        transaction.show(fragmentManager.findFragmentByTag(TAG_DASHBOARD));
+        transaction.commit();
+    }
+
+    /**
      * Changes the view following navigation button click.
      *
      * @param button the button clicked (active)
      */
     private void viewChange(ImageButton button, final String TAG_FRAGMENT) {
+
+        // Prevents reopening the same page
+        if (TAG_FRAGMENT.equals(this.currentPage)) {
+            return;
+        }
 
         button_dashboard.setImageResource(R.drawable.inactive_button);
         button_mindful.setImageResource(R.drawable.inactive_button);
@@ -134,6 +156,7 @@ public class MainActivity extends AppCompatActivity {
 
         header_active_title.setText(button.getContentDescription());
 
+        // Shows a new page; Hides previous page.
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.hide(fragmentManager.findFragmentByTag(currentPage));

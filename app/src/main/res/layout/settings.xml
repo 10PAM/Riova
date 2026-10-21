@@ -17,7 +17,7 @@
             android:layout_height="match_parent"
             android:textColor="@color/white"
             android:textSize="30sp"
-            android:text="SETTINGS..."/>
+            android:text="USER ACCOUNT..."/>
 
     </FrameLayout>
     <!--Content End-->
