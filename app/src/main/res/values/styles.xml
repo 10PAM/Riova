@@ -29,7 +29,7 @@
         <item name="android:background">@drawable/nav_button</item>
     </style>
 
-    <style name="addjournal_button" parent="Widget.Design.FloatingActionButton">
+    <style name="addjournal_button" parent="Widget.AppCompat.Button">
         <item name="android:layout_width">45dp</item>
         <item name="android:layout_height">45dp</item>
         <item name="android:layout_margin">5dp</item>

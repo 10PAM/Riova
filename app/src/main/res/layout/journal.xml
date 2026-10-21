@@ -22,7 +22,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="5dp"
                 android:background="@color/journalPreview_back"
                 android:text="@string/journaly_entry"
                 android:orientation="vertical"
@@ -87,7 +87,8 @@
         android:layout_height="80dp"
         android:text="@string/plus"
         android:textSize="40sp"
-        style="@style/Journal_Dashboard"/>
+        app:backgroundTint="@null"
+        style="@style/addjournal_button"/>
     <!--Content End-->
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
