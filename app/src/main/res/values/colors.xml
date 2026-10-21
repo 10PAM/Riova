@@ -5,4 +5,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="footer_back">#121212</color>
     <color name="navigation_back">#2A2420</color>
+    <color name="journalPreview_back">#40000000</color>
 </resources>

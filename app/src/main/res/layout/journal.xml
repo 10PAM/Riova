@@ -10,31 +10,83 @@
     tools:context=".Journal">
 
     <!--Content Start-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@null">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@color/journalPreview_back"
+                android:text="@string/journaly_entry"
+                android:orientation="vertical"
+                android:textColor="@color/white">
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:text="TITLE_BRIEF"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"/>
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:text="DATE_MODIFIED"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TEXT_JOURNAL_BRIEF"
+                    android:textColor="@color/white"
+                    android:textSize="17sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@color/journalPreview_back"
+                android:text="@string/journaly_entry"
+                android:orientation="vertical"
+                android:textColor="@color/white">
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:text="TITLE_BRIEF"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"/>
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:text="DATE_MODIFIED"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="TEXT_JOURNAL_BRIEF"
+                    android:textColor="@color/white"
+                    android:textSize="17sp"/>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
     <Button
         android:id="@+id/button_addJournal"
-        android:layout_gravity="center"
+        android:layout_gravity="bottom"
+        android:gravity="center"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:text="@string/plus"
         android:textSize="40sp"
-        android:background="@color/black"
-        app:layout_anchor="parent"/>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:background="@color/black">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/journaly_entry"
-                android:textColor="@color/white"/>
-
-        </FrameLayout>
-
-    </ScrollView>
+        style="@style/Journal_Dashboard"/>
     <!--Content End-->
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
