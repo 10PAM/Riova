@@ -88,8 +88,7 @@ public class MainActivity extends AppCompatActivity {
         header_active_title = findViewById(R.id.header_description);
 
         // Setup initial page. NOTE: setInitialView() called once only before viewChange().
-        setInitialView(currentPage);
-        viewChange(button_dashboard, currentPage);
+        setInitialView(button_dashboard, currentPage);
         header_active_title.setText(button_dashboard.getContentDescription());
 
         // Define footer navigation buttons' functionality
@@ -105,7 +104,20 @@ public class MainActivity extends AppCompatActivity {
     /**
      *
      */
-    private void setInitialView(final String PAGE_TAG) {
+    private void setInitialView(ImageButton button, final String PAGE_TAG) {
+
+        // Resets active button images
+        button_dashboard.setImageResource(R.drawable.inactive_button);
+        button_mindful.setImageResource(R.drawable.inactive_button);
+        button_journal.setImageResource(R.drawable.inactive_button);
+        button_meditation.setImageResource(R.drawable.inactive_button);
+        button_genwell.setImageResource(R.drawable.inactive_button);
+
+        // Sets active button image on clicked button if not settings
+        if (button.getId() != button_settings.getId()) {
+            button.setImageResource(R.drawable.ic_action_name);
+        }
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
 
