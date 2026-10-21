@@ -3,5 +3,6 @@
     <color name="app_background">#0A192E</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="footer_back">#2C2C2C</color>
+    <color name="footer_back">#121212</color>
+    <color name="navigation_back">#2A2420</color>
 </resources>

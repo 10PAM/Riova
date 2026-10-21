@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_core"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/footer_back"
+    tools:context=".MainActivity">
+
+    <!--Navigation Menu Start-->
+    <include layout="@layout/header" />
+    <include layout="@layout/footer" />
+    <!--Navigation Menu End-->
+
+    <!--IMPORTANT: This will be the central display; Add components inside here-->
+    <!--Content Start-->
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        style="@style/content_layout">
+
+    </FrameLayout>
+    <!--Content End-->
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -5,18 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="@color/footer_back"
-    tools:context=".MainActivity">
+    android:background="@color/navigation_back"
+    tools:context=".Dashboard">
 
-    <!--Navigation Menu Start-->
-    <include layout="@layout/header" />
-    <include layout="@layout/footer" />
-    <!--Navigation Menu End-->
-
-    <!--IMPORTANT: This will be the central display; Add components inside here-->
     <!--Content Start-->
     <FrameLayout
-        style="@style/content_layout">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:text="DASHBOARD..."/>
 
     </FrameLayout>
     <!--Content End-->

@@ -16,7 +16,7 @@ About: Creates and initializes app functions once created.
 package com.example.riova;
 
 // Required imports
-import android.content.Intent;
+// import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -42,10 +42,23 @@ public class MainActivity extends AppCompatActivity {
      */
     private ImageButton button_dashboard;
     private ImageButton button_mindful;
+    private  ImageButton button_settings;
     private ImageButton button_journal;
     private ImageButton button_meditation;
     private ImageButton button_genwell;
     private TextView header_active_title;
+    // private int currentPageId = R.id.fragment_dashboard;
+    private String currentPage = TAG_DASHBOARD;
+
+
+    private static final String KEY_CURRENT_PAGE = "current_page";
+    // Tags to find and retrieve pages' fragments
+    private static final String TAG_DASHBOARD = "page_dashboard";
+    private static final String TAG_JOURNAL = "page_journal";
+    private static final String TAG_GENWELL = "page_genwell";
+    private static final String TAG_MEDITATION = "page_meditation";
+    private static final String TAG_MINDFULNESS = "page_mindfulness";
+    private static final String TAG_SETTINGS = "page_settings";
 
     /**
      * Program creation start; Initializes and connects all files and methods together.
@@ -63,20 +76,21 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
 
         // Sets intial layout view
-        setContentView(R.layout.dashboard);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.fragment_dashboard), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        setContentView(R.layout.navigation_core);
 
-        /*
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.fragment_dashboard, new Dashboard(), "dashboard")
-                    .add(R.id.fragment_journal, new Journal(), "journal")
+                    .add(R.id.fragment_container, new Dashboard(), TAG_DASHBOARD)
+                    .add(R.id.fragment_container, new Journal(), TAG_JOURNAL)
+                    .add(R.id.fragment_container, new GeneralWellness(), TAG_GENWELL)
+                    .add(R.id.fragment_container, new Mindfulness(), TAG_MINDFULNESS)
+                    .add(R.id.fragment_container, new Meditation(), TAG_MEDITATION)
+                    .add(R.id.fragment_container, new Settings(), TAG_SETTINGS)
                     .commitNow();
-        }*/
+        } //else {
+          //  currentPageId = savedInstanceState.getInt(KEY_CURRENT_PAGE, R.id.fragment_dashboard);
+        //}
+
 
         // Initialize navigation objects
         button_dashboard = findViewById(R.id.button_dashboard);
@@ -84,42 +98,20 @@ public class MainActivity extends AppCompatActivity {
         button_journal = findViewById(R.id.button_journal);
         button_meditation = findViewById(R.id.button_meditation);
         button_genwell = findViewById(R.id.button_genwell);
+        button_settings = findViewById(R.id.button_settings);
         header_active_title = findViewById(R.id.header_description);
 
         // Setup initial page
-        viewChange(button_dashboard, R.layout.dashboard);
+        viewChange(button_dashboard, TAG_DASHBOARD);
+        header_active_title.setText(button_dashboard.getContentDescription());
 
         // Define footer navigation button functionality
-        button_dashboard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                viewChange(button_dashboard, R.layout.dashboard);
-            }
-        });
-        button_mindful.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                viewChange(button_mindful, R.layout.mindfullness);
-            }
-        });
-        button_journal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                viewChange(button_journal, R.layout.journal);
-            }
-        });
-        button_meditation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                viewChange(button_meditation, R.layout.meditation);
-            }
-        });
-        button_genwell.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                viewChange(button_genwell, R.layout.general_wellness);
-            }
-        });
+        button_dashboard.setOnClickListener(v -> viewChange(button_dashboard, TAG_DASHBOARD));
+        button_settings.setOnClickListener(v -> viewChange(button_settings, TAG_SETTINGS));
+        button_mindful.setOnClickListener(v -> viewChange(button_mindful, TAG_MINDFULNESS));
+        button_journal.setOnClickListener(v -> viewChange(button_journal, TAG_JOURNAL));
+        button_meditation.setOnClickListener(v -> viewChange(button_meditation, TAG_MEDITATION));
+        button_genwell.setOnClickListener(v -> viewChange(button_genwell, TAG_GENWELL));
 
     }
 
@@ -127,10 +119,8 @@ public class MainActivity extends AppCompatActivity {
      * Changes the view following navigation button click.
      *
      * @param button the button clicked (active)
-     * @param viewId the view to be displayed.
      */
-    private void viewChange(ImageButton button, int viewId) {
-        View view = findViewById(viewId);
+    private void viewChange(ImageButton button, final String TAG_FRAGMENT) {
 
         button_dashboard.setImageResource(R.drawable.inactive_button);
         button_mindful.setImageResource(R.drawable.inactive_button);
@@ -138,36 +128,31 @@ public class MainActivity extends AppCompatActivity {
         button_meditation.setImageResource(R.drawable.inactive_button);
         button_genwell.setImageResource(R.drawable.inactive_button);
 
-        button.setImageResource(R.drawable.ic_action_name);
+        if (button.getId() != button_settings.getId()) {
+            button.setImageResource(R.drawable.ic_action_name);
+        }
 
         header_active_title.setText(button.getContentDescription());
 
-        /*
-        Intent intent = new Intent(MainActivity.this, Journal.class);
-        startActivity(intent);
-
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        Fragment page = fragmentManager.findFragmentByTag("dashboard");
-        transaction.hide(page);
-        transaction.show(fragmentManager.findFragmentByTag("journal"));
+        transaction.hide(fragmentManager.findFragmentByTag(currentPage));
+        transaction.show(fragmentManager.findFragmentByTag(TAG_FRAGMENT));
+        currentPage = TAG_FRAGMENT;
         transaction.commit();
 
-         */
     }
 
-
+/*
     private void showPage(int pageId) {
         //Show this page's Fragment and hide the other two. show/hide (instead of
         // replace) keeps each page alive, with its scroll position and selections.
-        /*
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         Fragment page = fragmentManager.findFragmentByTag("dashboard");
         transaction.hide(page);
         transaction.show(fragmentManager.findFragmentByTag("journal"));
         transaction.commit();
-*/
-    }
+    } */
 
 }
