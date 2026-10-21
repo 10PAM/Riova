@@ -22,7 +22,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:layout_marginBottom="900dp"
+                android:layout_marginBottom="20dp"
                 android:background="@color/journalPreview_back"
                 android:text="@string/journaly_entry"
                 android:orientation="vertical"
