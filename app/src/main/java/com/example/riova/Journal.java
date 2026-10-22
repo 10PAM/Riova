@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment;
 
 public class Journal extends Fragment {
 
-
     public Journal() {
         super(R.layout.journal);
     }
@@ -22,5 +21,4 @@ public class Journal extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
     }
-
 }
