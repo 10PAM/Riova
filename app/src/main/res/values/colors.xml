@@ -3,7 +3,7 @@
     <color name="app_background">#0A192E</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="footer_back">#121212</color>
-    <color name="navigation_back">#2A2420</color>
+    <color name="footer_back">#000000</color>
+    <color name="navigation_back">#151515</color>
     <color name="journalPreview_back">#40000000</color>
 </resources>
