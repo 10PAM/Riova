@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/black">
+
+    <LinearLayout
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_gravity="center"
+            android:background="@drawable/icon_view"
+            android:backgroundTint="@null"
+            android:contentDescription="@string/riova_icon"
+            android:src="@mipmap/ic_launcher_foreground"
+            android:scaleType="fitCenter"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="Riova. An app that promotes general wellbeing."
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="400dp"
+            android:layout_height="100dp"
+            android:background="@color/login_back"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:foregroundGravity="center"
+                android:src="@drawable/email" />
+
+            <EditText
+                android:layout_width="350dp"
+                android:layout_height="match_parent"
+                android:hint="@string/email"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="22sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="400dp"
+            android:layout_height="100dp"
+            android:background="@color/login_back"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:foregroundGravity="center"
+                android:src="@drawable/lock" />
+
+            <EditText
+                android:layout_width="350dp"
+                android:layout_height="match_parent"
+                android:hint="@string/password"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="22sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button_login"
+            style="@style/login_buttons"
+            android:text="@string/login"
+            app:backgroundTint="@null"/>
+
+        <Button
+            android:id="@+id/button_register"
+            style="@style/login_buttons"
+            android:text="@string/register"
+            app:backgroundTint="@null" />
+
+        <Button
+            android:id="@+id/button_skip"
+            style="@style/login_buttons"
+            android:text="@string/skip"
+            app:backgroundTint="@null" />
+
+        <Button
+            android:id="@+id/button_resetpassword"
+            android:layout_width="match_parent"
+            android:textSize="22sp"
+            android:background="@null"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="Forgot Password"
+            android:textStyle="bold"
+            android:textColor="@color/reset_password"
+            app:backgroundTint="@null" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

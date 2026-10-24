@@ -53,4 +53,10 @@
     <string name="menu_name">MENU_NAME</string>
     <string name="plus">+</string>
     <string name="journaly_entry">JOURNALY_ENTRY</string>
+    <string name="login">LOGIN</string>
+    <string name="register">REGISTER</string>
+    <string name="skip">SKIP</string>
+    <string name="riova_icon">Riova icon</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
 </resources>

@@ -38,6 +38,19 @@
         <item name="android:background">@drawable/addjournal_button</item>
     </style>
 
+    <style name="login_buttons" parent="Widget.AppCompat.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:layout_gravity">bottom</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:background">@drawable/login_buttons</item>
+        <item name="android:backgroundTint">@null</item>
+    </style>
+
     <style name="nav_button_text" parent="Widget.AppCompat.TextView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -65,6 +78,15 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_marginTop">90dp</item>
         <item name="android:layout_marginBottom">90dp</item>
+        <item name="android:background">@color/black</item>
+    </style>
+    <!--Core Layout Dimensions End-->
+
+    <!--Core Layout Dimensions Start-->
+    <!--IMPORTANT: Refer to footer.xml and header.xml for Layout Height & Layout Width Changes-->
+    <style name="login_layout" parent="Widget.Design.ScrimInsetsFrameLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
         <item name="android:background">@color/black</item>
     </style>
     <!--Core Layout Dimensions End-->

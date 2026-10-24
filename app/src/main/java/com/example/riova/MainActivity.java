@@ -17,6 +17,7 @@ package com.example.riova;
 
 // Required imports
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Tags to find and retrieve pages' fragments
     private static final String TAG_DASHBOARD = "page_dashboard";
+    private static final String TAG_LOGIN = "page_login";
     private static final String TAG_JOURNAL = "page_journal";
     private static final String TAG_GENWELL = "page_genwell";
     private static final String TAG_MEDITATION = "page_meditation";
@@ -75,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
                     .add(R.id.fragment_container, new Mindfulness(), TAG_MINDFULNESS)
                     .add(R.id.fragment_container, new Meditation(), TAG_MEDITATION)
                     .add(R.id.fragment_container, new Settings(), TAG_SETTINGS)
+                    .add(R.id.fragment_container_high, new Login(), TAG_LOGIN)
                     .commitNow();
         }
 
@@ -98,6 +101,17 @@ public class MainActivity extends AppCompatActivity {
         button_journal.setOnClickListener(v -> viewChange(button_journal, TAG_JOURNAL));
         button_meditation.setOnClickListener(v -> viewChange(button_meditation, TAG_MEDITATION));
         button_genwell.setOnClickListener(v -> viewChange(button_genwell, TAG_GENWELL));
+
+
+        /*
+        findViewById(R.id.button_skip).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showLogin(false);
+            }
+        });
+
+         */
 
     }
 
@@ -128,6 +142,25 @@ public class MainActivity extends AppCompatActivity {
         transaction.hide(fragmentManager.findFragmentByTag(TAG_MINDFULNESS));
         transaction.hide(fragmentManager.findFragmentByTag(TAG_MEDITATION));
         transaction.show(fragmentManager.findFragmentByTag(PAGE_TAG));
+        transaction.commit();
+    }
+
+
+    /**
+     * Changes the view following navigation button click.
+     *
+     */
+    private void showLogin(boolean show) {
+        // Prevents reopening the same page
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        if (show == false) {
+            // Shows a new page; Hides previous page.
+            transaction.hide(fragmentManager.findFragmentByTag(TAG_LOGIN));
+        } else {
+            // Shows a new page; Hides previous page.
+            transaction.show(fragmentManager.findFragmentByTag(TAG_LOGIN));
+        }
         transaction.commit();
     }
 
