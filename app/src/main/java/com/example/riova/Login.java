@@ -20,7 +20,21 @@ public class Login extends Fragment {
         view.findViewById(R.id.button_skip).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showLogin(false);
+                hideLogin();
+            }
+        });
+
+        view.findViewById(R.id.button_register).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showRegister();
+            }
+        });
+
+        view.findViewById(R.id.button_resetpassword).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showResetPassword();
             }
         });
     }
@@ -30,17 +44,42 @@ public class Login extends Fragment {
      * Changes the view following navigation button click.
      *
      */
-    private void showLogin(boolean show) {
+    private void hideLogin() {
         // Prevents reopening the same page
         FragmentManager fragmentManager = getParentFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        if (show == false) {
-            // Shows a new page; Hides previous page.
-            transaction.hide(fragmentManager.findFragmentByTag("page_login"));
-        } else {
-            // Shows a new page; Hides previous page.
-            transaction.show(fragmentManager.findFragmentByTag("page_login"));
-        }
+        transaction.hide(fragmentManager.findFragmentByTag("page_login"));
+        transaction.hide(fragmentManager.findFragmentByTag("page_resetpassword"));
+        transaction.hide(fragmentManager.findFragmentByTag("page_register"));
+        transaction.commit();
+    }
+
+
+    /**
+     * Changes the view following navigation button click.
+     *
+     */
+    private void showResetPassword() {
+        // Prevents reopening the same page
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.hide(fragmentManager.findFragmentByTag("page_login"));
+        transaction.hide(fragmentManager.findFragmentByTag("page_register"));
+        transaction.show(fragmentManager.findFragmentByTag("page_resetpassword"));
+        transaction.commit();
+    }
+
+
+    /**
+     * Changes the view following navigation button click.
+     *
+     */
+    private void showRegister() {
+        // Prevents reopening the same page
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.hide(fragmentManager.findFragmentByTag("page_login"));
+        transaction.show(fragmentManager.findFragmentByTag("page_register"));
         transaction.commit();
     }
 

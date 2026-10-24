@@ -48,6 +48,7 @@
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
         <item name="android:background">@drawable/login_buttons</item>
+        <item name="android:textAllCaps">false</item>
         <item name="android:backgroundTint">@null</item>
     </style>
 

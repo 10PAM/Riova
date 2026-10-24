@@ -17,8 +17,8 @@ package com.example.riova;
 
 // Required imports
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -43,11 +43,14 @@ public class MainActivity extends AppCompatActivity {
     // Tags to find and retrieve pages' fragments
     private static final String TAG_DASHBOARD = "page_dashboard";
     private static final String TAG_LOGIN = "page_login";
+    private static final String TAG_RESETPASSWORD = "page_resetpassword";
     private static final String TAG_JOURNAL = "page_journal";
     private static final String TAG_GENWELL = "page_genwell";
     private static final String TAG_MEDITATION = "page_meditation";
     private static final String TAG_MINDFULNESS = "page_mindfulness";
     private static final String TAG_SETTINGS = "page_settings";
+    private static final String TAG_REGISTER = "page_register";
+    private static final String TAG_LOGOUT = "page_logout";
     private String currentPage = TAG_DASHBOARD;
 
     /**
@@ -77,6 +80,9 @@ public class MainActivity extends AppCompatActivity {
                     .add(R.id.fragment_container, new Mindfulness(), TAG_MINDFULNESS)
                     .add(R.id.fragment_container, new Meditation(), TAG_MEDITATION)
                     .add(R.id.fragment_container, new Settings(), TAG_SETTINGS)
+                    .add(R.id.fragment_container_high, new ResetPassword(), TAG_RESETPASSWORD)
+                    .add(R.id.fragment_container_high, new Register(), TAG_REGISTER)
+                    .add(R.id.fragment_container_high, new Logout(), TAG_LOGOUT)
                     .add(R.id.fragment_container_high, new Login(), TAG_LOGIN)
                     .commitNow();
         }
@@ -102,21 +108,13 @@ public class MainActivity extends AppCompatActivity {
         button_meditation.setOnClickListener(v -> viewChange(button_meditation, TAG_MEDITATION));
         button_genwell.setOnClickListener(v -> viewChange(button_genwell, TAG_GENWELL));
 
-
-        /*
-        findViewById(R.id.button_skip).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showLogin(false);
-            }
-        });
-
-         */
-
     }
 
     /**
+     * Sets the initial view of the app.
      *
+     * @param button the button clicked.
+     * @param PAGE_TAG the tag of the initial page.
      */
     private void setInitialView(ImageButton button, final String PAGE_TAG) {
 
@@ -141,26 +139,10 @@ public class MainActivity extends AppCompatActivity {
         transaction.hide(fragmentManager.findFragmentByTag(TAG_GENWELL));
         transaction.hide(fragmentManager.findFragmentByTag(TAG_MINDFULNESS));
         transaction.hide(fragmentManager.findFragmentByTag(TAG_MEDITATION));
+        transaction.hide(fragmentManager.findFragmentByTag(TAG_RESETPASSWORD));
+        transaction.hide(fragmentManager.findFragmentByTag(TAG_REGISTER));
+        transaction.hide(fragmentManager.findFragmentByTag(TAG_LOGOUT));
         transaction.show(fragmentManager.findFragmentByTag(PAGE_TAG));
-        transaction.commit();
-    }
-
-
-    /**
-     * Changes the view following navigation button click.
-     *
-     */
-    private void showLogin(boolean show) {
-        // Prevents reopening the same page
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        if (show == false) {
-            // Shows a new page; Hides previous page.
-            transaction.hide(fragmentManager.findFragmentByTag(TAG_LOGIN));
-        } else {
-            // Shows a new page; Hides previous page.
-            transaction.show(fragmentManager.findFragmentByTag(TAG_LOGIN));
-        }
         transaction.commit();
     }
 
@@ -168,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
      * Changes the view following navigation button click.
      *
      * @param button the button clicked (active)
+     * @param TAG_FRAGMENT the TAG of page being shown.
      */
     private void viewChange(ImageButton button, final String TAG_FRAGMENT) {
 
@@ -201,4 +184,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Retrieves the current page.
+     *
+     * @return Returns current page.
+     */
+    private String getPreviousPage() {
+        return this.currentPage;
+    }
 }
