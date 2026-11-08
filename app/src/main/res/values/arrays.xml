@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Programmer: Fulya Bilgin (CWU Student ID: 50593580)
+    File: arrays.xml
+    About: Data arrays used by the Dashboard page - one wellness quote per
+           month (indexed 0-11 by Calendar.MONTH) and the list of recent app
+           updates shown in the "Recent Updates" section.
+-->
+<resources>
+
+    <!-- One quote per month. Index 0 = January ... index 11 = December. -->
+    <string-array name="month_quotes">
+        <item>"January: A fresh start is simply the next quiet breath you choose to take."</item>
+        <item>"February: Small acts of kindness, including toward yourself, add up."</item>
+        <item>"March: Growth is slow, and that is still growth."</item>
+        <item>"April: Let something new bloom at its own pace."</item>
+        <item>"May: Rest is productive. Give yourself room to recover."</item>
+        <item>"June: Step outside, slow down, and notice one good thing."</item>
+        <item>"July: You are allowed to take up space and take your time."</item>
+        <item>"August: Progress, not perfection, is the goal worth keeping."</item>
+        <item>"September: Begin again. Every day is a reasonable place to start."</item>
+        <item>"October: Change can be gentle. Let it be."</item>
+        <item>"November: Gratitude turns what you have into enough."</item>
+        <item>"December: Be as patient with yourself as you are with others."</item>
+    </string-array>
+
+    <!-- Featured recent app updates shown on the dashboard. -->
+    <string-array name="app_updates">
+        <item>"New: Dashboard now shows today's date and a quote for the month."</item>
+        <item>"New: In-app guide added - tap the guide button to learn the basics."</item>
+        <item>"Improved: Smoother navigation between pages."</item>
+    </string-array>
+
+</resources>
