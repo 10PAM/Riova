@@ -8,6 +8,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+/**
+ * This class handles the user password reset functionality.
+ */
 public class ResetPassword extends Fragment {
 
     public ResetPassword() {

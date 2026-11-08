@@ -8,6 +8,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+/**
+ * This class handles the user registration functionality.
+ */
 public class Register extends Fragment {
 
     public Register() {

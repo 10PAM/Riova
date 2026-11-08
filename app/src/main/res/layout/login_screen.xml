@@ -59,8 +59,11 @@
                     android:layout_height="match_parent"
                     android:hint="@string/email"
                     android:textAlignment="center"
+                    android:inputType="textEmailAddress"
+                    android:importantForAutofill="no"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white"
+                    android:imeOptions="actionNext"
                     android:textSize="22sp" />
             </LinearLayout>
 
@@ -81,6 +84,9 @@
                     android:layout_width="350dp"
                     android:layout_height="match_parent"
                     android:hint="@string/password"
+                    android:inputType="textPassword"
+                    android:imeOptions="actionNext"
+                    android:importantForAutofill="no"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white"

@@ -6,6 +6,9 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+/**
+ * This class handles the user journaling functionality.
+ */
 public class Journal extends Fragment {
 
     public Journal() {

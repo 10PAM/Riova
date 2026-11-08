@@ -1,13 +1,15 @@
 package com.example.riova;
 
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+/**
+ * This class handles the user sign out functionality.
+ */
 public class Logout extends Fragment {
 
     public Logout() {

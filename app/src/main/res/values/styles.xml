@@ -79,7 +79,7 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_marginTop">90dp</item>
         <item name="android:layout_marginBottom">90dp</item>
-        <item name="android:background">@color/black</item>
+        <item name="android:background">@color/navigation_back</item>
     </style>
     <!--Core Layout Dimensions End-->
 
