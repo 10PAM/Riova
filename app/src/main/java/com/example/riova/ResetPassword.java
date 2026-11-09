@@ -10,6 +10,11 @@ import androidx.fragment.app.FragmentTransaction;
 
 /**
  * This class handles the user password reset functionality.
+ * In general, the user enters an email, the email is looked
+ * for within the database, and if email is valid, a one-time
+ * passcode is sent to reset the password for the account.
+ * The new password is then saved to the database and a
+ * notification is sent to the email.
  */
 public class ResetPassword extends Fragment {
 

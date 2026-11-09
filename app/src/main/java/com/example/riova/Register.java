@@ -10,6 +10,11 @@ import androidx.fragment.app.FragmentTransaction;
 
 /**
  * This class handles the user registration functionality.
+ * In general, this class sends a registration code to
+ * the email, if it matches with the user input, then
+ * a new account is created and sent to the database.
+ * An email is then sent to the registration email,
+ * notifying of the account creation.
  */
 public class Register extends Fragment {
 

@@ -10,6 +10,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 /**
  * This class handles the user sign in functionality.
+ * The preference manager saves the user's login
+ * indefinitely until the user requests to sign out.
  */
 public class Login extends Fragment {
 
