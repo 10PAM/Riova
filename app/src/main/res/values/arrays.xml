@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Programmer: Fulya Bilgin (CWU Student ID: 50593580)
+    File: arrays.xml
+    About: Data arrays used by the Dashboard page - one wellness quote per
+           month (indexed 0-11 by Calendar.MONTH) and the list of recent app
+           updates shown in the "Recent Updates" section.
+-->
+<resources>
+
+    <!-- One quote per month. Index 0 = January ... index 11 = December. -->
+    <string-array name="month_quotes">
+        <item>"January: A fresh start is simply the next quiet breath you choose to take."</item>
+        <item>"February: Small acts of kindness, including toward yourself, add up."</item>
+        <item>"March: Growth is slow, and that is still growth."</item>
+        <item>"April: Let something new bloom at its own pace."</item>
+        <item>"May: Rest is productive. Give yourself room to recover."</item>
+        <item>"June: Step outside, slow down, and notice one good thing."</item>
+        <item>"July: You are allowed to take up space and take your time."</item>
+        <item>"August: Progress, not perfection, is the goal worth keeping."</item>
+        <item>"September: Begin again. Every day is a reasonable place to start."</item>
+        <item>"October: Change can be gentle. Let it be."</item>
+        <item>"November: Gratitude turns what you have into enough."</item>
+        <item>"December: Be as patient with yourself as you are with others."</item>
+    </string-array>
+
+    <!-- Daily motivational quotes shown on the Mindfulness page. -->
+    <string-array name="motivational_quotes">
+        <item>"You have already survived every hard day up to now."</item>
+        <item>"Small steps, taken daily, still carry you forward."</item>
+        <item>"You do not have to do it all at once. Just the next thing."</item>
+        <item>"Progress counts even when it is quiet."</item>
+        <item>"Your effort matters more than being perfect."</item>
+        <item>"Rest is part of the work, not a break from it."</item>
+        <item>"You are allowed to begin again, as many times as you need."</item>
+        <item>"Showing up today is enough."</item>
+    </string-array>
+
+    <!-- Daily encouragement quotes shown on the Mindfulness page. -->
+    <string-array name="encouragement_quotes">
+        <item>"Be as kind to yourself as you would be to a good friend."</item>
+        <item>"It is okay to take up space and ask for what you need."</item>
+        <item>"Whatever you are feeling is allowed to be here."</item>
+        <item>"You are doing better than your worries tell you."</item>
+        <item>"One breath at a time is a perfectly good pace."</item>
+        <item>"You are worthy of rest, care, and good things."</item>
+        <item>"Give yourself credit for how far you have come."</item>
+        <item>"You are not behind. You are on your own path."</item>
+    </string-array>
+
+    <!-- Featured recent app updates shown on the dashboard. -->
+    <string-array name="app_updates">
+        <item>"New: Dashboard now shows today's date and a quote for the month."</item>
+        <item>"New: In-app guide added - tap the guide button to learn the basics."</item>
+        <item>"Improved: Smoother navigation between pages."</item>
+    </string-array>
+
+</resources>
