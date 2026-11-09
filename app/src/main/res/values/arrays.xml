@@ -24,6 +24,30 @@
         <item>"December: Be as patient with yourself as you are with others."</item>
     </string-array>
 
+    <!-- Daily motivational quotes shown on the Mindfulness page. -->
+    <string-array name="motivational_quotes">
+        <item>"You have already survived every hard day up to now."</item>
+        <item>"Small steps, taken daily, still carry you forward."</item>
+        <item>"You do not have to do it all at once. Just the next thing."</item>
+        <item>"Progress counts even when it is quiet."</item>
+        <item>"Your effort matters more than being perfect."</item>
+        <item>"Rest is part of the work, not a break from it."</item>
+        <item>"You are allowed to begin again, as many times as you need."</item>
+        <item>"Showing up today is enough."</item>
+    </string-array>
+
+    <!-- Daily encouragement quotes shown on the Mindfulness page. -->
+    <string-array name="encouragement_quotes">
+        <item>"Be as kind to yourself as you would be to a good friend."</item>
+        <item>"It is okay to take up space and ask for what you need."</item>
+        <item>"Whatever you are feeling is allowed to be here."</item>
+        <item>"You are doing better than your worries tell you."</item>
+        <item>"One breath at a time is a perfectly good pace."</item>
+        <item>"You are worthy of rest, care, and good things."</item>
+        <item>"Give yourself credit for how far you have come."</item>
+        <item>"You are not behind. You are on your own path."</item>
+    </string-array>
+
     <!-- Featured recent app updates shown on the dashboard. -->
     <string-array name="app_updates">
         <item>"New: Dashboard now shows today's date and a quote for the month."</item>

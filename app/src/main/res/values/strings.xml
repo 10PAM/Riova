@@ -52,4 +52,8 @@
     <string name="settings_master_volume">Master volume</string>
     <string name="settings_reminders">Enable reminders</string>
     <string name="settings_keep_logged_in">Keep me logged in</string>
+    <!-- Mindfulness page (Fulya Bilgin) -->
+    <string name="mindfulness_title">Mindfulness</string>
+    <string name="mindfulness_motivational_header">MOTIVATIONAL QUOTE</string>
+    <string name="mindfulness_encouragement_header">ENCOURAGEMENT QUOTE</string>
 </resources>
