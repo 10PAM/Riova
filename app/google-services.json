@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "267259541550",
+    "project_id": "riova-b571d",
+    "storage_bucket": "riova-b571d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:267259541550:android:59059047d3af25032387bf",
+        "android_client_info": {
+          "package_name": "com.example.riova"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7SszX8JjHwiaju7MLmTiwpt-Xb7IsAVs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
