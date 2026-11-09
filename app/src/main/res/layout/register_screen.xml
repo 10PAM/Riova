@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
-            android:text="Create Your Account"
+            android:text="@string/create_your_account"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="24sp"
@@ -50,6 +50,7 @@
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:contentDescription="@string/nickname_icon"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:foregroundGravity="center"
@@ -59,9 +60,11 @@
                 <EditText
                     android:layout_width="350dp"
                     android:layout_height="match_parent"
-                    android:hint="Nickname (Optional)"
+                    android:hint="@string/nickname_optional"
                     android:textAlignment="center"
+                    android:inputType="textPersonName"
                     android:textColor="@color/white"
+                    android:autofillHints="none"
                     android:textColorHint="@color/white"
                     android:textSize="22sp" />
             </LinearLayout>
@@ -74,6 +77,7 @@
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:contentDescription="@string/email_icon"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:foregroundGravity="center"
@@ -83,7 +87,9 @@
                     android:layout_width="350dp"
                     android:layout_height="match_parent"
                     android:hint="@string/email"
+                    android:inputType="textEmailAddress"
                     android:textAlignment="center"
+                    android:autofillHints="none"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white"
                     android:textSize="22sp" />
@@ -97,6 +103,7 @@
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:contentDescription="@string/password_icon"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:foregroundGravity="center"
@@ -106,6 +113,8 @@
                     android:layout_width="350dp"
                     android:layout_height="match_parent"
                     android:hint="@string/password"
+                    android:autofillHints="none"
+                    android:inputType="textPassword"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white"
@@ -131,7 +140,7 @@
         <Button
             android:id="@+id/button_registerbacktologin"
             style="@style/login_buttons"
-            android:text="BACK"
+            android:text="@string/back_text"
             app:backgroundTint="@null" />
 
 

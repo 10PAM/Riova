@@ -56,4 +56,11 @@
     <string name="mindfulness_title">Mindfulness</string>
     <string name="mindfulness_motivational_header">MOTIVATIONAL QUOTE</string>
     <string name="mindfulness_encouragement_header">ENCOURAGEMENT QUOTE</string>
+    <string name="email_input">Email Input</string>
+    <string name="nickname_optional">Nickname (Optional)</string>
+    <string name="password_icon">Password Icon</string>
+    <string name="email_icon">Email Icon</string>
+    <string name="nickname_icon">Nickname Icon</string>
+    <string name="back_text">BACK</string>
+    <string name="create_your_account">Create Your Account</string>
 </resources>
