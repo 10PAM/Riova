@@ -41,4 +41,15 @@
     <string name="dashboard_guide_title">Welcome to Riova</string>
     <string name="dashboard_guide_body">Riova is your general wellness companion.\n\n• Dashboard: your daily home screen — today\'s date, a quote for the month, and recent updates.\n• Journal: write and keep your journal entries.\n• Mindfulness: a daily motivational and encouragement quote.\n• Meditation: a timer and ambient sounds.\n• General Wellness: simple daily goals to check off.\n• Settings: themes, font size, volume, reminders, and your account.\n\nUse the buttons at the bottom to move between pages.</string>
     <string name="dashboard_guide_dismiss">Got it</string>
+    <!-- User Settings page (Fulya Bilgin) -->
+    <string name="settings_title">User Settings</string>
+    <string name="settings_username">Username</string>
+    <string name="settings_username_hint">Enter a username</string>
+    <string name="settings_save_username">Save username</string>
+    <string name="settings_username_saved">Username saved</string>
+    <string name="settings_dark_mode">Dark mode</string>
+    <string name="settings_font_size">Font size</string>
+    <string name="settings_master_volume">Master volume</string>
+    <string name="settings_reminders">Enable reminders</string>
+    <string name="settings_keep_logged_in">Keep me logged in</string>
 </resources>
