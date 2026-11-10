@@ -1,18 +1,4 @@
-/*
-Programmers (Team Novelty) {
-    - Mario Aguilera Piceno, CWU Student ID: 49998581
-    -
-    -
-    -
-}
-Date: 10/6/2026
-Modified: 10/21/2026
-File: MainActivity.java
-About: Creates and initializes app functions once created.
-
- */
-
-// Defines package
+// Declare package
 package com.example.riova;
 
 // Required imports
@@ -38,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton button_genwell;
     private TextView header_active_title;
 
-
     // Tags to find and retrieve pages' fragments
     private static final String TAG_DASHBOARD = "page_dashboard";
     private static final String TAG_LOGIN = "page_login";
@@ -62,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         // Calls parent class with this.
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
@@ -106,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
         button_journal.setOnClickListener(v -> viewChange(button_journal, TAG_JOURNAL));
         button_meditation.setOnClickListener(v -> viewChange(button_meditation, TAG_MEDITATION));
         button_genwell.setOnClickListener(v -> viewChange(button_genwell, TAG_GENWELL));
-
     }
 
     /**
@@ -116,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
      * @param PAGE_TAG the tag of the initial page.
      */
     private void setInitialView(ImageButton button, final String PAGE_TAG) {
-
         // Resets active button images
         button_dashboard.setImageResource(R.drawable.inactive_button);
         button_mindful.setImageResource(R.drawable.inactive_button);
@@ -152,7 +134,6 @@ public class MainActivity extends AppCompatActivity {
      * @param TAG_FRAGMENT the TAG of page being shown.
      */
     private void viewChange(ImageButton button, final String TAG_FRAGMENT) {
-
         // Prevents reopening the same page
         if (TAG_FRAGMENT.equals(this.currentPage)) {
             return;
@@ -180,7 +161,6 @@ public class MainActivity extends AppCompatActivity {
         transaction.show(fragmentManager.findFragmentByTag(TAG_FRAGMENT));
         currentPage = TAG_FRAGMENT;
         transaction.commit();
-
     }
 
     /**
