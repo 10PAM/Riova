@@ -1,7 +1,6 @@
 package com.example.riova;
 
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

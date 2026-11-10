@@ -1,11 +1,9 @@
-package com.example.riova.journaling;
+package com.example.riova;
 
 import android.os.Bundle;
 import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-
-import com.example.riova.R;
 
 /**
  * This class handles the user journaling functionality.

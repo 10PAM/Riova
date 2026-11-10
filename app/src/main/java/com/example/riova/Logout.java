@@ -16,6 +16,13 @@ public class Logout extends Fragment {
         super(R.layout.logout);
     }
 
+    /**
+     * Memory management from
+     *
+     * @param view The View returned by created View.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed
+     * from a previous saved state as given here.
+     */
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 

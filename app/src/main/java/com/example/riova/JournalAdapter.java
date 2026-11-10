@@ -1,4 +1,4 @@
-package com.example.riova.journaling;
+package com.example.riova;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -6,8 +6,6 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.riova.R;
 
 import java.util.List;
 
