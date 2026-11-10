@@ -7,6 +7,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.riova.utilities.Constants;
+import com.example.riova.utilities.PreferencesHandler;
+
 /**
  * This class handles the user sign out functionality.
  */
@@ -15,6 +18,8 @@ public class Logout extends Fragment {
     public Logout() {
         super(R.layout.logout);
     }
+
+    private PreferencesHandler preferenceHandler;
 
     /**
      * Memory management from
@@ -26,10 +31,12 @@ public class Logout extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        preferenceHandler = new PreferencesHandler(getContext().getApplicationContext());
+
         view.findViewById(R.id.button_hidelogout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                hideLogout();
+                showPage(Constants.TAG_SETTINGS);
             }
         });
 
@@ -38,34 +45,31 @@ public class Logout extends Fragment {
             @Override
             public void onClick(View v) {
                 // showLogin();
-                hideLogout();
+                logoutUser();
             }
         });
     }
 
     /**
-     * Changes the view following navigation button click.
-     *
+     * Clear out local preferences to require sign-in.
      */
-    private void showLogin() {
-        // Prevents reopening the same page
-        FragmentManager fragmentManager = getParentFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.hide(fragmentManager.findFragmentByTag("page_logout"));
-        transaction.show(fragmentManager.findFragmentByTag("page_login"));
-        transaction.commit();
+    private void logoutUser() {
+        preferenceHandler.clear();
+        showPage(Constants.TAG_LOGIN);
     }
 
     /**
-     * Changes the view following navigation button click.
+     * Shows a Fragment.
      *
+     * @param tag The tag of the fragment to be displayed.
      */
-    private void hideLogout() {
-        // Prevents reopening the same page
+    private void showPage(String tag) {
         FragmentManager fragmentManager = getParentFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.hide(fragmentManager.findFragmentByTag("page_logout"));
-        transaction.show(fragmentManager.findFragmentByTag("page_settings"));
+        for (int i = 0; i < Constants.page_tag_array.length; ++i) {
+            transaction.hide(fragmentManager.findFragmentByTag(Constants.page_tag_array[i]));
+        }
+        transaction.show(fragmentManager.findFragmentByTag(tag));
         transaction.commit();
     }
 

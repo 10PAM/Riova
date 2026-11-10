@@ -32,4 +32,7 @@ public class Constants {
     public static final String TAG_REGISTER = "page_register";
     public static final String TAG_LOGOUT = "page_logout";
 
+    public static final String[] page_tag_array = {TAG_DASHBOARD, TAG_LOGIN, TAG_RESETPASSWORD, TAG_JOURNAL,
+    TAG_GENWELL, TAG_MEDITATION, TAG_MINDFULNESS, TAG_SETTINGS, TAG_REGISTER, TAG_LOGOUT};
+
 }

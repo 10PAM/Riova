@@ -2,10 +2,12 @@ package com.example.riova;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -42,6 +44,7 @@ public class Register extends Fragment {
     private Button buttonBack;
     private TextView messagePrompt;
 
+
     /**
      * Initializes pre-ui data
      *
@@ -54,6 +57,13 @@ public class Register extends Fragment {
         preferenceHandler = new PreferencesHandler(getContext().getApplicationContext());
     }
 
+    /**
+     *
+     *
+     * @param view The View returned by creation.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed
+     * from a previous saved state as given here.
+     */
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mainView = view;
@@ -87,7 +97,8 @@ public class Register extends Fragment {
     }
 
     /**
-     * Register's a user into firebase.
+     * Register's a user into firebase. Checks if their email is already in Firestore, if not,
+     * it allows for new account creation. One time passcode required for verification.
      */
     private void registerUser() {
         loading(true);
@@ -107,25 +118,50 @@ public class Register extends Fragment {
                     preferenceHandler.putString(Constants.KEY_NAME, inputName.getText().toString());
 
                     showPage(Constants.TAG_DASHBOARD);
+                    displayMessage("Created Account!");
+                    resetFields();
                 })).addOnFailureListener(exception -> {
                     loading(false);
+                    displayMessage("Error Creating Account!");
                 });
     }
 
+    /**
+     * Resets all input fields.
+     */
+    private void resetFields() {
+        inputName.setText("");
+        inputEmail.setText("");
+        inputPassword.setText("");
+        displayMessage("");
+    }
 
     /**
-     * Changes the view following navigation button click.
+     * Shows a Fragment.
      *
+     * @param tag The tag of the fragment to be displayed.
      */
     private void showPage(String tag) {
-        // Prevents reopening the same page
         FragmentManager fragmentManager = getParentFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();//.replace(R.id.fragment_core, new Dashboard()).commit();
-
-        transaction.hide(fragmentManager.findFragmentByTag(Constants.TAG_REGISTER));
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        for (int i = 0; i < Constants.page_tag_array.length; ++i) {
+            transaction.hide(fragmentManager.findFragmentByTag(Constants.page_tag_array[i]));
+        }
         transaction.show(fragmentManager.findFragmentByTag(tag));
         transaction.commit();
     }
+
+    /*
+    private void showDashboard() {}
+        /* // Prevents reopening the same page
+        FragmentManager fragmentManager = getParentFragmentManager();
+        fragmentManager
+                .beginTransaction()
+                .setReorderingAllowed(true)
+                .replace(R.id.fragment_container, new Dashboard(), Constants.TAG_DASHBOARD)
+                .addToBackStack(null)
+                .commit();
+         */
 
     /**
      * Displays a visible message temporarily.
@@ -161,6 +197,7 @@ public class Register extends Fragment {
                     "character (a-f/A-F)");
             return false;
         } else {
+            displayMessage("Creating Account...");
             return true;
         }
     }

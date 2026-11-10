@@ -7,6 +7,10 @@
     android:background="@color/black"
     tools:context=".Login">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
     <LinearLayout
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -16,8 +20,8 @@
         android:gravity="center">
 
         <ImageView
-            android:layout_width="250dp"
-            android:layout_height="250dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:layout_gravity="center"
             android:background="@drawable/icon_view"
             android:backgroundTint="@null"
@@ -55,6 +59,7 @@
                     android:src="@drawable/email" />
 
                 <EditText
+                    android:id="@+id/input_loginEmail"
                     android:layout_width="350dp"
                     android:layout_height="match_parent"
                     android:hint="@string/email"
@@ -81,6 +86,7 @@
                     android:src="@drawable/lock" />
 
                 <EditText
+                    android:id="@+id/input_loginPassword"
                     android:layout_width="350dp"
                     android:layout_height="match_parent"
                     android:hint="@string/password"
@@ -92,9 +98,20 @@
                     android:textColorHint="@color/white"
                     android:textSize="22sp" />
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/message_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="20sp"
+                android:textColor="@color/warning"
+                android:gravity="center"
+                android:textStyle="bold"
+                />
         </LinearLayout>
         <Button
-            android:id="@+id/button_login"
+            android:id="@+id/button_loginLogin"
             style="@style/login_buttons"
             android:text="@string/login"
             app:backgroundTint="@null"/>
@@ -110,7 +127,7 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/button_register"
+            android:id="@+id/button_loginRegister"
             style="@style/login_buttons"
             android:text="@string/createAccount"
             app:backgroundTint="@null" />
@@ -142,5 +159,5 @@
             app:backgroundTint="@null" />
 
     </LinearLayout>
-
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
