@@ -3,10 +3,8 @@ package com.example.riova;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.List;
 
 /**
@@ -77,7 +75,7 @@ public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.Journals
 
             journal.setOnClickListener(new View.OnClickListener() {
                 /**
-                 * Manages clicking for the Posters.
+                 * Manages clicking for the Journals.
                  *
                  * @param view The view that was clicked.
                  */
