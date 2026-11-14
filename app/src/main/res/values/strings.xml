@@ -63,4 +63,6 @@
     <string name="nickname_icon">Nickname Icon</string>
     <string name="back_text">BACK</string>
     <string name="create_your_account">Create Your Account</string>
+    <string name="back_arrow">Back</string>
+    <string name="title">Title</string>
 </resources>
