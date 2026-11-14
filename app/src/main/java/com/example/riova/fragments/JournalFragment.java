@@ -38,14 +38,14 @@ public class JournalFragment extends Fragment implements JournalListener {
     private FirebaseFirestore database;
 
     /**
-     *
+     * Constructs Journal Fragment.
      */
     public JournalFragment() {
         super(R.layout.journal);
     }
 
     /**
-     *
+     * Detects when Fragment is created.
      *
      * @param view The View returned by main.
      * @param savedInstanceState If non-null, this fragment is being re-constructed
@@ -151,15 +151,7 @@ public class JournalFragment extends Fragment implements JournalListener {
             return new SimpleDateFormat("MMM dd, yyyy - hh:mm a", Locale.getDefault())
                     .format(p_date);
         }
-        else {
-            return "DATE";
-        }
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
+        return "DATE";
     }
 
     @Override

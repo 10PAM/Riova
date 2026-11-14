@@ -69,8 +69,9 @@ public class JournalAppendFragment extends Fragment  {
      */
     private void setListeners() {
         backButton.setOnClickListener(v -> {
-            resetJournalAppend();
             showPage(Constants.TAG_JOURNAL);
+            saveJournal();
+            resetJournalAppend();
             preferencesHandler.putString(Constants.KEY_JOURNAL_ID_APPEND, "");
         });
         doneButton.setOnClickListener(v -> {
@@ -100,7 +101,6 @@ public class JournalAppendFragment extends Fragment  {
      * Resets JournalAppend Fragment
      */
     private void resetJournalAppend() {
-        saveJournal();
         inputTitle.setText("");
         inputContent.setText("");
         resetTextFocuses();
@@ -150,7 +150,8 @@ public class JournalAppendFragment extends Fragment  {
                 journalEntry.put(Constants.KEY_JOURNAL_TITLE, inputTitle.getText().toString());
                 journalEntry.put(Constants.KEY_JOURNAL_CONTENT, inputContent.getText().toString());
                 journalEntry.put(Constants.KEY_JOURNAL_TIMESTAMP, new Date());
-                database.collection(Constants.KEY_COLLECTION_JOURNALS).add(journalEntry).addOnSuccessListener(documentReference -> {
+                database.collection(Constants.KEY_COLLECTION_JOURNALS).add(journalEntry)
+                        .addOnSuccessListener(documentReference -> {
                     journalId = documentReference.getId();
                 });
 
@@ -161,7 +162,8 @@ public class JournalAppendFragment extends Fragment  {
                 journalEntry.put(Constants.KEY_JOURNAL_TITLE, inputTitle.getText().toString());
                 journalEntry.put(Constants.KEY_JOURNAL_CONTENT, inputContent.getText().toString());
                 journalEntry.put(Constants.KEY_JOURNAL_TIMESTAMP, new Date());
-                database.collection(Constants.KEY_COLLECTION_JOURNALS).document(journalId).set(journalEntry)
+                database.collection(Constants.KEY_COLLECTION_JOURNALS)
+                        .document(journalId).set(journalEntry)
                         .addOnSuccessListener(aVoid -> {
 
                         })
@@ -177,23 +179,20 @@ public class JournalAppendFragment extends Fragment  {
      */
     private void retrieveJournal() {
         journalId = preferencesHandler.getString(Constants.KEY_JOURNAL_ID_APPEND);
-        Toast.makeText(getContext(), "JournalID: " + journalId ,Toast.LENGTH_SHORT).show();
-        if (preferencesHandler.getString(Constants.KEY_JOURNAL_ID_APPEND).equals("")) {
-            return;
+        if (!preferencesHandler.getString(Constants.KEY_JOURNAL_ID_APPEND).equals("")) {
+            DocumentReference journalReference = database.collection(Constants.KEY_COLLECTION_JOURNALS)
+                    .document(journalId);
+            journalReference.get().addOnSuccessListener(documentSnapshot -> {
+                if (documentSnapshot.exists()) {
+                    inputTitle.setText(documentSnapshot.getString(Constants.KEY_JOURNAL_TITLE));
+                    inputContent.setText(documentSnapshot.getString(Constants.KEY_JOURNAL_CONTENT));
+                }
+            });
         }
-        Toast.makeText(getContext(), "JournalID: " + journalId ,Toast.LENGTH_SHORT).show();
-        DocumentReference journalReference = database.collection(Constants.KEY_COLLECTION_JOURNALS)
-                .document(journalId);
-        journalReference.get().addOnSuccessListener(documentSnapshot -> {
-            if(documentSnapshot.exists()) {
-                inputTitle.setText(documentSnapshot.getString(Constants.KEY_JOURNAL_TITLE));
-                inputContent.setText(documentSnapshot.getString(Constants.KEY_JOURNAL_CONTENT));
-            }
-        });
     }
 
     /**
-     * Shows a Fragment.
+     * Shows a specified Fragment.
      *
      * @param tag The tag of the fragment to be displayed.
      */
@@ -207,6 +206,11 @@ public class JournalAppendFragment extends Fragment  {
         transaction.commit();
     }
 
+    /**
+     * Listens for this Fragment's hidden status change.
+     *
+     * @param hidden True if the fragment is now hidden, false otherwise.
+     */
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
