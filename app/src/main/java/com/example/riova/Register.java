@@ -151,18 +151,6 @@ public class Register extends Fragment {
         transaction.commit();
     }
 
-    /*
-    private void showDashboard() {}
-        /* // Prevents reopening the same page
-        FragmentManager fragmentManager = getParentFragmentManager();
-        fragmentManager
-                .beginTransaction()
-                .setReorderingAllowed(true)
-                .replace(R.id.fragment_container, new Dashboard(), Constants.TAG_DASHBOARD)
-                .addToBackStack(null)
-                .commit();
-         */
-
     /**
      * Displays a visible message temporarily.
      *
