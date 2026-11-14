@@ -66,6 +66,7 @@ public class JournalAppendFragment extends Fragment  {
             showPage(Constants.TAG_JOURNAL);
         });
         doneButton.setOnClickListener(v -> {
+            resetTextFocuses();
             showDoneButton(false);
             saveJournal();
         });
@@ -75,16 +76,14 @@ public class JournalAppendFragment extends Fragment  {
                 showDoneButton(true);
             } else {
                 inputTitle.setCursorVisible(false);
-                resetTextFocuses();
             }
         });
         inputContent.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
                 inputContent.setCursorVisible(true);
                 showDoneButton(true);
-            } else {
+            }  else {
                 inputContent.setCursorVisible(false);
-                resetTextFocuses();
             }
         });
     }
