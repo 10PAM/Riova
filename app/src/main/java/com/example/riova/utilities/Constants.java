@@ -2,7 +2,7 @@ package com.example.riova.utilities;
 
 public class Constants {
 
-    // SharedPreferences file and keys.
+    // User settings keys.
     public static final String KEY_PREFERENCE_NAME = "riova_prefs";
     private static final String KEY_USERNAME = "username";
     private static final String KEY_THEME_DARK = "theme_dark";
@@ -11,19 +11,18 @@ public class Constants {
     private static final String KEY_REMINDERS = "reminders_enabled";
     private static final String KEY_KEEP_LOGGED_IN = "keep_logged_in";
 
+    // User profile Keys
     public static final String KEY_COLLECTION_USERS = "User";
     public static final String KEY_NAME = "name";
     public static final String KEY_EMAIL = "email";
     public static final String KEY_PASSWORD = "password";
     public static final String KEY_USER_ID = "userid";
     public static final String KEY_IS_SIGNED_IN = "isSignedIn";
-    public static final String KEY_IMAGE = "image";
 
     // Journal Keys
     public static final String KEY_COLLECTION_JOURNALS = "Journal";
     public static final String KEY_JOURNAL_OWNER_ID = "ownerId";
     public static final String KEY_JOURNAL_TITLE = "title";
-    public static final String KEY_JOURNAL_DATE = "date";
     public static final String KEY_JOURNAL_TIMESTAMP = "date_object";
     public static final String KEY_JOURNAL_CONTENT = "content";
 
@@ -40,7 +39,6 @@ public class Constants {
     public static final String TAG_SETTINGS = "page_settings";
     public static final String TAG_REGISTER = "page_register";
     public static final String TAG_LOGOUT = "page_logout";
-
     public static final String[] page_tag_array = {TAG_DASHBOARD, TAG_LOGIN, TAG_RESETPASSWORD, TAG_JOURNAL,
     TAG_GENWELL, TAG_MEDITATION, TAG_MINDFULNESS, TAG_SETTINGS, TAG_REGISTER, TAG_LOGOUT, TAG_JOURNAL_APPEND};
 

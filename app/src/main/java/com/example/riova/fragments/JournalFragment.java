@@ -43,10 +43,20 @@ public class JournalFragment extends Fragment implements JournalListener {
     View mainView;
     private FirebaseFirestore database;
 
+    /**
+     *
+     */
     public JournalFragment() {
         super(R.layout.journal);
     }
 
+    /**
+     *
+     *
+     * @param view The View returned by main.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed
+     * from a previous saved state as given here.
+     */
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mainView = view;
@@ -93,15 +103,6 @@ public class JournalFragment extends Fragment implements JournalListener {
         transaction.commit();
     }
 
-    /*
-    private void addJournal() {
-        FragmentManager fragmentManager = getParentFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.fragment_container_high, new JournalAppendActivity(), Constants.TAG_JOURNAL_APPEND)
-                .addToBackStack(null)
-                .commit();
-    }*/
-
     /**
      * Displays a Toast message with a specified string. Used for visual feedback on the user end.
      *
@@ -143,45 +144,7 @@ public class JournalFragment extends Fragment implements JournalListener {
             }
             journalRecycler.setVisibility(View.VISIBLE);
         }
-        //progressbar.setVisibility(View.GONE);
     });
-
-    /*
-     * Gets users from Firebase excluding current user. Saves into List, and appends to Adapter.
-
-    private void getJournals() {
-        loading(true);
-        FirebaseFirestore database = FirebaseFirestore.getInstance();
-        database.collection(Constants.KEY_COLLECTION_JOURNALS).get()
-                .addOnCompleteListener(task ->{
-                    loading(false);
-                    String currentUserId = preferencesHandler.getString(Constants.KEY_USER_ID);
-                    if (task.isSuccessful() && task.getResult() != null) {
-                        List<Journal> journals = new ArrayList<>();
-                        for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
-                            if (currentUserId.equals(queryDocumentSnapshot.getId())) {
-                                continue;
-                            }
-                            Journal journal = new Journal();
-                            journal.title = queryDocumentSnapshot.getString(Constants.KEY_JOURNAL_TITLE);
-                            journal.dateTime = queryDocumentSnapshot.getString(Constants.KEY_JOURNAL_DATE);
-                            journal.content = queryDocumentSnapshot.getString(Constants.KEY_JOURNAL_CONTENT);
-                            journal.id = queryDocumentSnapshot.getId();
-                            journals.add(journal);
-                        }
-                        if (!journals.isEmpty()) {
-                            JournalAdapter usersAdapter = new JournalAdapter(journals, this);
-                            RecyclerView journalRecycler = mainView.findViewById(R.id.journal_recycler_view);
-                            journalRecycler.setAdapter(usersAdapter);
-                            journalRecycler.setVisibility(View.VISIBLE);
-                        } else {
-                            //showToast("Error retrieving journals.");
-                        }
-                    } else {
-                        //showToast("Error retrieving journals...");
-                    }
-                });
-    }*/
 
     /**
      * Tests
