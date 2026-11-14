@@ -1,4 +1,4 @@
-package com.example.riova.activities;
+package com.example.riova.fragments;
 
 import android.os.Bundle;
 import android.util.Patterns;

@@ -12,7 +12,7 @@ About: Landing page shown after login. Displays the current date, a
        swapped for the cloud (Firebase) without changing the UI code.
 */
 
-package com.example.riova.activities;
+package com.example.riova.fragments;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

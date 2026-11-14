@@ -15,7 +15,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/navigation_back"
-    tools:context=".activities.SettingsFragment">
+    tools:context=".fragments.SettingsFragment">
 
     <!--Content Start-->
     <ScrollView

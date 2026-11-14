@@ -10,7 +10,7 @@ About: Mindfulness page. Shows one motivational quote and one encouragement
        all day and new ones appear when a new day is detected.
 */
 
-package com.example.riova.activities;
+package com.example.riova.fragments;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;

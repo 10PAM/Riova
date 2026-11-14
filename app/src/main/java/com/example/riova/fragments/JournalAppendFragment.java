@@ -1,4 +1,4 @@
-package com.example.riova.activities;
+package com.example.riova.fragments;
 
 import android.os.Bundle;
 import android.view.View;
@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.riova.utilities.PreferencesHandler;
 
-public class JournalAppendActivity extends Fragment  {
+public class JournalAppendFragment extends Fragment  {
 
     PreferencesHandler preferencesHandler;
     View mainView;

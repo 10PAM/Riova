@@ -11,6 +11,17 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.riova.R;
+import com.example.riova.fragments.DashboardFragment;
+import com.example.riova.fragments.GeneralWellnessFragment;
+import com.example.riova.fragments.JournalAppendFragment;
+import com.example.riova.fragments.JournalFragment;
+import com.example.riova.fragments.LoginFragment;
+import com.example.riova.fragments.LogoutFragment;
+import com.example.riova.fragments.MeditationFragment;
+import com.example.riova.fragments.MindfulnessFragment;
+import com.example.riova.fragments.RegisterFragment;
+import com.example.riova.fragments.ResetPasswordFragment;
+import com.example.riova.fragments.SettingsFragment;
 import com.example.riova.utilities.Constants;
 
 /**
@@ -58,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                     .add(R.id.fragment_container_high, new RegisterFragment(), Constants.TAG_REGISTER)
                     .add(R.id.fragment_container_high, new LogoutFragment(), Constants.TAG_LOGOUT)
                     .add(R.id.fragment_container_high, new LoginFragment(), Constants.TAG_LOGIN)
-                    .add(R.id.fragment_container_high, new JournalAppendActivity(), Constants.TAG_JOURNAL_APPEND)
+                    .add(R.id.fragment_container_high, new JournalAppendFragment(), Constants.TAG_JOURNAL_APPEND)
                     .commitNow();
         }
 

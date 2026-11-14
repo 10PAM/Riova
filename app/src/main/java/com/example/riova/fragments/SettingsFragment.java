@@ -12,7 +12,7 @@ About: User Settings page. Loads and saves the user's preferences - username,
        without changing the UI code. The existing Sign Out action is preserved.
 */
 
-package com.example.riova.activities;
+package com.example.riova.fragments;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
