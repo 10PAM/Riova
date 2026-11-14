@@ -1,23 +1,21 @@
-package com.example.riova;
+package com.example.riova.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import com.example.riova.R;
 import com.example.riova.utilities.Constants;
 import com.example.riova.utilities.PreferencesHandler;
 import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
-import java.util.concurrent.CompletableFuture;
 
 /**
  * This class handles the user registration functionality.
@@ -27,12 +25,12 @@ import java.util.concurrent.CompletableFuture;
  * An email is then sent to the registration email,
  * notifying of the account creation.
  */
-public class Register extends Fragment {
+public class RegisterActivity extends Fragment {
 
     private View mainView;
     private PreferencesHandler preferenceHandler;
 
-    public Register() {
+    public RegisterActivity() {
         super(R.layout.register_screen);
     }
 

@@ -1,10 +1,18 @@
-package com.example.riova;
+package com.example.riova.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.riova.activities.JournalActivity;
+import com.example.riova.R;
+import com.example.riova.listeners.JournalListener;
+
 import java.util.List;
 
 /**
@@ -13,10 +21,18 @@ import java.util.List;
  */
 public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.JournalsViewHolder> {
 
-    private List<Journal> journals;
+    private final List<JournalActivity> journals;
+    private final JournalListener journalListener;
 
-    public JournalAdapter() {
-
+    /**
+     * Constructs the Journal Adapter.
+     *
+     * @param p_journals The Journals being applied.
+     * @param p_journalListener The JournalListener object being applied.
+     */
+    public JournalAdapter(List<JournalActivity> p_journals, JournalListener p_journalListener) {
+        this.journals = p_journals;
+        this.journalListener = p_journalListener;
     }
 
     /**
@@ -47,12 +63,11 @@ public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.Journals
     @Override
     public void onBindViewHolder(@NonNull JournalAdapter.JournalsViewHolder holder, int position) {
         holder.bindJournals(journals.get(position));
-
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return journals.size();
     }
 
     /**
@@ -60,8 +75,33 @@ public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.Journals
      */
     class JournalsViewHolder extends RecyclerView.ViewHolder{
 
+        View mainView;
+
+        /**
+         * Constructs the ViewHolder for journals
+         *
+         * @param itemView The main View context.
+         */
         public JournalsViewHolder(@NonNull View itemView) {
             super(itemView);
+            mainView = itemView;
+        }
+
+        /**
+         * Applies Journal data to View.
+         *
+         * @param p_journal The Journal view.
+         */
+        private void setJournalData(JournalActivity p_journal) {
+            LinearLayout journalView = mainView.findViewById(R.id.banner_journal);
+
+            TextView journalTitle = journalView.findViewById(R.id.journal_title);
+            TextView journalDate = journalView.findViewById(R.id.journal_date);
+            TextView journalContentBrief = journalView.findViewById(R.id.journal_content_brief);
+
+            journalTitle.setText(p_journal.title);
+            journalDate.setText(p_journal.date);
+            journalContentBrief.setText(p_journal.content);
 
         }
 
@@ -70,8 +110,7 @@ public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.Journals
          *
          * @param journal The journals.
          */
-        void bindJournals(final Journal journal){
-
+        void bindJournals(final JournalActivity journal){
 
             journal.setOnClickListener(new View.OnClickListener() {
                 /**
@@ -82,6 +121,7 @@ public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.Journals
                 @Override
                 public void onClick(View view) {
                     if(journal.isSelected){
+
                     }else{
 
                     }

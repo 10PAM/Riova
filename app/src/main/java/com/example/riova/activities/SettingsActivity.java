@@ -12,7 +12,7 @@ About: User Settings page. Loads and saves the user's preferences - username,
        without changing the UI code. The existing Sign Out action is preserved.
 */
 
-package com.example.riova;
+package com.example.riova.activities;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -28,9 +28,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.riova.R;
 import com.google.android.material.materialswitch.MaterialSwitch;
 
-public class Settings extends Fragment {
+public class SettingsActivity extends Fragment {
 
     // SharedPreferences file and keys.
     private static final String PREFS = "riova_prefs";
@@ -41,7 +42,7 @@ public class Settings extends Fragment {
     private static final String KEY_REMINDERS = "reminders_enabled";
     private static final String KEY_KEEP_LOGGED_IN = "keep_logged_in";
 
-    public Settings() {
+    public SettingsActivity() {
         super(R.layout.settings);
     }
 

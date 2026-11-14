@@ -1,6 +1,5 @@
-package com.example.riova;
+package com.example.riova.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -13,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.riova.R;
 import com.example.riova.utilities.Constants;
 import com.example.riova.utilities.PreferencesHandler;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -23,7 +23,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
  * The preference manager saves the user's login
  * indefinitely until the user requests to sign out.
  */
-public class Login extends Fragment {
+public class LoginActivity extends Fragment {
 
     // Key UI Elements
     private EditText inputEmail;
@@ -36,7 +36,7 @@ public class Login extends Fragment {
 
     private PreferencesHandler preferenceHandler;
 
-    public Login() {
+    public LoginActivity() {
         super(R.layout.login_screen);
     }
 

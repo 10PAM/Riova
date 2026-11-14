@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/banner_journal"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_marginBottom="5dp"
+    android:background="@color/journalPreview_back"
+    android:text="@string/journaly_entry"
+    android:orientation="vertical"
+    android:textColor="@color/white">
+    <TextView
+        android:id="@+id/journal_title"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="TITLE_BRIEF"
+        android:textSize="20sp"
+        android:textColor="@color/white"/>
+    <TextView
+        android:id="@+id/journal_date"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="DATE_MODIFIED"
+        android:textSize="20sp"
+        android:textColor="@color/white"/>
+    <TextView
+        android:id="@+id/journal_content_brief"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TEXT_JOURNAL_BRIEF"
+        android:textColor="@color/white"
+        android:textSize="17sp"/>
+</LinearLayout>

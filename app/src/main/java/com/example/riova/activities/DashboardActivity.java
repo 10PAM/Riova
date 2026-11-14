@@ -12,7 +12,7 @@ About: Landing page shown after login. Displays the current date, a
        swapped for the cloud (Firebase) without changing the UI code.
 */
 
-package com.example.riova;
+package com.example.riova.activities;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -23,15 +23,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.riova.R;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class Dashboard extends Fragment {
+public class DashboardActivity extends Fragment {
 
-    public Dashboard() {
+    public DashboardActivity() {
         super(R.layout.dashboard);
     }
 

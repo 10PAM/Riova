@@ -6,51 +6,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/navigation_back"
-    tools:context=".Journal">
+    tools:context=".activities.JournalActivity">
 
     <!--Content Start-->
-    <ScrollView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/journal_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingTop="5dp"
+        android:visibility="gone"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="vertical"
         android:fillViewport="true">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@null">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginBottom="5dp"
-                android:background="@color/journalPreview_back"
-                android:text="@string/journaly_entry"
-                android:orientation="vertical"
-                android:textColor="@color/white">
-                <TextView
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:text="TITLE_BRIEF"
-                    android:textSize="20sp"
-                    android:textColor="@color/white"/>
-                <TextView
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:text="DATE_MODIFIED"
-                    android:textSize="20sp"
-                    android:textColor="@color/white"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="TEXT_JOURNAL_BRIEF"
-                    android:textColor="@color/white"
-                    android:textSize="17sp"/>
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-    </ScrollView>
+    </androidx.recyclerview.widget.RecyclerView>
 
     <Button
         android:id="@+id/button_addJournal"

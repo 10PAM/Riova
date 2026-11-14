@@ -1,19 +1,18 @@
-package com.example.riova;
+package com.example.riova.activities;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class GeneralWellness extends Fragment {
+import com.example.riova.R;
+
+public class GeneralWellnessActivity extends Fragment {
 
 
-    public GeneralWellness(){
+    public GeneralWellnessActivity(){
         super(R.layout.general_wellness);
     }
 

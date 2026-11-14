@@ -1,4 +1,4 @@
-package com.example.riova;
+package com.example.riova.activities;
 
 import android.os.Bundle;
 import android.view.View;
@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import com.example.riova.R;
 
 /**
  * This class handles the user password reset functionality.
@@ -15,9 +17,9 @@ import androidx.fragment.app.FragmentTransaction;
  * The new password is then saved to the database and a
  * notification is sent to the email.
  */
-public class ResetPassword extends Fragment {
+public class ResetPasswordActivity extends Fragment {
 
-    public ResetPassword() {
+    public ResetPasswordActivity() {
         super(R.layout.reset_password);
     }
 

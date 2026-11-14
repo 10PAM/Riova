@@ -10,7 +10,7 @@ About: Mindfulness page. Shows one motivational quote and one encouragement
        all day and new ones appear when a new day is detected.
 */
 
-package com.example.riova;
+package com.example.riova.activities;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -20,12 +20,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.riova.R;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.Random;
 
-public class Mindfulness extends Fragment {
+public class MindfulnessActivity extends Fragment {
 
     // Reuse the app's preference file; keys specific to this page.
     private static final String PREFS = "riova_prefs";
@@ -33,7 +35,7 @@ public class Mindfulness extends Fragment {
     private static final String KEY_MOTIVATIONAL = "mindfulness_motivational_index";
     private static final String KEY_ENCOURAGEMENT = "mindfulness_encouragement_index";
 
-    public Mindfulness() {
+    public MindfulnessActivity() {
         super(R.layout.mindfullness);
     }
 
