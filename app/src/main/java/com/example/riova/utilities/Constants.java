@@ -21,8 +21,10 @@ public class Constants {
 
     // Journal Keys
     public static final String KEY_COLLECTION_JOURNALS = "Journal";
+    public static final String KEY_JOURNAL_OWNER_ID = "ownerId";
     public static final String KEY_JOURNAL_TITLE = "title";
     public static final String KEY_JOURNAL_DATE = "date";
+    public static final String KEY_JOURNAL_TIMESTAMP = "date_object";
     public static final String KEY_JOURNAL_CONTENT = "content";
 
 

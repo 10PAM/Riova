@@ -15,6 +15,7 @@ import com.example.riova.models.Journal;
 
 import org.jetbrains.annotations.UnknownNullability;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -49,7 +50,7 @@ public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.Journals
     @Override
     public JournalsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         return new JournalsViewHolder(LayoutInflater.from(parent.getContext()).inflate(
-                R.layout.journal,
+                R.layout.journals_activity,
                 parent,
                 false
         ));
@@ -102,11 +103,12 @@ public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.Journals
             TextView journalContentBrief = journalView.findViewById(R.id.journal_content_brief);
 
             journalTitle.setText(p_journal.title);
-            journalDate.setText(p_journal.date);
+            journalDate.setText(p_journal.dateTime);
             journalContentBrief.setText(p_journal.content);
 
             mainView.setOnClickListener(v -> {
                 journalListener.onJournalClicked(p_journal);
+                // SAVE TO PREFERENCE MANAGER the document id of the clicked View for appending
             });
 
         }
@@ -114,10 +116,10 @@ public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.Journals
         /**
          * Manages journal binding.
          *
-         * @param journal The journals.
+         * @param p_journal The journals.
          */
-        void bindJournals(final @UnknownNullability Journal journal){
-
+        void bindJournals(final @UnknownNullability Journal p_journal){
+            setJournalData(p_journal);
         }
 
     }

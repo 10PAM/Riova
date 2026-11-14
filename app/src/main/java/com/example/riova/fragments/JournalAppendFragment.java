@@ -1,6 +1,7 @@
 package com.example.riova.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -13,6 +14,10 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.riova.R;
 import com.example.riova.utilities.Constants;
 import com.example.riova.utilities.PreferencesHandler;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Date;
+import java.util.HashMap;
 
 public class JournalAppendFragment extends Fragment  {
 
@@ -22,6 +27,8 @@ public class JournalAppendFragment extends Fragment  {
     private ImageView doneButton;
     private EditText inputTitle;
     private EditText inputContent;
+    private FirebaseFirestore database;
+    private String journalId = "";
 
     /**
      * Constructs the main Fragment.
@@ -42,6 +49,7 @@ public class JournalAppendFragment extends Fragment  {
         initializeViews(view);
         preferencesHandler = new PreferencesHandler(getContext());
         setListeners();
+        database = FirebaseFirestore.getInstance();
     }
 
     /**
@@ -135,7 +143,32 @@ public class JournalAppendFragment extends Fragment  {
      */
     private void saveJournal() {
         if (isModified()) {
+            if (journalId.isEmpty()) {
+                HashMap<String, Object> journalEntry = new HashMap<>();
+                journalEntry.put(Constants.KEY_JOURNAL_OWNER_ID, preferencesHandler
+                        .getString(Constants.KEY_USER_ID));
+                journalEntry.put(Constants.KEY_JOURNAL_TITLE, inputTitle.getText().toString());
+                journalEntry.put(Constants.KEY_JOURNAL_CONTENT, inputContent.getText().toString());
+                journalEntry.put(Constants.KEY_JOURNAL_TIMESTAMP, new Date());
+                database.collection(Constants.KEY_COLLECTION_JOURNALS).add(journalEntry).addOnSuccessListener(documentReference -> {
+                    journalId = documentReference.getId();
+                });
 
+            } else {
+                HashMap<String, Object> journalEntry = new HashMap<>();
+                journalEntry.put(Constants.KEY_JOURNAL_OWNER_ID, preferencesHandler
+                        .getString(Constants.KEY_USER_ID));
+                journalEntry.put(Constants.KEY_JOURNAL_TITLE, inputTitle.getText().toString());
+                journalEntry.put(Constants.KEY_JOURNAL_CONTENT, inputContent.getText().toString());
+                journalEntry.put(Constants.KEY_JOURNAL_TIMESTAMP, new Date());
+                database.collection(Constants.KEY_COLLECTION_JOURNALS).document(journalId).set(journalEntry)
+                        .addOnSuccessListener(aVoid -> {
+
+                        })
+                        .addOnFailureListener(e -> {
+
+                        });
+            }
         }
     }
 
