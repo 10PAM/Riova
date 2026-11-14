@@ -61,7 +61,7 @@ public class JournalFragment extends Fragment implements JournalListener {
      * Initializes Journal Fragment.
      */
     private void initialize() {
-        journals = new ArrayList<Journal>();
+        journals = new ArrayList<>();
         preferencesHandler = new PreferencesHandler(getContext());
         database = FirebaseFirestore.getInstance();
         journalAdapter = new JournalAdapter(journals, this);
@@ -154,6 +154,9 @@ public class JournalFragment extends Fragment implements JournalListener {
         return "DATE";
     }
 
+    /**
+     * Listens for View destroyal.
+     */
     @Override
     public void onDestroyView() {
         super.onDestroyView();

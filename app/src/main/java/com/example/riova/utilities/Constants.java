@@ -1,5 +1,9 @@
 package com.example.riova.utilities;
 
+import com.example.riova.models.Journal;
+
+import java.util.HashMap;
+
 public class Constants {
 
     // User settings keys.

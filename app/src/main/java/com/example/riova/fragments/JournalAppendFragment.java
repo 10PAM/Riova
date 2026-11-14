@@ -4,12 +4,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import com.example.riova.R;
+import com.example.riova.models.Journal;
 import com.example.riova.utilities.Constants;
 import com.example.riova.utilities.PreferencesHandler;
 import com.google.firebase.firestore.DocumentReference;
@@ -17,7 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.Date;
 import java.util.HashMap;
 
-public class JournalAppendFragment extends Fragment  {
+public class JournalAppendFragment extends Fragment {
 
     private PreferencesHandler preferencesHandler;
     private View mainView;
