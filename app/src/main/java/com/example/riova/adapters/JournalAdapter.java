@@ -12,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.riova.R;
 import com.example.riova.listeners.JournalListener;
 import com.example.riova.models.Journal;
+import com.example.riova.utilities.Constants;
+import com.example.riova.utilities.PreferencesHandler;
 
 import org.jetbrains.annotations.UnknownNullability;
 
@@ -26,6 +28,7 @@ public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.Journals
 
     private final List<Journal> journals;
     private final JournalListener journalListener;
+    private PreferencesHandler preferencesHandler;
 
     /**
      * Constructs the Journal Adapter.
@@ -49,6 +52,7 @@ public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.Journals
     @NonNull
     @Override
     public JournalsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        preferencesHandler = new PreferencesHandler(parent.getContext());
         return new JournalsViewHolder(LayoutInflater.from(parent.getContext()).inflate(
                 R.layout.journals_activity,
                 parent,
@@ -108,7 +112,6 @@ public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.Journals
 
             mainView.setOnClickListener(v -> {
                 journalListener.onJournalClicked(p_journal);
-                // SAVE TO PREFERENCE MANAGER the document id of the clicked View for appending
             });
 
         }

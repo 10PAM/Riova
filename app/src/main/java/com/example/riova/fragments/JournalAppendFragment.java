@@ -1,21 +1,19 @@
 package com.example.riova.fragments;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
 import com.example.riova.R;
 import com.example.riova.utilities.Constants;
 import com.example.riova.utilities.PreferencesHandler;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.util.Date;
 import java.util.HashMap;
 
@@ -50,6 +48,7 @@ public class JournalAppendFragment extends Fragment  {
         preferencesHandler = new PreferencesHandler(getContext());
         setListeners();
         database = FirebaseFirestore.getInstance();
+        journalId = preferencesHandler.getString(Constants.KEY_JOURNAL_ID_APPEND);
     }
 
     /**
@@ -72,6 +71,7 @@ public class JournalAppendFragment extends Fragment  {
         backButton.setOnClickListener(v -> {
             resetJournalAppend();
             showPage(Constants.TAG_JOURNAL);
+            preferencesHandler.putString(Constants.KEY_JOURNAL_ID_APPEND, "");
         });
         doneButton.setOnClickListener(v -> {
             resetTextFocuses();
@@ -173,6 +173,26 @@ public class JournalAppendFragment extends Fragment  {
     }
 
     /**
+     * Retrieves all journal information from ID.
+     */
+    private void retrieveJournal() {
+        journalId = preferencesHandler.getString(Constants.KEY_JOURNAL_ID_APPEND);
+        Toast.makeText(getContext(), "JournalID: " + journalId ,Toast.LENGTH_SHORT).show();
+        if (preferencesHandler.getString(Constants.KEY_JOURNAL_ID_APPEND).equals("")) {
+            return;
+        }
+        Toast.makeText(getContext(), "JournalID: " + journalId ,Toast.LENGTH_SHORT).show();
+        DocumentReference journalReference = database.collection(Constants.KEY_COLLECTION_JOURNALS)
+                .document(journalId);
+        journalReference.get().addOnSuccessListener(documentSnapshot -> {
+            if(documentSnapshot.exists()) {
+                inputTitle.setText(documentSnapshot.getString(Constants.KEY_JOURNAL_TITLE));
+                inputContent.setText(documentSnapshot.getString(Constants.KEY_JOURNAL_CONTENT));
+            }
+        });
+    }
+
+    /**
      * Shows a Fragment.
      *
      * @param tag The tag of the fragment to be displayed.
@@ -187,4 +207,12 @@ public class JournalAppendFragment extends Fragment  {
         transaction.commit();
     }
 
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden) {
+            resetJournalAppend();
+            retrieveJournal();
+        }
+    }
 }

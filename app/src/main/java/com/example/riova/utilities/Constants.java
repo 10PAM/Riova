@@ -25,6 +25,7 @@ public class Constants {
     public static final String KEY_JOURNAL_TITLE = "title";
     public static final String KEY_JOURNAL_TIMESTAMP = "date_object";
     public static final String KEY_JOURNAL_CONTENT = "content";
+    public static final String KEY_JOURNAL_ID_APPEND = "";
 
 
     // Tags to find and retrieve pages' fragments

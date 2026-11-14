@@ -3,15 +3,11 @@ package com.example.riova.fragments;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.riova.R;
 import com.example.riova.adapters.JournalAdapter;
 import com.example.riova.listeners.JournalListener;
@@ -21,9 +17,7 @@ import com.example.riova.utilities.PreferencesHandler;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -73,7 +67,6 @@ public class JournalFragment extends Fragment implements JournalListener {
         journalAdapter = new JournalAdapter(journals, this);
         journalRecycler = mainView.findViewById(R.id.journal_recycler_view);
         journalRecycler.setAdapter(journalAdapter);
-        //getJournals();
         setListeners();
         listenForJournals();
     }
@@ -103,15 +96,6 @@ public class JournalFragment extends Fragment implements JournalListener {
         transaction.commit();
     }
 
-    /**
-     * Displays a Toast message with a specified string. Used for visual feedback on the user end.
-     *
-     * @param message The message being displayed to the user.
-     */
-    private void showToast(String message) {
-        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
-    }
-
     private final EventListener<QuerySnapshot> eventListener = ((value, error) -> {
         if (error != null) {
             return;
@@ -131,10 +115,10 @@ public class JournalFragment extends Fragment implements JournalListener {
                             .getDate(Constants.KEY_JOURNAL_TIMESTAMP));
                     journal.date = documentChange.getDocument()
                             .getDate(Constants.KEY_JOURNAL_TIMESTAMP);
+                    journal.journalId = documentChange.getDocument().getId();
                     journals.add(journal);
                 }
             }
-            //Collections.sort(journals, (obj1, obj2) -> obj1.date.compareTo(obj2.date));
             journals.sort(Collections.reverseOrder((obj1, obj2) -> obj1.date.compareTo(obj2.date)));
             if (count == 0) {
                 journalAdapter.notifyDataSetChanged();
@@ -145,14 +129,6 @@ public class JournalFragment extends Fragment implements JournalListener {
             journalRecycler.setVisibility(View.VISIBLE);
         }
     });
-
-    /**
-     * Tests
-     * @param p_loading
-     */
-    private void loading(boolean p_loading) {
-
-    }
 
 
     /**
@@ -181,12 +157,19 @@ public class JournalFragment extends Fragment implements JournalListener {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
     }
 
     @Override
     public void onJournalClicked(Journal p_journal) {
-
+        preferencesHandler.putString(Constants.KEY_JOURNAL_ID_APPEND, p_journal.journalId);
+        showPage(Constants.TAG_JOURNAL_APPEND);
     }
 }

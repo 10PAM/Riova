@@ -89,7 +89,6 @@ public class LoginFragment extends Fragment {
     private void loginUser() {
         loading(true);
         FirebaseFirestore database = FirebaseFirestore.getInstance();
-
         database.collection(Constants.KEY_COLLECTION_USERS)
                 .whereEqualTo(Constants.KEY_EMAIL, inputEmail.getText().toString())
                 .whereEqualTo(Constants.KEY_PASSWORD, inputPassword.getText().toString())
