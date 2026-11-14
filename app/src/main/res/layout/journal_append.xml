@@ -31,6 +31,7 @@
             android:padding="10dp"
             style="@style/addjournal_button"/>
         <EditText
+            android:paddingHorizontal="10dp"
             android:backgroundTint="@android:color/transparent"
             android:id="@+id/journal_append_title"
             android:inputType="text"

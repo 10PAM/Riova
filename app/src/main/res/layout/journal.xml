@@ -21,6 +21,8 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="vertical"
         app:stackFromEnd="false"
+        android:scrollbars="vertical"
+        android:scrollbarTrackVertical="@color/black"
         android:fillViewport="true">
 
     </androidx.recyclerview.widget.RecyclerView>
@@ -29,14 +31,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:id="@+id/button_addJournal"
-        android:layout_gravity="bottom"
-        android:gravity="center"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:text="@string/plus"
-        android:textSize="40sp"
+        android:textSize="25sp"
         app:backgroundTint="@null"
-        style="@style/addjournal_button"/>
+        style="@style/addjournal_button"
+        android:layout_margin="10dp"/>
     <!--Content End-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
