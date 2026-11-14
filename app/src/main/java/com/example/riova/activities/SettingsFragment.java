@@ -31,7 +31,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.riova.R;
 import com.google.android.material.materialswitch.MaterialSwitch;
 
-public class SettingsActivity extends Fragment {
+public class SettingsFragment extends Fragment {
 
     // SharedPreferences file and keys.
     private static final String PREFS = "riova_prefs";
@@ -42,7 +42,7 @@ public class SettingsActivity extends Fragment {
     private static final String KEY_REMINDERS = "reminders_enabled";
     private static final String KEY_KEEP_LOGGED_IN = "keep_logged_in";
 
-    public SettingsActivity() {
+    public SettingsFragment() {
         super(R.layout.settings);
     }
 

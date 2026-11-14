@@ -17,9 +17,9 @@ import com.example.riova.R;
  * The new password is then saved to the database and a
  * notification is sent to the email.
  */
-public class ResetPasswordActivity extends Fragment {
+public class ResetPasswordFragment extends Fragment {
 
-    public ResetPasswordActivity() {
+    public ResetPasswordFragment() {
         super(R.layout.reset_password);
     }
 

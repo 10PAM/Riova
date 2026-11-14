@@ -30,9 +30,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class DashboardActivity extends Fragment {
+public class DashboardFragment extends Fragment {
 
-    public DashboardActivity() {
+    public DashboardFragment() {
         super(R.layout.dashboard);
     }
 

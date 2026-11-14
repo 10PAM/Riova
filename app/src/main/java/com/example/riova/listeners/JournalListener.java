@@ -1,6 +1,6 @@
 package com.example.riova.listeners;
 
-import com.example.riova.activities.JournalActivity;
+import com.example.riova.models.Journal;
 
 /**
  * Interface handling Journal listening.
@@ -12,5 +12,5 @@ public interface JournalListener {
      *
      * @param journal The journal item pressed.
      */
-    void JournalClicked(JournalActivity journal);
+    void onJournalClicked(Journal journal);
 }

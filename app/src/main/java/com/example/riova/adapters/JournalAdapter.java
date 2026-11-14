@@ -9,9 +9,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.riova.activities.JournalActivity;
 import com.example.riova.R;
 import com.example.riova.listeners.JournalListener;
+import com.example.riova.models.Journal;
+
+import org.jetbrains.annotations.UnknownNullability;
 
 import java.util.List;
 
@@ -21,7 +23,7 @@ import java.util.List;
  */
 public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.JournalsViewHolder> {
 
-    private final List<JournalActivity> journals;
+    private final List<Journal> journals;
     private final JournalListener journalListener;
 
     /**
@@ -30,7 +32,7 @@ public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.Journals
      * @param p_journals The Journals being applied.
      * @param p_journalListener The JournalListener object being applied.
      */
-    public JournalAdapter(List<JournalActivity> p_journals, JournalListener p_journalListener) {
+    public JournalAdapter(List<Journal> p_journals, JournalListener p_journalListener) {
         this.journals = p_journals;
         this.journalListener = p_journalListener;
     }
@@ -92,7 +94,7 @@ public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.Journals
          *
          * @param p_journal The Journal view.
          */
-        private void setJournalData(JournalActivity p_journal) {
+        private void setJournalData(Journal p_journal) {
             LinearLayout journalView = mainView.findViewById(R.id.banner_journal);
 
             TextView journalTitle = journalView.findViewById(R.id.journal_title);
@@ -103,6 +105,10 @@ public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.Journals
             journalDate.setText(p_journal.date);
             journalContentBrief.setText(p_journal.content);
 
+            mainView.setOnClickListener(v -> {
+                journalListener.onJournalClicked(p_journal);
+            });
+
         }
 
         /**
@@ -110,23 +116,7 @@ public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.Journals
          *
          * @param journal The journals.
          */
-        void bindJournals(final JournalActivity journal){
-
-            journal.setOnClickListener(new View.OnClickListener() {
-                /**
-                 * Manages clicking for the Journals.
-                 *
-                 * @param view The view that was clicked.
-                 */
-                @Override
-                public void onClick(View view) {
-                    if(journal.isSelected){
-
-                    }else{
-
-                    }
-                }
-            });
+        void bindJournals(final @UnknownNullability Journal journal){
 
         }
 

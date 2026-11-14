@@ -9,11 +9,11 @@ import androidx.fragment.app.Fragment;
 
 import com.example.riova.R;
 
-public class MeditationActivity extends Fragment {
+public class GeneralWellnessFragment extends Fragment {
 
 
-    public MeditationActivity(){
-        super(R.layout.meditation);
+    public GeneralWellnessFragment(){
+        super(R.layout.general_wellness);
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {

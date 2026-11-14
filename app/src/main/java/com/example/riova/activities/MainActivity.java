@@ -48,16 +48,17 @@ public class MainActivity extends AppCompatActivity {
         // Initiates fragments
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.fragment_container, new DashboardActivity(), Constants.TAG_DASHBOARD)
-                    .add(R.id.fragment_container, new JournalActivity(), Constants.TAG_JOURNAL)
-                    .add(R.id.fragment_container, new GeneralWellnessActivity(), Constants.TAG_GENWELL)
-                    .add(R.id.fragment_container, new MindfulnessActivity(), Constants.TAG_MINDFULNESS)
-                    .add(R.id.fragment_container, new MeditationActivity(), Constants.TAG_MEDITATION)
-                    .add(R.id.fragment_container, new SettingsActivity(), Constants.TAG_SETTINGS)
-                    .add(R.id.fragment_container_high, new ResetPasswordActivity(), Constants.TAG_RESETPASSWORD)
-                    .add(R.id.fragment_container_high, new RegisterActivity(), Constants.TAG_REGISTER)
-                    .add(R.id.fragment_container_high, new LogoutActivity(), Constants.TAG_LOGOUT)
-                    .add(R.id.fragment_container_high, new LoginActivity(), Constants.TAG_LOGIN)
+                    .add(R.id.fragment_container, new DashboardFragment(), Constants.TAG_DASHBOARD)
+                    .add(R.id.fragment_container, new JournalFragment(), Constants.TAG_JOURNAL)
+                    .add(R.id.fragment_container, new GeneralWellnessFragment(), Constants.TAG_GENWELL)
+                    .add(R.id.fragment_container, new MindfulnessFragment(), Constants.TAG_MINDFULNESS)
+                    .add(R.id.fragment_container, new MeditationFragment(), Constants.TAG_MEDITATION)
+                    .add(R.id.fragment_container, new SettingsFragment(), Constants.TAG_SETTINGS)
+                    .add(R.id.fragment_container_high, new ResetPasswordFragment(), Constants.TAG_RESETPASSWORD)
+                    .add(R.id.fragment_container_high, new RegisterFragment(), Constants.TAG_REGISTER)
+                    .add(R.id.fragment_container_high, new LogoutFragment(), Constants.TAG_LOGOUT)
+                    .add(R.id.fragment_container_high, new LoginFragment(), Constants.TAG_LOGIN)
+                    .add(R.id.fragment_container_high, new JournalAppendActivity(), Constants.TAG_JOURNAL_APPEND)
                     .commitNow();
         }
 
@@ -114,6 +115,7 @@ public class MainActivity extends AppCompatActivity {
         transaction.hide(fragmentManager.findFragmentByTag(Constants.TAG_RESETPASSWORD));
         transaction.hide(fragmentManager.findFragmentByTag(Constants.TAG_REGISTER));
         transaction.hide(fragmentManager.findFragmentByTag(Constants.TAG_LOGOUT));
+        transaction.hide(fragmentManager.findFragmentByTag(Constants.TAG_JOURNAL_APPEND));
         transaction.show(fragmentManager.findFragmentByTag(PAGE_TAG));
         transaction.commit();
     }

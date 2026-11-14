@@ -25,12 +25,12 @@ import java.util.HashMap;
  * An email is then sent to the registration email,
  * notifying of the account creation.
  */
-public class RegisterActivity extends Fragment {
+public class RegisterFragment extends Fragment {
 
     private View mainView;
     private PreferencesHandler preferenceHandler;
 
-    public RegisterActivity() {
+    public RegisterFragment() {
         super(R.layout.register_screen);
     }
 

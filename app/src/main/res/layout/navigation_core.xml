@@ -14,15 +14,16 @@
     <include layout="@layout/footer" />
     <!--Navigation Menu End-->
 
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        style="@style/content_layout"/>
+
     <!--IMPORTANT: This will be the central display; Add components inside here-->
     <!--Content Start-->
     <FrameLayout
         android:id="@+id/fragment_container_high"
         style="@style/login_layout"
         android:background="@null">
-        <FrameLayout
-            android:id="@+id/fragment_container"
-            style="@style/content_layout"/>
 
     </FrameLayout>
     <!--Content End-->

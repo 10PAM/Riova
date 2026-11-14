@@ -23,7 +23,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
  * The preference manager saves the user's login
  * indefinitely until the user requests to sign out.
  */
-public class LoginActivity extends Fragment {
+public class LoginFragment extends Fragment {
 
     // Key UI Elements
     private EditText inputEmail;
@@ -36,7 +36,7 @@ public class LoginActivity extends Fragment {
 
     private PreferencesHandler preferenceHandler;
 
-    public LoginActivity() {
+    public LoginFragment() {
         super(R.layout.login_screen);
     }
 

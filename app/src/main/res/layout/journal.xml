@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/navigation_back"
-    tools:context=".activities.JournalActivity">
+    tools:context=".activities.JournalFragment">
 
     <!--Content Start-->
     <androidx.recyclerview.widget.RecyclerView

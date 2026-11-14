@@ -14,9 +14,9 @@ import com.example.riova.utilities.PreferencesHandler;
 /**
  * This class handles the user sign out functionality.
  */
-public class LogoutActivity extends Fragment {
+public class LogoutFragment extends Fragment {
 
-    public LogoutActivity() {
+    public LogoutFragment() {
         super(R.layout.logout);
     }
 

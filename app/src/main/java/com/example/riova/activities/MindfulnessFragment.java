@@ -27,7 +27,7 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.Random;
 
-public class MindfulnessActivity extends Fragment {
+public class MindfulnessFragment extends Fragment {
 
     // Reuse the app's preference file; keys specific to this page.
     private static final String PREFS = "riova_prefs";
@@ -35,7 +35,7 @@ public class MindfulnessActivity extends Fragment {
     private static final String KEY_MOTIVATIONAL = "mindfulness_motivational_index";
     private static final String KEY_ENCOURAGEMENT = "mindfulness_encouragement_index";
 
-    public MindfulnessActivity() {
+    public MindfulnessFragment() {
         super(R.layout.mindfullness);
     }
 

@@ -19,12 +19,19 @@ public class Constants {
     public static final String KEY_IS_SIGNED_IN = "isSignedIn";
     public static final String KEY_IMAGE = "image";
 
+    // Journal Keys
+    public static final String KEY_COLLECTION_JOURNALS = "Journal";
+    public static final String KEY_JOURNAL_TITLE = "title";
+    public static final String KEY_JOURNAL_DATE = "date";
+    public static final String KEY_JOURNAL_CONTENT = "content";
+
 
     // Tags to find and retrieve pages' fragments
     public static final String TAG_DASHBOARD = "page_dashboard";
     public static final String TAG_LOGIN = "page_login";
     public static final String TAG_RESETPASSWORD = "page_resetpassword";
     public static final String TAG_JOURNAL = "page_journal";
+    public static final String TAG_JOURNAL_APPEND = "page_journal_append";
     public static final String TAG_GENWELL = "page_genwell";
     public static final String TAG_MEDITATION = "page_meditation";
     public static final String TAG_MINDFULNESS = "page_mindfulness";
@@ -33,6 +40,6 @@ public class Constants {
     public static final String TAG_LOGOUT = "page_logout";
 
     public static final String[] page_tag_array = {TAG_DASHBOARD, TAG_LOGIN, TAG_RESETPASSWORD, TAG_JOURNAL,
-    TAG_GENWELL, TAG_MEDITATION, TAG_MINDFULNESS, TAG_SETTINGS, TAG_REGISTER, TAG_LOGOUT};
+    TAG_GENWELL, TAG_MEDITATION, TAG_MINDFULNESS, TAG_SETTINGS, TAG_REGISTER, TAG_LOGOUT, TAG_JOURNAL_APPEND};
 
 }
