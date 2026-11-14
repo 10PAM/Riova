@@ -66,7 +66,26 @@ public class JournalAppendFragment extends Fragment  {
             showPage(Constants.TAG_JOURNAL);
         });
         doneButton.setOnClickListener(v -> {
+            showDoneButton(false);
             saveJournal();
+        });
+        inputTitle.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                inputTitle.setCursorVisible(true);
+                showDoneButton(true);
+            } else {
+                inputTitle.setCursorVisible(false);
+                resetTextFocuses();
+            }
+        });
+        inputContent.setOnFocusChangeListener((v, hasFocus) -> {
+            if (hasFocus) {
+                inputContent.setCursorVisible(true);
+                showDoneButton(true);
+            } else {
+                inputContent.setCursorVisible(false);
+                resetTextFocuses();
+            }
         });
     }
 
@@ -77,7 +96,16 @@ public class JournalAppendFragment extends Fragment  {
         saveJournal();
         inputTitle.setText("");
         inputContent.setText("");
-        doneButton.setVisibility(View.INVISIBLE);
+        resetTextFocuses();
+    }
+
+    /**
+     * Resets all focuses and hides done button
+     */
+    private void resetTextFocuses() {
+        inputTitle.clearFocus();
+        inputContent.clearFocus();
+        showDoneButton(false);
     }
 
     /**
@@ -91,7 +119,20 @@ public class JournalAppendFragment extends Fragment  {
     }
 
     /**
-     * Saves all Journal data if journal entry has been modified..
+     * Handles showing and hiding complete button.
+     *
+     * @param show The show status.
+     */
+    private void showDoneButton(boolean show) {
+        if (show) {
+            doneButton.setVisibility(View.VISIBLE);
+        } else {
+            doneButton.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    /**
+     * Saves all Journal data if journal entry has been modified.
      */
     private void saveJournal() {
         if (isModified()) {
