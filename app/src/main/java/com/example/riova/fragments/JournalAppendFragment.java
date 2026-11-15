@@ -180,7 +180,7 @@ public class JournalAppendFragment extends Fragment {
      */
     private void retrieveJournal() {
         journalId = preferencesHandler.getString(Constants.KEY_JOURNAL_ID_APPEND);
-        if (!preferencesHandler.getString(Constants.KEY_JOURNAL_ID_APPEND).equals("")) {
+        if (!preferencesHandler.getString(Constants.KEY_JOURNAL_ID_APPEND).isEmpty()) {
             DocumentReference journalReference = database.collection(Constants.KEY_COLLECTION_JOURNALS)
                     .document(journalId);
             journalReference.get().addOnSuccessListener(documentSnapshot -> {

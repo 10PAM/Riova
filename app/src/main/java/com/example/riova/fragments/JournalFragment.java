@@ -117,6 +117,7 @@ public class JournalFragment extends Fragment implements JournalListener {
                             .getDate(Constants.KEY_JOURNAL_TIMESTAMP);
                     journal.journalId = documentChange.getDocument().getId();
                     journals.add(journal);
+                    journalAdapter.notifyDataSetChanged();
                 } else if (documentChange.getType() == DocumentChange.Type.MODIFIED) {
                     for (int i = 0; i < journals.size(); ++i) {
                         Journal journal = journals.get(i);

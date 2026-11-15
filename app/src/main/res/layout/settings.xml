@@ -195,7 +195,7 @@
 
             <!-- Existing sign-out action (kept from scaffold) -->
             <Button
-                android:id="@+id/button_signout"
+                android:id="@+id/button_sign_in_out"
                 style="@style/login_buttons"
                 android:text="@string/sign_out"
                 app:backgroundTint="@null" />

@@ -29,6 +29,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.riova.R;
+import com.example.riova.utilities.Constants;
+import com.example.riova.utilities.PreferencesHandler;
 import com.google.android.material.materialswitch.MaterialSwitch;
 
 public class SettingsFragment extends Fragment {
@@ -42,6 +44,9 @@ public class SettingsFragment extends Fragment {
     private static final String KEY_REMINDERS = "reminders_enabled";
     private static final String KEY_KEEP_LOGGED_IN = "keep_logged_in";
 
+    PreferencesHandler preferencesHandler;
+    Button sign_in_out_button;
+
     public SettingsFragment() {
         super(R.layout.settings);
     }
@@ -49,6 +54,8 @@ public class SettingsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        preferencesHandler = new PreferencesHandler(getContext());
 
         SharedPreferences prefs =
                 requireContext().getSharedPreferences(PREFS, 0);
@@ -61,7 +68,14 @@ public class SettingsFragment extends Fragment {
         setupKeepLoggedIn(view, prefs);
 
         // Existing sign-out action from the scaffold.
-        view.findViewById(R.id.button_signout).setOnClickListener(v -> showLogout());
+        sign_in_out_button = view.findViewById(R.id.button_sign_in_out);
+        updateSignInOutButton();
+        sign_in_out_button.setOnClickListener(v -> {
+            if (preferencesHandler.getBoolean(Constants.KEY_IS_SIGNED_IN)) {
+                preferencesHandler.clear();
+            }
+            showPage(Constants.TAG_LOGIN);
+        });
     }
 
     /**
@@ -154,14 +168,29 @@ public class SettingsFragment extends Fragment {
     }
 
     /**
-     * Shows the logout page (unchanged from the original scaffold).
+     * Shows a Fragment.
+     *
+     * @param tag The tag of the fragment to be displayed.
      */
-    private void showLogout() {
+    private void showPage(String tag) {
         FragmentManager fragmentManager = getParentFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.hide(fragmentManager.findFragmentByTag("page_settings"));
-        transaction.show(fragmentManager.findFragmentByTag("page_logout"));
+        for (String page_tag : Constants.page_tag_array) {
+            transaction.hide(fragmentManager.findFragmentByTag(page_tag));
+        }
+        transaction.show(fragmentManager.findFragmentByTag(tag));
         transaction.commit();
+    }
+
+    /**
+     * Updates button text depending on user's logged-in status.
+     */
+    private void updateSignInOutButton() {
+        if (preferencesHandler.getBoolean(Constants.KEY_IS_SIGNED_IN)) {
+            sign_in_out_button.setText("Sign Out");
+        } else {
+            sign_in_out_button.setText("Sign In");
+        }
     }
 
     /**
@@ -174,6 +203,13 @@ public class SettingsFragment extends Fragment {
 
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) { }
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        if (!hidden) {
+            updateSignInOutButton();
+        }
     }
 
     @Override

@@ -53,6 +53,9 @@ public class LogoutFragment extends Fragment {
 
     /**
      * Clear out local preferences to require sign-in.
+     * NEEDS (11/14/2026):
+     * Reset Journal Fragment View
+     * Create login button in user settings that moves to
      */
     private void logoutUser() {
         preferenceHandler.clear();
