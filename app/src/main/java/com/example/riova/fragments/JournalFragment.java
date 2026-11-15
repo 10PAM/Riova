@@ -3,8 +3,6 @@ package com.example.riova.fragments;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -133,7 +131,6 @@ public class JournalFragment extends Fragment implements JournalListener {
                                     .getDate(Constants.KEY_JOURNAL_TIMESTAMP);
                             journal.journalId = documentChange.getDocument().getId();
                             preferencesHandler.putString(Constants.KEY_JOURNAL_ID_APPEND, journal.id);
-                            //journalAdapter.notifyItemChanged(i);
                             journalAdapter.notifyDataSetChanged();
                             break;
                         }
