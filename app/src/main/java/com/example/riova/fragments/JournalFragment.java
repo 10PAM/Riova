@@ -3,6 +3,8 @@ package com.example.riova.fragments;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -117,9 +119,28 @@ public class JournalFragment extends Fragment implements JournalListener {
                             .getDate(Constants.KEY_JOURNAL_TIMESTAMP);
                     journal.journalId = documentChange.getDocument().getId();
                     journals.add(journal);
+                } else if (documentChange.getType() == DocumentChange.Type.MODIFIED) {
+                    for (int i = 0; i < journals.size(); ++i) {
+                        Journal journal = journals.get(i);
+                        if (journal.journalId.equals(documentChange.getDocument().getId())) {
+                            journal.title = documentChange.getDocument()
+                                    .getString(Constants.KEY_JOURNAL_TITLE);
+                            journal.content = documentChange.getDocument()
+                                    .getString(Constants.KEY_JOURNAL_CONTENT);
+                            journal.dateTime = getReadableDataTime(documentChange.getDocument()
+                                    .getDate(Constants.KEY_JOURNAL_TIMESTAMP));
+                            journal.date = documentChange.getDocument()
+                                    .getDate(Constants.KEY_JOURNAL_TIMESTAMP);
+                            journal.journalId = documentChange.getDocument().getId();
+                            preferencesHandler.putString(Constants.KEY_JOURNAL_ID_APPEND, journal.id);
+                            journalAdapter.notifyItemChanged(i);
+                            break;
+                        }
+                    }
                 }
             }
-            journals.sort(Collections.reverseOrder((obj1, obj2) -> obj1.date.compareTo(obj2.date)));
+            journals.sort(Collections
+                    .reverseOrder((obj1, obj2) -> obj1.date.compareTo(obj2.date)));
             if (count == 0) {
                 journalAdapter.notifyDataSetChanged();
             } else {
