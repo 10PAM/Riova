@@ -122,7 +122,7 @@ public class JournalFragment extends Fragment implements JournalListener {
                 } else if (documentChange.getType() == DocumentChange.Type.MODIFIED) {
                     for (int i = 0; i < journals.size(); ++i) {
                         Journal journal = journals.get(i);
-                        if (journal.journalId.equals(documentChange.getDocument().getId())) {
+                        if (journal.journalId.equals(preferencesHandler.getString(Constants.KEY_JOURNAL_ID_APPEND))) {
                             journal.title = documentChange.getDocument()
                                     .getString(Constants.KEY_JOURNAL_TITLE);
                             journal.content = documentChange.getDocument()
@@ -133,7 +133,8 @@ public class JournalFragment extends Fragment implements JournalListener {
                                     .getDate(Constants.KEY_JOURNAL_TIMESTAMP);
                             journal.journalId = documentChange.getDocument().getId();
                             preferencesHandler.putString(Constants.KEY_JOURNAL_ID_APPEND, journal.id);
-                            journalAdapter.notifyItemChanged(i);
+                            //journalAdapter.notifyItemChanged(i);
+                            journalAdapter.notifyDataSetChanged();
                             break;
                         }
                     }
