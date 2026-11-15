@@ -55,4 +55,65 @@
         <item>"Improved: Smoother navigation between pages."</item>
     </string-array>
 
+    <!-- General Wellness suggestions grouped by category. -->
+    <string-array name="wellness_movement">
+        <item>Take a short walk or choose another comfortable movement.</item>
+        <item>Take a gentle stretch break.</item>
+        <item>Put on a favorite song and move to the rhythm.</item>
+        <item>Explore a different route on your next walk or roll.</item>
+        <item>Try a few gentle seated stretches during a break.</item>
+        <item>Spend a few minutes tending to plants or a garden.</item>
+        <item>Play a movement game with a friend or family member.</item>
+        <item>Practice a few movements from a dance you enjoy.</item>
+        <item>Take a movement break between two tasks.</item>
+        <item>Visit a nearby park and explore at your own pace.</item>
+        <item>Try a short yoga routine that feels comfortable for you.</item>
+        <item>Make time for a physical activity you enjoyed as a child.</item>
+    </string-array>
+
+    <string-array name="wellness_food">
+        <item>Enjoy a piece of fruit.</item>
+        <item>Add a vegetable to a meal.</item>
+        <item>Drink a liter of water</item>
+        <item>Try a fruit or vegetable you have never tasted before.</item>
+        <item>Add a colorful ingredient to a meal you already enjoy.</item>
+        <item>Prepare a simple snack to have ready for a busy moment.</item>
+        <item>Share a meal with someone and enjoy the conversation.</item>
+        <item>Eat a snack without a screen and notice its flavor and texture.</item>
+        <item>Try a new way to prepare a familiar vegetable.</item>
+        <item>Make a grocery list for one meal you look forward to cooking.</item>
+        <item>Ask someone for a favorite recipe and give it a try.</item>
+        <item>Add fresh herbs or a favorite spice to your next meal.</item>
+    </string-array>
+
+    <string-array name="wellness_calm">
+        <item>Pause for a few slow, comfortable breaths.</item>
+        <item>Spend a few quiet minutes away from your screen.</item>
+        <item>Listen to one favorite song without doing anything else.</item>
+        <item>Look around and notice five things you can see.</item>
+        <item>Sit near a window and watch the sky for a few minutes.</item>
+        <item>Draw or doodle without worrying about the result.</item>
+        <item>Silence optional notifications for a short break.</item>
+        <item>Read a few pages of something you enjoy.</item>
+        <item>Make a cozy spot and take a quiet rest.</item>
+        <item>Listen for three different sounds around you.</item>
+        <item>Set aside a few minutes for a puzzle or a relaxing hobby.</item>
+        <item>Clear one small surface to make your space feel calmer.</item>
+    </string-array>
+
+    <string-array name="wellness_reflection">
+        <item>Write down something you appreciate.</item>
+        <item>Step outside and take a nice, relaxing walk</item>
+        <item>Take a moment to reflect, meditate, or pray.</item>
+        <item>Write down one small win from today.</item>
+        <item>Send a thank-you message to someone who helped you.</item>
+        <item>Name one feeling you have right now without judging it.</item>
+        <item>Write a kind sentence to yourself as if speaking to a friend.</item>
+        <item>Think of a recent challenge and one thing it taught you.</item>
+        <item>Choose one small intention for tomorrow.</item>
+        <item>Write down a memory that makes you smile.</item>
+        <item>Reach out to someone you have been thinking about.</item>
+        <item>Notice one ordinary thing that made today easier.</item>
+    </string-array>
+
 </resources>

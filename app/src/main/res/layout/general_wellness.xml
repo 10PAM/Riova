@@ -7,18 +7,73 @@
     android:background="@color/navigation_back"
     tools:context=".fragments.GeneralWellnessFragment">
 
-    <!--Content Start-->
-    <FrameLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TextView
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textColor="@color/white"
-            android:textSize="30sp"
-            android:text="GENERAL WELLNESS..."/>
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+            <!-- Preview examples only; suggestion selection will be wired separately. -->
 
-    </FrameLayout>
-    <!--Content End-->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/wellness_movement_card"
+                style="@style/wellness_card">
+                <LinearLayout style="@style/wellness_card_content">
+                    <TextView
+                        style="@style/wellness_card_category"
+                        android:text="Movement" />
+                    <TextView
+                        android:id="@+id/text_wellness_movement"
+                        style="@style/wellness_card_suggestion"
+                        tools:text="Put on a favorite song and move to the rhythm." />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/wellness_food_card"
+                style="@style/wellness_card">
+                <LinearLayout style="@style/wellness_card_content">
+                    <TextView
+                        style="@style/wellness_card_category"
+                        android:text="Food" />
+                    <TextView
+                        android:id="@+id/text_wellness_food"
+                        style="@style/wellness_card_suggestion"
+                        tools:text="Add a colorful ingredient to a meal you already enjoy." />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/wellness_calm_card"
+                style="@style/wellness_card">
+                <LinearLayout style="@style/wellness_card_content">
+                    <TextView
+                        style="@style/wellness_card_category"
+                        android:text="Calm" />
+                    <TextView
+                        android:id="@+id/text_wellness_calm"
+                        style="@style/wellness_card_suggestion"
+                        tools:text="Listen to one favorite song without doing anything else." />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/wellness_reflection_card"
+                style="@style/wellness_card">
+                <LinearLayout style="@style/wellness_card_content">
+                    <TextView
+                        style="@style/wellness_card_category"
+                        android:text="Reflection" />
+                    <TextView
+                        android:id="@+id/text_wellness_reflection"
+                        style="@style/wellness_card_suggestion"
+                        tools:text="Write down one small win from today." />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
