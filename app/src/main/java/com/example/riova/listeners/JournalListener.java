@@ -13,4 +13,11 @@ public interface JournalListener {
      * @param journal The journal item pressed.
      */
     void onJournalClicked(Journal journal);
+
+    /**
+     * Defines when a Journal is long-pressed.
+     *
+     * @param journal The journal item pressed.
+     */
+    void onJournalLongClicked(Journal journal);
 }

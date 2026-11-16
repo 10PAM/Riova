@@ -114,6 +114,10 @@ public class JournalAdapter extends RecyclerView.Adapter<JournalAdapter.Journals
                 journalListener.onJournalClicked(p_journal);
             });
 
+            mainView.setOnLongClickListener(v -> {
+                journalListener.onJournalLongPressed();
+            });
+
         }
 
         /**

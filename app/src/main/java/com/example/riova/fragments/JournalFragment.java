@@ -187,4 +187,15 @@ public class JournalFragment extends Fragment implements JournalListener {
         preferencesHandler.putString(Constants.KEY_JOURNAL_ID_APPEND, p_journal.journalId);
         showPage(Constants.TAG_JOURNAL_APPEND);
     }
+
+    /**
+     * Signals that user may be getting ready to delete journal entry.
+     *
+     * @param journal The journal item pressed.
+     */
+    @Override
+    public void onJournalLongClicked(Journal journal) {
+        // Show the delete button (Make it Visible on Journal.XML)
+        // If delete button is pressed, delete on Firestore, update adapter.
+    }
 }
