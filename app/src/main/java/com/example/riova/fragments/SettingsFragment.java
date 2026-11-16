@@ -33,6 +33,7 @@ import com.example.riova.R;
 import com.example.riova.utilities.Constants;
 import com.example.riova.utilities.PreferencesHandler;
 import com.example.riova.utilities.PreferencesSync;
+import com.example.riova.utilities.FontScaler;
 import com.google.android.material.materialswitch.MaterialSwitch;
 
 public class SettingsFragment extends Fragment {
@@ -77,6 +78,9 @@ public class SettingsFragment extends Fragment {
             setupVolume(view, prefs);
             setupReminders(view, prefs);
             setupKeepLoggedIn(view, prefs);
+
+            // Apply the saved font-size setting to this page.
+            FontScaler.apply(view, prefs.getInt(KEY_FONT_SIZE, 1));
         });
 
         // Existing sign-out action from the scaffold.
@@ -144,6 +148,8 @@ public class SettingsFragment extends Fragment {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 prefs.edit().putInt(KEY_FONT_SIZE, seekBar.getProgress()).apply();
                 preferencesSync.push();
+                // Update this page's text size immediately for live feedback.
+                FontScaler.apply(view, seekBar.getProgress());
             }
         });
     }

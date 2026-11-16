@@ -24,6 +24,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.riova.R;
+import com.example.riova.utilities.FontScaler;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.text.SimpleDateFormat;
@@ -44,6 +45,9 @@ public class DashboardFragment extends Fragment {
         showMonthQuote(view);
         populateUpdates(view);
         setupGuideButton(view);
+
+        // Apply the user's saved font-size setting to this page.
+        FontScaler.applyFromPrefs(view, requireContext());
     }
 
     /**

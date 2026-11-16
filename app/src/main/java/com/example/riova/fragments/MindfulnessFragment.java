@@ -21,6 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.riova.R;
+import com.example.riova.utilities.FontScaler;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -76,6 +77,9 @@ public class MindfulnessFragment extends Fragment {
                 .setText(motivational[motivationalIndex]);
         ((TextView) view.findViewById(R.id.text_encouragement_quote))
                 .setText(encouragement[encouragementIndex]);
+
+        // Apply the user's saved font-size setting to this page.
+        FontScaler.applyFromPrefs(view, requireContext());
     }
 
     @Override
