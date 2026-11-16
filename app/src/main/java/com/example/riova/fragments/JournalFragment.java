@@ -3,6 +3,8 @@ package com.example.riova.fragments;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -36,6 +38,8 @@ public class JournalFragment extends Fragment implements JournalListener {
     private RecyclerView journalRecycler;
     View mainView;
     private FirebaseFirestore database;
+    private String deleteJournalId = "";
+    private String deleteJournalTitle = "";
 
     /**
      * Constructs Journal Fragment.
@@ -76,9 +80,34 @@ public class JournalFragment extends Fragment implements JournalListener {
      */
     private void setListeners() {
         Button addJournal = mainView.findViewById(R.id.button_addJournal);
+        Button deleteJournalNo = mainView.findViewById(R.id.button_deleteJournalNo);
+        Button deleteJournalYes = mainView.findViewById(R.id.button_deleteJournalYes);
         addJournal.setOnClickListener(v -> {
             showPage(Constants.TAG_JOURNAL_APPEND);
         });
+        deleteJournalNo.setOnClickListener(v -> {
+            showDeleteJournalPrompt(false);
+        });
+        deleteJournalYes.setOnClickListener(v -> {
+            showDeleteJournalPrompt(false);
+        });
+    }
+
+    /**
+     * Hides or shows delete journal prompt.
+     *
+     * @param p_show The hide status.
+     */
+    private void showDeleteJournalPrompt(boolean p_show) {
+        View deleteJournalPromptView = mainView.findViewById(R.id.deleteJournalPrompt);
+        TextView deleteJournalPromptTitle = mainView.findViewById(R.id.journalToDeleteTitle);
+        if (p_show) {
+            String promptText = "Delete: " + deleteJournalTitle + "?";
+            deleteJournalPromptTitle.setText(promptText);
+            deleteJournalPromptView.setVisibility(View.VISIBLE);
+        } else {
+            deleteJournalPromptView.setVisibility(View.INVISIBLE);
+        }
     }
 
     /**
@@ -191,11 +220,12 @@ public class JournalFragment extends Fragment implements JournalListener {
     /**
      * Signals that user may be getting ready to delete journal entry.
      *
-     * @param journal The journal item pressed.
+     * @param p_journal The journal item pressed.
      */
     @Override
-    public void onJournalLongClicked(Journal journal) {
-        // Show the delete button (Make it Visible on Journal.XML)
-        // If delete button is pressed, delete on Firestore, update adapter.
+    public void onJournalLongClicked(Journal p_journal) {
+        deleteJournalId = p_journal.journalId;
+        deleteJournalTitle = p_journal.title;
+        showDeleteJournalPrompt(true);
     }
 }

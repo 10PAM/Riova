@@ -10,4 +10,7 @@
     <color name="reset_password">#FF96EF</color>
     <color name="riova_pink">#FF96EF</color>
     <color name="warning">#FF0078</color>
+    <color name="warning_orange">#D47E18</color>
+    <color name="prompt_background">#31000000</color>
+    <color name="prompt_background_top">#9D000000</color>
 </resources>

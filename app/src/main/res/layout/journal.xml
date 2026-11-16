@@ -40,6 +40,70 @@
         app:backgroundTint="@null"
         style="@style/addjournal_button"
         android:layout_margin="10dp"/>
+
+    <FrameLayout
+        android:id="@+id/deleteJournalPrompt"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/prompt_background"
+        android:elevation="2dp">
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:background="@drawable/delete_journal_prompt">
+
+            <TextView
+                android:id="@+id/journalToDeleteTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Delete: Note?"
+                android:paddingHorizontal="5dp"
+                android:textColor="@color/white"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textSize="40sp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="5dp"
+                android:text="Deletion is Permanent"
+                android:textColor="@color/warning_orange"
+                android:textStyle="bold"
+                android:layout_marginVertical="15dp"
+                android:textAlignment="center"
+                android:textSize="24sp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+                <Button
+                    android:id="@+id/button_deleteJournalNo"
+                    android:layout_width="100dp"
+                    android:layout_height="60dp"
+                    android:text="NO"
+                    android:textSize="25sp"
+                    app:backgroundTint="@null"
+                    style="@style/addjournal_button"/>
+                <Button
+                    android:id="@+id/button_deleteJournalYes"
+                    android:layout_width="100dp"
+                    android:layout_height="60dp"
+                    android:text="YES"
+                    android:textSize="25sp"
+                    app:backgroundTint="@null"
+                    style="@style/addjournal_button"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
     <!--Content End-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
