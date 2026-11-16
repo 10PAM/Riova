@@ -22,6 +22,7 @@ public class Constants {
     public static final String KEY_PASSWORD = "password";
     public static final String KEY_USER_ID = "userid";
     public static final String KEY_IS_SIGNED_IN = "isSignedIn";
+    public static final String KEY_SKIPPED_SIGNIN = "skippedSignIn";
 
     // Journal Keys
     public static final String KEY_COLLECTION_JOURNALS = "Journal";

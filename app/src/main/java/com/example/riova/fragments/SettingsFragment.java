@@ -209,6 +209,7 @@ public class SettingsFragment extends Fragment {
     public void onHiddenChanged(boolean hidden) {
         if (!hidden) {
             updateSignInOutButton();
+            showPage(Constants.TAG_SETTINGS);
         }
     }
 

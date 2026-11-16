@@ -114,6 +114,7 @@ public class RegisterFragment extends Fragment {
 
                     preferenceHandler.putBoolean(Constants.KEY_IS_SIGNED_IN, true);
                     preferenceHandler.putString(Constants.KEY_NAME, inputName.getText().toString());
+                    preferenceHandler.putBoolean(Constants.KEY_SKIPPED_SIGNIN, false);
 
                     showPage(Constants.TAG_DASHBOARD);
                     displayMessage("Created Account!");

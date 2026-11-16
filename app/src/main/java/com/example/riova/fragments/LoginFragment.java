@@ -52,7 +52,8 @@ public class LoginFragment extends Fragment {
 
         preferenceHandler = new PreferencesHandler(getContext().getApplicationContext());
 
-        if (preferenceHandler.getBoolean(Constants.KEY_IS_SIGNED_IN)) {
+        if (preferenceHandler.getBoolean(Constants.KEY_IS_SIGNED_IN) ||
+                preferenceHandler.getBoolean(Constants.KEY_SKIPPED_SIGNIN)) {
             showPage(Constants.TAG_DASHBOARD);
         }
 
@@ -66,12 +67,19 @@ public class LoginFragment extends Fragment {
 
         buttonLogin.setOnClickListener(v -> {
             if (validLogin()) {
+                preferenceHandler.putBoolean(Constants.KEY_SKIPPED_SIGNIN, false);
                 loginUser();
             }
         });
 
         buttonSkip.setOnClickListener(v -> {
-            showPage(Constants.TAG_DASHBOARD);
+
+            if (preferenceHandler.getBoolean(Constants.KEY_SKIPPED_SIGNIN)) {
+                showPage(Constants.TAG_SETTINGS);
+            } else {
+                showPage(Constants.TAG_DASHBOARD);
+            }
+            preferenceHandler.putBoolean(Constants.KEY_SKIPPED_SIGNIN, true);
         });
 
         buttonRegister.setOnClickListener(v -> {

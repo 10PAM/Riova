@@ -22,8 +22,11 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.riova.R;
+import com.example.riova.utilities.Constants;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.text.SimpleDateFormat;
@@ -99,6 +102,21 @@ public class DashboardFragment extends Fragment {
     }
 
     /**
+     * Shows a Fragment.
+     *
+     * @param tag The tag of the fragment to be displayed.
+     */
+    private void showPage(String tag) {
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        for (String page_tag : Constants.page_tag_array) {
+            transaction.hide(fragmentManager.findFragmentByTag(page_tag));
+        }
+        transaction.show(fragmentManager.findFragmentByTag(tag));
+        transaction.commit();
+    }
+
+    /**
      * Wires the guide button to open a dialog explaining the basics of the app.
      *
      * @param view the fragment's root view.
@@ -110,6 +128,14 @@ public class DashboardFragment extends Fragment {
                         .setMessage(R.string.dashboard_guide_body)
                         .setPositiveButton(R.string.dashboard_guide_dismiss, null)
                         .show());
+    }
+
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        if (!hidden) {
+            showPage(Constants.TAG_DASHBOARD);
+        }
     }
 
 
