@@ -7,9 +7,10 @@ About: User Settings page. Loads and saves the user's preferences - username,
        theme (dark/light), font size, master volume, reminders, and
        "keep me logged in" - using SharedPreferences for local storage.
 
-       Storage is kept behind simple get/save helpers so the same values can
-       later be synced to the account (Firebase) when the user is signed in,
-       without changing the UI code. The existing Sign Out action is preserved.
+       When the user is signed in, the values are also synced to their account
+       in Firestore through PreferencesSync (pulled when the page opens and
+       pushed whenever a setting changes); guests keep using the local copy
+       only. The existing sign in/out action is preserved.
 */
 
 package com.example.riova.fragments;
@@ -31,6 +32,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.riova.R;
 import com.example.riova.utilities.Constants;
 import com.example.riova.utilities.PreferencesHandler;
+import com.example.riova.utilities.PreferencesSync;
 import com.google.android.material.materialswitch.MaterialSwitch;
 
 public class SettingsFragment extends Fragment {
@@ -45,6 +47,7 @@ public class SettingsFragment extends Fragment {
     private static final String KEY_KEEP_LOGGED_IN = "keep_logged_in";
 
     PreferencesHandler preferencesHandler;
+    PreferencesSync preferencesSync;
     Button sign_in_out_button;
 
     public SettingsFragment() {
@@ -56,16 +59,25 @@ public class SettingsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         preferencesHandler = new PreferencesHandler(getContext());
+        preferencesSync = new PreferencesSync(requireContext());
 
         SharedPreferences prefs =
                 requireContext().getSharedPreferences(PREFS, 0);
 
-        setupUsername(view, prefs);
-        setupTheme(view, prefs);
-        setupFontSize(view, prefs);
-        setupVolume(view, prefs);
-        setupReminders(view, prefs);
-        setupKeepLoggedIn(view, prefs);
+        // Pull the signed-in user's saved preferences from the cloud first,
+        // then bind the controls so they reflect the account's values. For a
+        // guest this callback runs immediately with the local values.
+        preferencesSync.pull(() -> {
+            if (!isAdded()) {
+                return;
+            }
+            setupUsername(view, prefs);
+            setupTheme(view, prefs);
+            setupFontSize(view, prefs);
+            setupVolume(view, prefs);
+            setupReminders(view, prefs);
+            setupKeepLoggedIn(view, prefs);
+        });
 
         // Existing sign-out action from the scaffold.
         sign_in_out_button = view.findViewById(R.id.button_sign_in_out);
@@ -89,6 +101,7 @@ public class SettingsFragment extends Fragment {
         saveButton.setOnClickListener(v -> {
             String username = usernameField.getText().toString().trim();
             prefs.edit().putString(KEY_USERNAME, username).apply();
+            preferencesSync.push();
             Toast.makeText(requireContext(),
                     R.string.settings_username_saved, Toast.LENGTH_SHORT).show();
         });
@@ -106,6 +119,7 @@ public class SettingsFragment extends Fragment {
         themeSwitch.setChecked(dark);
         themeSwitch.setOnCheckedChangeListener((button, isChecked) -> {
             prefs.edit().putBoolean(KEY_THEME_DARK, isChecked).apply();
+            preferencesSync.push();
             applyTheme(isChecked);
         });
     }
@@ -129,6 +143,7 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 prefs.edit().putInt(KEY_FONT_SIZE, seekBar.getProgress()).apply();
+                preferencesSync.push();
             }
         });
     }
@@ -143,6 +158,7 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 prefs.edit().putInt(KEY_VOLUME, seekBar.getProgress()).apply();
+                preferencesSync.push();
             }
         });
     }
@@ -153,8 +169,10 @@ public class SettingsFragment extends Fragment {
     private void setupReminders(View view, SharedPreferences prefs) {
         MaterialSwitch reminders = view.findViewById(R.id.switch_reminders);
         reminders.setChecked(prefs.getBoolean(KEY_REMINDERS, false));
-        reminders.setOnCheckedChangeListener((button, isChecked) ->
-                prefs.edit().putBoolean(KEY_REMINDERS, isChecked).apply());
+        reminders.setOnCheckedChangeListener((button, isChecked) -> {
+            prefs.edit().putBoolean(KEY_REMINDERS, isChecked).apply();
+            preferencesSync.push();
+        });
     }
 
     /**
@@ -163,8 +181,10 @@ public class SettingsFragment extends Fragment {
     private void setupKeepLoggedIn(View view, SharedPreferences prefs) {
         MaterialSwitch keepLoggedIn = view.findViewById(R.id.switch_keep_logged_in);
         keepLoggedIn.setChecked(prefs.getBoolean(KEY_KEEP_LOGGED_IN, false));
-        keepLoggedIn.setOnCheckedChangeListener((button, isChecked) ->
-                prefs.edit().putBoolean(KEY_KEEP_LOGGED_IN, isChecked).apply());
+        keepLoggedIn.setOnCheckedChangeListener((button, isChecked) -> {
+            prefs.edit().putBoolean(KEY_KEEP_LOGGED_IN, isChecked).apply();
+            preferencesSync.push();
+        });
     }
 
     /**
