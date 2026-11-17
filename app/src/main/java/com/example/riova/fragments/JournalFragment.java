@@ -1,5 +1,6 @@
 package com.example.riova.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,9 +18,14 @@ import com.example.riova.models.Journal;
 import com.example.riova.utilities.Constants;
 import com.example.riova.utilities.PreferencesHandler;
 import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -77,6 +83,11 @@ public class JournalFragment extends Fragment implements JournalListener {
 
     /**
      * Initializes listeners.
+     * TODO: Make journals local only primarily
+     *
+     * TODO: For journal's, if not signed in, generate a unique key using random values,
+     * if key is not found in journal_ids.txt, then save create a .txt journal entry with the
+     * id, and save title in first line before /n, and then content in lower lines.
      */
     private void setListeners() {
         Button addJournal = mainView.findViewById(R.id.button_addJournal);
@@ -89,6 +100,27 @@ public class JournalFragment extends Fragment implements JournalListener {
             showDeleteJournalPrompt(false);
         });
         deleteJournalYes.setOnClickListener(v -> {
+            // TODO: If not logged in, do not refer firestore
+
+            for (int i = 0; i < journals.size(); ++i) {
+                if (journals.get(i).journalId.equals(deleteJournalId)) {
+                    journals.remove(i);
+                    break;
+                }
+            }
+
+            if (preferencesHandler.getBoolean(Constants.KEY_IS_SIGNED_IN)) {
+                DocumentReference journalReference = database.collection(Constants.KEY_COLLECTION_JOURNALS)
+                        .document(deleteJournalId);
+                journalReference.get().addOnSuccessListener(documentSnapshot -> {
+                    journalReference.delete();
+                });
+            } else {
+                String journal_entry = deleteJournalId + ".txt"; // TODO: Fix, may be Firestore ID
+                getContext().deleteFile(journal_entry);
+            }
+            journalAdapter.notifyDataSetChanged();
+
             showDeleteJournalPrompt(false);
         });
     }
