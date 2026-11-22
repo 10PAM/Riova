@@ -66,4 +66,6 @@
     <string name="back_arrow">Back</string>
     <string name="title">Title</string>
     <string name="add_journal">Add Journal</string>
+    <string name="wellness_completed">Completed</string>
+    <string name="wellness_progress">%1$d of %2$d completed today</string>
 </resources>
