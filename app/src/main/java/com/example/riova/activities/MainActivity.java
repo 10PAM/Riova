@@ -1,19 +1,5 @@
-/*
-Programmers (Team Novelty) {
-    - Mario Aguilera Piceno, CWU Student ID: 49998581
-    -
-    -
-    -
-}
-Date: 10/6/2026
-Modified: 10/21/2026
-File: MainActivity.java
-About: Creates and initializes app functions once created.
-
- */
-
-// Defines package
-package com.example.riova;
+// Declare package
+package com.example.riova.activities;
 
 // Required imports
 import android.os.Bundle;
@@ -23,6 +9,20 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import com.example.riova.R;
+import com.example.riova.fragments.DashboardFragment;
+import com.example.riova.fragments.GeneralWellnessFragment;
+import com.example.riova.fragments.JournalAppendFragment;
+import com.example.riova.fragments.JournalFragment;
+import com.example.riova.fragments.LoginFragment;
+import com.example.riova.fragments.LogoutFragment;
+import com.example.riova.fragments.MeditationFragment;
+import com.example.riova.fragments.MindfulnessFragment;
+import com.example.riova.fragments.RegisterFragment;
+import com.example.riova.fragments.ResetPasswordFragment;
+import com.example.riova.fragments.SettingsFragment;
+import com.example.riova.utilities.Constants;
 
 /**
  * Entry class.
@@ -37,20 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton button_meditation;
     private ImageButton button_genwell;
     private TextView header_active_title;
-
-
-    // Tags to find and retrieve pages' fragments
-    private static final String TAG_DASHBOARD = "page_dashboard";
-    private static final String TAG_LOGIN = "page_login";
-    private static final String TAG_RESETPASSWORD = "page_resetpassword";
-    private static final String TAG_JOURNAL = "page_journal";
-    private static final String TAG_GENWELL = "page_genwell";
-    private static final String TAG_MEDITATION = "page_meditation";
-    private static final String TAG_MINDFULNESS = "page_mindfulness";
-    private static final String TAG_SETTINGS = "page_settings";
-    private static final String TAG_REGISTER = "page_register";
-    private static final String TAG_LOGOUT = "page_logout";
-    private String currentPage = TAG_DASHBOARD;
+    private String currentPage = Constants.TAG_DASHBOARD;
 
     /**
      * Program creation start; Initializes and connects all files and methods together.
@@ -62,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         // Calls parent class with this.
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
@@ -73,16 +59,17 @@ public class MainActivity extends AppCompatActivity {
         // Initiates fragments
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.fragment_container, new Dashboard(), TAG_DASHBOARD)
-                    .add(R.id.fragment_container, new Journal(), TAG_JOURNAL)
-                    .add(R.id.fragment_container, new GeneralWellness(), TAG_GENWELL)
-                    .add(R.id.fragment_container, new Mindfulness(), TAG_MINDFULNESS)
-                    .add(R.id.fragment_container, new Meditation(), TAG_MEDITATION)
-                    .add(R.id.fragment_container, new Settings(), TAG_SETTINGS)
-                    .add(R.id.fragment_container_high, new ResetPassword(), TAG_RESETPASSWORD)
-                    .add(R.id.fragment_container_high, new Register(), TAG_REGISTER)
-                    .add(R.id.fragment_container_high, new Logout(), TAG_LOGOUT)
-                    .add(R.id.fragment_container_high, new Login(), TAG_LOGIN)
+                    .add(R.id.fragment_container, new DashboardFragment(), Constants.TAG_DASHBOARD)
+                    .add(R.id.fragment_container, new JournalFragment(), Constants.TAG_JOURNAL)
+                    .add(R.id.fragment_container, new GeneralWellnessFragment(), Constants.TAG_GENWELL)
+                    .add(R.id.fragment_container, new MindfulnessFragment(), Constants.TAG_MINDFULNESS)
+                    .add(R.id.fragment_container, new MeditationFragment(), Constants.TAG_MEDITATION)
+                    .add(R.id.fragment_container, new SettingsFragment(), Constants.TAG_SETTINGS)
+                    .add(R.id.fragment_container_high, new ResetPasswordFragment(), Constants.TAG_RESETPASSWORD)
+                    .add(R.id.fragment_container_high, new RegisterFragment(), Constants.TAG_REGISTER)
+                    .add(R.id.fragment_container_high, new LogoutFragment(), Constants.TAG_LOGOUT)
+                    .add(R.id.fragment_container_high, new LoginFragment(), Constants.TAG_LOGIN)
+                    .add(R.id.fragment_container_high, new JournalAppendFragment(), Constants.TAG_JOURNAL_APPEND)
                     .commitNow();
         }
 
@@ -100,13 +87,12 @@ public class MainActivity extends AppCompatActivity {
         header_active_title.setText(button_dashboard.getContentDescription());
 
         // Define footer navigation buttons' functionality
-        button_dashboard.setOnClickListener(v -> viewChange(button_dashboard, TAG_DASHBOARD));
-        button_settings.setOnClickListener(v -> viewChange(button_settings, TAG_SETTINGS));
-        button_mindful.setOnClickListener(v -> viewChange(button_mindful, TAG_MINDFULNESS));
-        button_journal.setOnClickListener(v -> viewChange(button_journal, TAG_JOURNAL));
-        button_meditation.setOnClickListener(v -> viewChange(button_meditation, TAG_MEDITATION));
-        button_genwell.setOnClickListener(v -> viewChange(button_genwell, TAG_GENWELL));
-
+        button_dashboard.setOnClickListener(v -> viewChange(button_dashboard, Constants.TAG_DASHBOARD));
+        button_settings.setOnClickListener(v -> viewChange(button_settings, Constants.TAG_SETTINGS));
+        button_mindful.setOnClickListener(v -> viewChange(button_mindful, Constants.TAG_MINDFULNESS));
+        button_journal.setOnClickListener(v -> viewChange(button_journal, Constants.TAG_JOURNAL));
+        button_meditation.setOnClickListener(v -> viewChange(button_meditation, Constants.TAG_MEDITATION));
+        button_genwell.setOnClickListener(v -> viewChange(button_genwell, Constants.TAG_GENWELL));
     }
 
     /**
@@ -116,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
      * @param PAGE_TAG the tag of the initial page.
      */
     private void setInitialView(ImageButton button, final String PAGE_TAG) {
-
         // Resets active button images
         button_dashboard.setImageResource(R.drawable.inactive_button);
         button_mindful.setImageResource(R.drawable.inactive_button);
@@ -133,14 +118,15 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
 
         // Hides all visible fragments, then shows specified fragment
-        transaction.hide(fragmentManager.findFragmentByTag(TAG_JOURNAL));
-        transaction.hide(fragmentManager.findFragmentByTag(TAG_SETTINGS));
-        transaction.hide(fragmentManager.findFragmentByTag(TAG_GENWELL));
-        transaction.hide(fragmentManager.findFragmentByTag(TAG_MINDFULNESS));
-        transaction.hide(fragmentManager.findFragmentByTag(TAG_MEDITATION));
-        transaction.hide(fragmentManager.findFragmentByTag(TAG_RESETPASSWORD));
-        transaction.hide(fragmentManager.findFragmentByTag(TAG_REGISTER));
-        transaction.hide(fragmentManager.findFragmentByTag(TAG_LOGOUT));
+        transaction.hide(fragmentManager.findFragmentByTag(Constants.TAG_JOURNAL));
+        transaction.hide(fragmentManager.findFragmentByTag(Constants.TAG_SETTINGS));
+        transaction.hide(fragmentManager.findFragmentByTag(Constants.TAG_GENWELL));
+        transaction.hide(fragmentManager.findFragmentByTag(Constants.TAG_MINDFULNESS));
+        transaction.hide(fragmentManager.findFragmentByTag(Constants.TAG_MEDITATION));
+        transaction.hide(fragmentManager.findFragmentByTag(Constants.TAG_RESETPASSWORD));
+        transaction.hide(fragmentManager.findFragmentByTag(Constants.TAG_REGISTER));
+        transaction.hide(fragmentManager.findFragmentByTag(Constants.TAG_LOGOUT));
+        transaction.hide(fragmentManager.findFragmentByTag(Constants.TAG_JOURNAL_APPEND));
         transaction.show(fragmentManager.findFragmentByTag(PAGE_TAG));
         transaction.commit();
     }
@@ -152,7 +138,6 @@ public class MainActivity extends AppCompatActivity {
      * @param TAG_FRAGMENT the TAG of page being shown.
      */
     private void viewChange(ImageButton button, final String TAG_FRAGMENT) {
-
         // Prevents reopening the same page
         if (TAG_FRAGMENT.equals(this.currentPage)) {
             return;
@@ -180,7 +165,6 @@ public class MainActivity extends AppCompatActivity {
         transaction.show(fragmentManager.findFragmentByTag(TAG_FRAGMENT));
         currentPage = TAG_FRAGMENT;
         transaction.commit();
-
     }
 
     /**

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragment_journal_append"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/navigation_back"
+    tools:context=".fragments.JournalAppendFragment">
+
+    <!--Content Start-->
+    <LinearLayout
+        android:id="@+id/journal_append_header"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:layout_height="90dp"
+        android:textSize="30sp"
+        android:textColor="@color/white"
+        android:orientation="horizontal"
+        android:background="@color/black">
+
+        <ImageView
+            android:id="@+id/journal_append_back"
+            android:contentDescription="@string/back_arrow"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/back_arrow"
+            android:layout_weight=".05"
+            android:padding="10dp"
+            style="@style/addjournal_button"/>
+        <EditText
+            android:paddingHorizontal="10dp"
+            android:backgroundTint="@android:color/transparent"
+            android:id="@+id/journal_append_title"
+            android:inputType="text"
+            android:autofillHints="none"
+            android:hint="@string/title"
+            app:layout_constraintTop_toBottomOf="@id/journal_append_header"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:textColorHint="@color/white"
+            android:text=""
+            android:gravity="center"
+            android:textSize="30sp"
+            android:textColor="@color/white"/>
+        <ImageView
+            android:id="@+id/journal_append_done"
+            android:contentDescription="@string/back_arrow"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_weight=".05"
+            android:src="@drawable/icon_done"
+            android:padding="10dp"
+            android:visibility="invisible"
+            style="@style/addjournal_button"/>
+    </LinearLayout>
+    <ScrollView
+        android:layout_marginTop="90dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <EditText
+            android:backgroundTint="@android:color/transparent"
+            android:inputType="textMultiLine"
+            android:layout_marginHorizontal="10dp"
+            android:id="@+id/journal_append_content"
+            android:autofillHints="none"
+            android:hint="@string/title"
+            app:layout_constraintTop_toBottomOf="@id/journal_append_header"
+            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:textAlignment="textStart"
+            android:gravity="start"
+            android:textSize="20sp"
+            android:textColor="@color/white"/>
+    </ScrollView>
+    <!--Content End-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,20 +1,19 @@
-package com.example.riova;
+package com.example.riova.fragments;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class Mindfulness extends Fragment {
+import com.example.riova.R;
+
+public class MeditationFragment extends Fragment {
 
 
-    public Mindfulness(){
-        super(R.layout.mindfullness);
+    public MeditationFragment(){
+        super(R.layout.meditation);
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
