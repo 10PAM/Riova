@@ -52,6 +52,8 @@ public class LoginFragment extends Fragment {
 
         preferenceHandler = new PreferencesHandler(getContext().getApplicationContext());
 
+        preferenceHandler.putString(Constants.KEY_JOURNAL_ID_APPEND, ""); // Reset journal append ID
+
         if (preferenceHandler.getBoolean(Constants.KEY_IS_SIGNED_IN) ||
                 preferenceHandler.getBoolean(Constants.KEY_SKIPPED_SIGNIN)) {
             showPage(Constants.TAG_DASHBOARD);
