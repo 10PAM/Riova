@@ -66,4 +66,15 @@
     <string name="back_arrow">Back</string>
     <string name="title">Title</string>
     <string name="add_journal">Add Journal</string>
+    <!-- Meditation page (Brayan)-->
+    <string name="meditation_sounds_ambience">Sounds and Ambience</string>
+    <string name="meditation_duration">Duration: </string>
+    <string name="meditation_minutes_hint">(Minutes)</string>
+    <string name="meditation_duration_error">Enter a number from 1 to 180</string>
+    <string name="meditation_start">Start</string>
+    <string name="meditation_pause">Pause</string>
+    <string name="meditation_resume">Resume</string>
+    <string name="meditation_stop">Stop</string>
+    <string name="meditation_complete">Session complete</string>
+    <string name="meditation_sound_error">Could not play this sound</string>
 </resources>

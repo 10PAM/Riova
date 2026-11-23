@@ -1,4 +1,4 @@
-package com.example.riova;
+package com.example.riova.utilities;
 
 import android.os.CountDownTimer;
 

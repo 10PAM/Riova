@@ -1,4 +1,4 @@
-package com.example.riova;
+package com.example.riova.models;
 
 /**
  * This is a single ambient sound object that a user can play during a meditation

@@ -1,7 +1,9 @@
-package com.example.riova;
+package com.example.riova.utilities;
 
 import android.content.Context;
 import android.media.MediaPlayer;
+
+import com.example.riova.models.Sound;
 
 /**
  * Plays ambient sounds for meditation sessions.
