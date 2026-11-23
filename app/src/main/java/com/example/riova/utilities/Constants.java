@@ -11,9 +11,9 @@ public class Constants {
     private static final String KEY_USERNAME = "username";
     private static final String KEY_THEME_DARK = "theme_dark";
     private static final String KEY_FONT_SIZE = "font_size";
-    private static final String KEY_VOLUME = "master_volume";
-    private static final String KEY_REMINDERS = "reminders_enabled";
-    private static final String KEY_KEEP_LOGGED_IN = "keep_logged_in";
+    public static final String KEY_VOLUME = "master_volume";
+    public static final String KEY_REMINDERS = "reminders_enabled";
+    public static final String KEY_KEEP_LOGGED_IN = "keep_logged_in";
 
     // User profile Keys
     public static final String KEY_COLLECTION_USERS = "User";
@@ -44,7 +44,8 @@ public class Constants {
     public static final String TAG_SETTINGS = "page_settings";
     public static final String TAG_REGISTER = "page_register";
     public static final String TAG_LOGOUT = "page_logout";
+    public static final String TAG_GUIDE = "page_guide";
     public static final String[] page_tag_array = {TAG_DASHBOARD, TAG_LOGIN, TAG_RESETPASSWORD, TAG_JOURNAL,
-    TAG_GENWELL, TAG_MEDITATION, TAG_MINDFULNESS, TAG_SETTINGS, TAG_REGISTER, TAG_LOGOUT, TAG_JOURNAL_APPEND};
+    TAG_GENWELL, TAG_MEDITATION, TAG_MINDFULNESS, TAG_SETTINGS, TAG_REGISTER, TAG_LOGOUT, TAG_JOURNAL_APPEND, TAG_GUIDE};
 
 }

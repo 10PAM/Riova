@@ -33,6 +33,10 @@
     <string name="send_password_reset_request">Send Password Reset Request</string>
     <string name="back_two">Back</string>
     <!-- Dashboard page (Fulya Bilgin) -->
+    <!-- Greeting: %1$s is the saved name (Constants.KEY_NAME). -->
+    <string name="dashboard_greeting_morning">Good morning, %1$s.</string>
+    <string name="dashboard_greeting_afternoon">Good afternoon, %1$s.</string>
+    <string name="dashboard_greeting_evening">Good evening, %1$s.</string>
     <string name="dashboard_date_placeholder">Today\'s date</string>
     <string name="dashboard_quote_header">QUOTE OF THE MONTH</string>
     <string name="dashboard_quote_placeholder">Loading quote…</string>
@@ -52,6 +56,12 @@
     <string name="settings_master_volume">Master volume</string>
     <string name="settings_reminders">Enable reminders</string>
     <string name="settings_keep_logged_in">Keep me logged in</string>
+    <!-- Reminders (Fulya Bilgin) -->
+    <string name="reminder_channel_name">Daily reminders</string>
+    <string name="reminder_channel_description">Daily wellness check-in reminders from Riova.</string>
+    <string name="reminder_title">Riova</string>
+    <string name="reminder_text">Take a moment for your wellness today.</string>
+    <string name="reminder_permission_denied">Notifications are off, so reminders won\'t show. You can turn them on in system settings.</string>
     <!-- Mindfulness page (Fulya Bilgin) -->
     <string name="mindfulness_title">Mindfulness</string>
     <string name="mindfulness_motivational_header">MOTIVATIONAL QUOTE</string>

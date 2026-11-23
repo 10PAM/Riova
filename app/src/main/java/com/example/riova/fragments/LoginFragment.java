@@ -52,7 +52,12 @@ public class LoginFragment extends Fragment {
 
         preferenceHandler = new PreferencesHandler(getContext().getApplicationContext());
 
-        if (preferenceHandler.getBoolean(Constants.KEY_IS_SIGNED_IN)) {
+        // Only skip the login screen automatically when the user is signed in
+        // AND has turned on "Keep me logged in" in Settings. If that setting is
+        // off, the login screen is shown on every launch even though a previous
+        // session exists, so the user has to sign in again.
+        if (preferenceHandler.getBoolean(Constants.KEY_IS_SIGNED_IN)
+                && preferenceHandler.getBoolean(Constants.KEY_KEEP_LOGGED_IN)) {
             showPage(Constants.TAG_DASHBOARD);
         }
 

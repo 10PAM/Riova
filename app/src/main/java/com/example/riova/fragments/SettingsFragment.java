@@ -15,7 +15,10 @@ About: User Settings page. Loads and saves the user's preferences - username,
 
 package com.example.riova.fragments;
 
+import android.Manifest;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,8 +26,11 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -34,6 +40,7 @@ import com.example.riova.utilities.Constants;
 import com.example.riova.utilities.PreferencesHandler;
 import com.example.riova.utilities.PreferencesSync;
 import com.example.riova.utilities.FontScaler;
+import com.example.riova.utilities.ReminderScheduler;
 import com.google.android.material.materialswitch.MaterialSwitch;
 
 public class SettingsFragment extends Fragment {
@@ -50,6 +57,16 @@ public class SettingsFragment extends Fragment {
     PreferencesHandler preferencesHandler;
     PreferencesSync preferencesSync;
     Button sign_in_out_button;
+
+    // Launcher for the Android 13+ notification permission request. Registered
+    // here (at construction) as required before the fragment is started.
+    private final ActivityResultLauncher<String> notificationPermissionLauncher =
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(), granted -> {
+                if (!granted && isAdded()) {
+                    Toast.makeText(requireContext(),
+                            R.string.reminder_permission_denied, Toast.LENGTH_LONG).show();
+                }
+            });
 
     public SettingsFragment() {
         super(R.layout.settings);
@@ -170,15 +187,46 @@ public class SettingsFragment extends Fragment {
     }
 
     /**
-     * Loads and saves whether reminders are enabled.
+     * Loads and saves whether reminders are enabled, and actually schedules or
+     * cancels the daily reminder notification to match. When turning reminders
+     * on, requests the notification permission on Android 13+.
      */
     private void setupReminders(View view, SharedPreferences prefs) {
         MaterialSwitch reminders = view.findViewById(R.id.switch_reminders);
-        reminders.setChecked(prefs.getBoolean(KEY_REMINDERS, false));
+        boolean enabled = prefs.getBoolean(KEY_REMINDERS, false);
+        reminders.setChecked(enabled);
+
+        // If reminders were left on from a previous session, make sure the
+        // daily alarm is actually scheduled.
+        if (enabled) {
+            ReminderScheduler.schedule(requireContext());
+        }
+
         reminders.setOnCheckedChangeListener((button, isChecked) -> {
             prefs.edit().putBoolean(KEY_REMINDERS, isChecked).apply();
             preferencesSync.push();
+
+            if (isChecked) {
+                requestNotificationPermissionIfNeeded();
+                ReminderScheduler.schedule(requireContext());
+            } else {
+                ReminderScheduler.cancel(requireContext());
+            }
         });
+    }
+
+    /**
+     * On Android 13+ (API 33) asks for the POST_NOTIFICATIONS permission if it
+     * has not already been granted. On older versions the permission is granted
+     * at install time, so nothing is needed.
+     */
+    private void requestNotificationPermissionIfNeeded() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
+                && ContextCompat.checkSelfPermission(requireContext(),
+                        Manifest.permission.POST_NOTIFICATIONS)
+                        != PackageManager.PERMISSION_GRANTED) {
+            notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
+        }
     }
 
     /**

@@ -22,10 +22,13 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.riova.R;
+import com.example.riova.utilities.Constants;
 import com.example.riova.utilities.FontScaler;
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.example.riova.utilities.PreferencesHandler;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -41,6 +44,7 @@ public class DashboardFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        refreshGreeting(view);
         showCurrentDate(view);
         showMonthQuote(view);
         populateUpdates(view);
@@ -48,6 +52,38 @@ public class DashboardFragment extends Fragment {
 
         // Apply the user's saved font-size setting to this page.
         FontScaler.applyFromPrefs(view, requireContext());
+    }
+
+    /**
+     * Shows a time-of-day greeting ("Good morning/afternoon/evening, NAME.")
+     * as the first element on the page, using the name saved at sign in /
+     * registration under {@link Constants#KEY_NAME}. The greeting view is
+     * "gone" by default (see dashboard.xml) so it takes up no space for guests
+     * or anyone who has not saved a name; it is only shown when a name exists.
+     *
+     * @param view the fragment's root view.
+     */
+    private void refreshGreeting(View view) {
+        TextView greeting = view.findViewById(R.id.text_greeting);
+
+        String name = new PreferencesHandler(requireContext()).getString(Constants.KEY_NAME);
+        if (name == null || name.trim().isEmpty()) {
+            greeting.setVisibility(View.GONE);
+            return;
+        }
+
+        int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+        int template;
+        if (hour < 12) {
+            template = R.string.dashboard_greeting_morning;
+        } else if (hour < 18) {
+            template = R.string.dashboard_greeting_afternoon;
+        } else {
+            template = R.string.dashboard_greeting_evening;
+        }
+
+        greeting.setText(getString(template, name.trim()));
+        greeting.setVisibility(View.VISIBLE);
     }
 
     /**
@@ -103,19 +139,46 @@ public class DashboardFragment extends Fragment {
     }
 
     /**
-     * Wires the guide button to open a dialog explaining the basics of the app.
+     * Wires the guide button to open the full-screen App Guide page. This opens
+     * a themed fragment (GuideFragment) instead of a pop-up dialog so it matches
+     * the rest of the app's look and navigation.
      *
      * @param view the fragment's root view.
      */
     private void setupGuideButton(View view) {
         view.findViewById(R.id.button_guide).setOnClickListener(v ->
-                new MaterialAlertDialogBuilder(requireContext())
-                        .setTitle(R.string.dashboard_guide_title)
-                        .setMessage(R.string.dashboard_guide_body)
-                        .setPositiveButton(R.string.dashboard_guide_dismiss, null)
-                        .show());
+                showPage(Constants.TAG_GUIDE));
     }
 
+    /**
+     * Shows one page fragment by tag and hides all the others, matching the
+     * hide/show navigation used across the app.
+     *
+     * @param tag the tag of the fragment to display.
+     */
+    private void showPage(String tag) {
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        for (String page_tag : Constants.page_tag_array) {
+            transaction.hide(fragmentManager.findFragmentByTag(page_tag));
+        }
+        transaction.show(fragmentManager.findFragmentByTag(tag));
+        transaction.commit();
+    }
+
+    /**
+     * Re-checks the greeting whenever the Dashboard becomes visible again (for
+     * example right after the user signs in), so the name appears without
+     * needing to recreate the fragment.
+     */
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        View view = getView();
+        if (!hidden && view != null) {
+            refreshGreeting(view);
+        }
+    }
 
     @Override
     public void onDestroyView() {

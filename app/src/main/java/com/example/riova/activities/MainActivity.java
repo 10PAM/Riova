@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.riova.R;
 import com.example.riova.fragments.DashboardFragment;
 import com.example.riova.fragments.GeneralWellnessFragment;
+import com.example.riova.fragments.GuideFragment;
 import com.example.riova.fragments.JournalAppendFragment;
 import com.example.riova.fragments.JournalFragment;
 import com.example.riova.fragments.LoginFragment;
@@ -70,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
                     .add(R.id.fragment_container_high, new LogoutFragment(), Constants.TAG_LOGOUT)
                     .add(R.id.fragment_container_high, new LoginFragment(), Constants.TAG_LOGIN)
                     .add(R.id.fragment_container_high, new JournalAppendFragment(), Constants.TAG_JOURNAL_APPEND)
+                    .add(R.id.fragment_container_high, new GuideFragment(), Constants.TAG_GUIDE)
                     .commitNow();
         }
 
@@ -127,6 +129,7 @@ public class MainActivity extends AppCompatActivity {
         transaction.hide(fragmentManager.findFragmentByTag(Constants.TAG_REGISTER));
         transaction.hide(fragmentManager.findFragmentByTag(Constants.TAG_LOGOUT));
         transaction.hide(fragmentManager.findFragmentByTag(Constants.TAG_JOURNAL_APPEND));
+        transaction.hide(fragmentManager.findFragmentByTag(Constants.TAG_GUIDE));
         transaction.show(fragmentManager.findFragmentByTag(PAGE_TAG));
         transaction.commit();
     }

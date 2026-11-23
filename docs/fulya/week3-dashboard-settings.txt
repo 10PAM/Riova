@@ -1,0 +1,165 @@
+===============================================================================
+Riova - Team Novelty
+Week 3 design + implementation notes
+Fulya Bilgin (CWU Student ID: 50593580)
+Branch: fulya-dashboard (off settings-sync)
+===============================================================================
+
+OVERVIEW
+-------------------------------------------------------------------------------
+This week I finished two Dashboard improvements that came out of the team's
+design review (from MAP01), and made the remaining User Settings controls
+actually take effect instead of only saving their values. All of this builds on
+my settings-sync work (PreferencesSync, FontScaler, Dashboard, Settings).
+
+Summary of what changed:
+  1. Dashboard greeting ("Good morning/afternoon/evening, NAME.")
+  2. App Guide now opens a full-screen fragment instead of a pop-up dialog
+  3. "Keep me logged in" now controls whether the login screen is skipped
+  4. "Enable reminders" now schedules/cancels a real daily notification
+  5. "Master volume" now has a single integration point (VolumeManager) for
+     playback code to read
+
+
+1. DASHBOARD GREETING  (review suggestion)
+-------------------------------------------------------------------------------
+Idea (from MAP01): show "Good morning/evening, USERNAME" as the first element on
+the Dashboard, hidden by default so it takes no space unless a name is saved.
+
+Design decisions:
+  - The greeting TextView is the first child in dashboard.xml and is set to
+    android:visibility="gone" by default. Dashboard.java only reveals it when a
+    saved name exists, so guests (or anyone who skipped sign-in) see no empty
+    gap.
+  - The name is read from PreferencesHandler using Constants.KEY_NAME ("name"),
+    which is the nickname already saved at registration (RegisterFragment) and
+    at sign-in (LoginFragment). No new storage was needed - the key MAP01
+    mentioned was already being written.
+  - The time of day picks the wording: before 12:00 = morning, 12:00-17:59 =
+    afternoon, 18:00+ = evening. Three strings with a %1$s placeholder keep it
+    translatable.
+  - refreshGreeting() also runs in onHiddenChanged(), so if the user signs in
+    and the Dashboard is shown again, the greeting appears without recreating
+    the fragment.
+
+Files: res/layout/dashboard.xml, res/values/strings.xml,
+       fragments/DashboardFragment.java
+
+
+2. APP GUIDE AS A FRAGMENT  (review suggestion)
+-------------------------------------------------------------------------------
+Idea (from MAP01): make the App Guide button open a fragment rather than a
+dialog, to fit the app's theme.
+
+Design decisions:
+  - Added GuideFragment, a full-screen overlay styled like the login/logout
+    pages (black background, BACK button), so it matches the rest of the app
+    instead of a Material pop-up.
+  - It follows the app's existing navigation pattern: GuideFragment is added to
+    the fragment_container_high overlay container in MainActivity, registered
+    with a new tag Constants.TAG_GUIDE (also added to page_tag_array), and shown
+    /hidden with the same showPage(tag) helper the other pages use.
+  - It reuses the existing guide text (dashboard_guide_title / _body), so there
+    is one source of truth for the guide content.
+  - BACK returns to the Dashboard. Because the overlay container is drawn on top
+    and is opaque, the footer nav is covered while the guide is open, matching
+    how login/logout already behave.
+
+Files: fragments/GuideFragment.java, res/layout/guide.xml,
+       utilities/Constants.java (TAG_GUIDE), activities/MainActivity.java,
+       fragments/DashboardFragment.java (button now calls showPage(TAG_GUIDE))
+
+
+3. KEEP ME LOGGED IN  (make the setting functional)
+-------------------------------------------------------------------------------
+Before: the app always skipped the login screen whenever KEY_IS_SIGNED_IN was
+true, so the "keep me logged in" switch saved a value but did nothing.
+
+Change: LoginFragment now only auto-skips to the Dashboard when the user is
+signed in AND Constants.KEY_KEEP_LOGGED_IN is true. If the switch is off, the
+login screen is shown on each launch even though a previous session exists.
+
+Note: the switch defaults to off, so by default the user signs in each launch -
+the expected behavior for this kind of toggle.
+
+Files: fragments/LoginFragment.java, utilities/Constants.java (made
+       KEY_KEEP_LOGGED_IN public so Login can read it)
+
+
+4. REMINDERS  (make the setting functional)
+-------------------------------------------------------------------------------
+Before: the switch saved reminders_enabled but nothing was scheduled.
+
+Change: a daily reminder notification at 9:00 AM.
+  - ReminderScheduler (utilities) schedules/cancels an inexact daily alarm with
+    AlarmManager. Inexact repeating is used on purpose so no exact-alarm
+    permission is required. It also creates the notification channel needed on
+    Android 8+.
+  - ReminderReceiver (receivers) receives the alarm and posts the notification;
+    tapping it opens the app.
+  - SettingsFragment schedules on toggle-on (and on load if it was left on) and
+    cancels on toggle-off. On Android 13+ it requests the POST_NOTIFICATIONS
+    permission when reminders are turned on.
+  - Manifest: added POST_NOTIFICATIONS permission and registered the receiver
+    (not exported).
+
+Known limitation / next step: inexact repeating alarms do not survive a device
+reboot. A RECEIVE_BOOT_COMPLETED receiver that re-schedules on boot would make
+it fully persistent.
+
+Files: utilities/ReminderScheduler.java, receivers/ReminderReceiver.java,
+       fragments/SettingsFragment.java, AndroidManifest.xml,
+       res/values/strings.xml, utilities/Constants.java (KEY_REMINDERS public)
+
+
+5. MASTER VOLUME  (integration point)
+-------------------------------------------------------------------------------
+The volume value (0-100) was already saved and synced. What was missing is
+something for playback to read, because there is no audio on this branch yet
+(the meditation SoundPlayer is on the meditation branch).
+
+Change: added VolumeManager (utilities) as the single place to read the saved
+volume - getVolumePercent(), getVolumeScalar() (0.0-1.0), and
+applyTo(MediaPlayer). When the meditation audio work is merged, the SoundPlayer
+can call VolumeManager.applyTo(player, context) and the slider will control
+playback. The audible effect depends on that merge.
+
+Files: utilities/VolumeManager.java, utilities/Constants.java (KEY_VOLUME public)
+
+
+HOW TO TEST
+-------------------------------------------------------------------------------
+Greeting: register or sign in with a nickname, open the Dashboard - the greeting
+  shows at the top and matches the time of day. As a guest (Skip), it is hidden.
+App Guide: tap the App Guide button on the Dashboard - a full-screen guide page
+  opens; BACK returns to the Dashboard.
+Keep me logged in: turn it on in Settings, sign in, fully close and reopen the
+  app - it opens straight to the Dashboard. Turn it off and reopen - the login
+  screen shows.
+Reminders: turn on "Enable reminders" (allow notifications on Android 13+). To
+  verify quickly, temporarily set REMINDER_HOUR in ReminderScheduler to a minute
+  or two ahead, or trigger the receiver with adb. Turn it off to cancel.
+Master volume: not audible on this branch; verify the value persists across app
+  restarts and is read by VolumeManager.getVolumePercent().
+
+
+FILES ADDED
+-------------------------------------------------------------------------------
+  fragments/GuideFragment.java
+  res/layout/guide.xml
+  utilities/ReminderScheduler.java
+  receivers/ReminderReceiver.java
+  utilities/VolumeManager.java
+  docs/fulya/week3-dashboard-settings.txt  (this file)
+
+FILES CHANGED
+-------------------------------------------------------------------------------
+  fragments/DashboardFragment.java
+  fragments/SettingsFragment.java
+  fragments/LoginFragment.java
+  activities/MainActivity.java
+  utilities/Constants.java
+  res/layout/dashboard.xml
+  res/values/strings.xml
+  AndroidManifest.xml
+===============================================================================

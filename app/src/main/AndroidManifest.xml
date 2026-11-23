@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- Needed on Android 13+ (API 33) to post the daily reminder notification. -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -21,6 +23,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Fires the daily wellness reminder notification (scheduled by
+             ReminderScheduler via AlarmManager). Not exported: only the app's
+             own alarms trigger it. -->
+        <receiver
+            android:name=".receivers.ReminderReceiver"
+            android:exported="false" />
     </application>
 
 </manifest>

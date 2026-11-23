@@ -28,6 +28,19 @@
             android:orientation="vertical"
             android:padding="16dp">
 
+            <!-- Personalized greeting. Hidden ("gone") by default so it takes no
+                 space for guests; Dashboard.java reveals and fills it only when a
+                 name is saved under Constants.KEY_NAME. First element on the page. -->
+            <TextView
+                android:id="@+id/text_greeting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/riova_pink"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
             <!-- Current date -->
             <TextView
                 android:id="@+id/text_date"
