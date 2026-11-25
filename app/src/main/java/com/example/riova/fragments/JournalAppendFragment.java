@@ -1,6 +1,5 @@
 package com.example.riova.fragments;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -11,23 +10,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import com.example.riova.R;
-import com.example.riova.models.Journal;
 import com.example.riova.utilities.Constants;
 import com.example.riova.utilities.PreferencesHandler;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Random;
-import java.util.Scanner;
 
 public class JournalAppendFragment extends Fragment {
 
@@ -39,7 +28,6 @@ public class JournalAppendFragment extends Fragment {
     private EditText inputContent;
     private FirebaseFirestore database;
     private String journalId = "";
-    private final Random randomGen = new Random();
 
     /**
      * Constructs the main Fragment.
@@ -177,13 +165,7 @@ public class JournalAppendFragment extends Fragment {
                 journalEntry.put(Constants.KEY_JOURNAL_CONTENT, inputContent.getText().toString());
                 journalEntry.put(Constants.KEY_JOURNAL_TIMESTAMP, new Date());
                 database.collection(Constants.KEY_COLLECTION_JOURNALS)
-                        .document(journalId).set(journalEntry)
-                        .addOnSuccessListener(aVoid -> {
-
-                        })
-                        .addOnFailureListener(e -> {
-
-                        });
+                        .document(journalId).set(journalEntry);
             }
         }
     }
