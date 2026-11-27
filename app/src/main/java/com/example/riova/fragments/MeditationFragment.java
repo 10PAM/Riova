@@ -1,6 +1,7 @@
 package com.example.riova.fragments;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -39,6 +40,10 @@ public class MeditationFragment extends Fragment implements MeditationTimer.List
     private static final int DEFAULT_MINUTES = 5;
     private static final int MAX_MINUTES = 180;
     private static final float LOCKED_LIST_ALPHA = 0.5f;
+    private static final String PREFS = "riova_prefs";
+    private static final String KEY_VOLUME = "master_volume";
+    private static final int DEFAULT_VOLUME_PERCENT = 50;
+    private static final float MAX_VOLUME_PERCENT = 100f;
     private ListView soundList;
     private EditText durationInput;
     private TextView timerText;
@@ -75,7 +80,7 @@ public class MeditationFragment extends Fragment implements MeditationTimer.List
         sounds = createSounds();
         timer = new MeditationTimer(this);
         soundPlayer = new SoundPlayer();
-
+        applyMasterVolume();
         setUpSoundList();
         setUpDurationInput();
         startPauseButton.setOnClickListener(button -> onStartPauseClicked());
@@ -85,15 +90,22 @@ public class MeditationFragment extends Fragment implements MeditationTimer.List
     }
 
     /**
-     * Pauses the session when the user switches to another page.
+     * Pauses the session when the user switches to another page. Applies the master volume.
      *
      * @param hidden true if the page was just hidden
      */
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if (hidden && timer != null && timer.isRunning()) {
-            pauseSession();
+        if (timer == null) {
+            return;
+        }
+        if (hidden) {
+            if (timer.isRunning()) {
+                pauseSession();
+            }
+        } else {
+            applyMasterVolume();
         }
     }
 
@@ -271,6 +283,16 @@ public class MeditationFragment extends Fragment implements MeditationTimer.List
         soundPlayer.stop();
         showTime(readMinutes() * MILLIS_PER_MINUTE);
         updateControls();
+    }
+
+    /**
+     * Reads the master volume saved by the Settings page and applies it to the sound player
+     */
+    private void applyMasterVolume() {
+        SharedPreferences prefs =
+                requireContext().getSharedPreferences(PREFS, Context.MODE_PRIVATE);
+        int percent = prefs.getInt(KEY_VOLUME, DEFAULT_VOLUME_PERCENT);
+        soundPlayer.setVolume(percent / MAX_VOLUME_PERCENT);
     }
 
     /**
