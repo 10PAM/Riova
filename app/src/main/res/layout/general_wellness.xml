@@ -18,6 +18,13 @@
             android:padding="16dp">
             <!-- Preview examples only; suggestion selection will be wired separately. -->
 
+            <TextView
+                android:id="@+id/text_wellness_progress"
+                style="@style/wellness_card_suggestion"
+                android:layout_marginBottom="12dp"
+                android:accessibilityLiveRegion="polite"
+                tools:text="2 of 4 completed today" />
+
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/wellness_movement_card"
                 style="@style/wellness_card">
@@ -29,6 +36,15 @@
                         android:id="@+id/text_wellness_movement"
                         style="@style/wellness_card_suggestion"
                         tools:text="Put on a favorite song and move to the rhythm." />
+                    <CheckBox
+                        android:id="@+id/check_wellness_movement"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:buttonTint="@android:color/white"
+                        android:saveEnabled="false"
+                        android:text="@string/wellness_completed"
+                        android:textColor="@android:color/white" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -43,6 +59,15 @@
                         android:id="@+id/text_wellness_food"
                         style="@style/wellness_card_suggestion"
                         tools:text="Add a colorful ingredient to a meal you already enjoy." />
+                    <CheckBox
+                        android:id="@+id/check_wellness_food"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:buttonTint="@android:color/white"
+                        android:saveEnabled="false"
+                        android:text="@string/wellness_completed"
+                        android:textColor="@android:color/white" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -57,6 +82,15 @@
                         android:id="@+id/text_wellness_calm"
                         style="@style/wellness_card_suggestion"
                         tools:text="Listen to one favorite song without doing anything else." />
+                    <CheckBox
+                        android:id="@+id/check_wellness_calm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:buttonTint="@android:color/white"
+                        android:saveEnabled="false"
+                        android:text="@string/wellness_completed"
+                        android:textColor="@android:color/white" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -71,6 +105,15 @@
                         android:id="@+id/text_wellness_reflection"
                         style="@style/wellness_card_suggestion"
                         tools:text="Write down one small win from today." />
+                    <CheckBox
+                        android:id="@+id/check_wellness_reflection"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:buttonTint="@android:color/white"
+                        android:saveEnabled="false"
+                        android:text="@string/wellness_completed"
+                        android:textColor="@android:color/white" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>

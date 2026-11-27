@@ -82,8 +82,8 @@ public class JournalAppendFragment extends Fragment {
      */
     private void setListeners() {
         backButton.setOnClickListener(v -> {
-            showPage(Constants.TAG_JOURNAL);
             saveJournal();
+            showPage(Constants.TAG_JOURNAL);
             resetJournalAppend();
             preferencesHandler.putString(Constants.KEY_JOURNAL_ID_APPEND, "");
         });
@@ -152,41 +152,10 @@ public class JournalAppendFragment extends Fragment {
     }
 
     /**
-     * Generates a unique Journal ID Key.
-     *
-     * @return Returns the generated Journal ID.
-     */
-    private String generateJournalId() {
-        int id = randomGen.nextInt(999999999);
-        String journal_ids = "journal_ids.txt"; // keeps track of journal id's in single lines
-        File journal_keys_file = new File(getContext().getFilesDir(), journal_ids);
-        try (Scanner file_output = new Scanner(journal_keys_file)) {
-            while (file_output.hasNextLine()) {
-                if (file_output.nextLine().strip().equals(id + "")) {
-                    return generateJournalId();
-                }
-            }
-        }
-        catch (FileNotFoundException exception) {
-            return "";
-        }
-        return "";
-    }
-
-    /**
      * Saves all Journal data if journal entry has been modified.
-     * TODO: MAKE Journal's local primarily and not Firestore
      */
     private void saveJournal() {
         if (isModified()) {
-            generateJournalId();
-            String journal_entry = journalId + ".txt"; // TODO: Fix, may be Firestore ID
-            String journal_content = "journal data";
-            try (FileOutputStream fileOutStream = getContext().openFileOutput(journal_entry, Context.MODE_PRIVATE)) {
-                //fileOutStream.write(journal_content.getBytes(StandardCharsets.UTF_8));
-            } catch (IOException exception) {
-                System.out.println(exception);
-            }
 
             if (journalId.isEmpty()) {
                 HashMap<String, Object> journalEntry = new HashMap<>();

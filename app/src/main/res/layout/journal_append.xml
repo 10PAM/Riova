@@ -34,9 +34,10 @@
             android:paddingHorizontal="10dp"
             android:backgroundTint="@android:color/transparent"
             android:id="@+id/journal_append_title"
-            android:inputType="text"
+            android:inputType="textNoSuggestions"
             android:autofillHints="none"
             android:hint="@string/title"
+
             app:layout_constraintTop_toBottomOf="@id/journal_append_header"
             android:layout_height="match_parent"
             android:layout_width="0dp"
