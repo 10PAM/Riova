@@ -77,7 +77,6 @@
     <string name="meditation_stop">Stop</string>
     <string name="meditation_complete">Session complete</string>
     <string name="meditation_sound_error">Could not play this sound</string>
-</resources>
     <string name="wellness_completed">Completed</string>
     <string name="wellness_progress">%1$d of %2$d completed today</string>
 </resources>
