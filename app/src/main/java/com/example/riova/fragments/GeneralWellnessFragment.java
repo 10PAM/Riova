@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,6 +22,7 @@ public class GeneralWellnessFragment extends Fragment {
 
     private static final String PREFS = "riova_wellness_daily";
     private static final String KEY_DATE = "date";
+    private static final String KEY_COMPLETED_PREFIX = "completed_";
 
     public GeneralWellnessFragment(){
         super(R.layout.general_wellness);
@@ -50,6 +52,13 @@ public class GeneralWellnessFragment extends Fragment {
                 R.id.text_wellness_reflection
         };
 
+
+        int[] completionViews = {
+                R.id.check_wellness_movement,
+                R.id.check_wellness_food,
+                R.id.check_wellness_calm,
+                R.id.check_wellness_reflection
+        };
 
         // This will save the general wellness suggestions for the day
         SharedPreferences preferences = requireContext()
@@ -81,16 +90,39 @@ public class GeneralWellnessFragment extends Fragment {
                 selectedSuggestions[i] = suggestions.length == 0
                         ? "" : suggestions[random.nextInt(suggestions.length)];
                 editor.putString("suggestion_" + i, selectedSuggestions[i]);
+                editor.remove(KEY_COMPLETED_PREFIX + i);
             }
             editor.apply();
         }
 
 
+        TextView progress = view.findViewById(R.id.text_wellness_progress);
+
         // Loop through suggestions and set the suggested text for each category in the card.
         for (int i = 0; i < suggestionViews.length; i++) {
             TextView suggestion = view.findViewById(suggestionViews[i]);
             suggestion.setText(selectedSuggestions[i]);
+
+            CheckBox completed = view.findViewById(completionViews[i]);
+            String completionKey = KEY_COMPLETED_PREFIX + i;
+            completed.setOnCheckedChangeListener(null);
+            completed.setChecked(preferences.getBoolean(completionKey, false));
+            completed.setOnCheckedChangeListener((button, isChecked) -> {
+                preferences.edit().putBoolean(completionKey, isChecked).apply();
+                updateProgress(progress, preferences, completionViews.length);
+            });
         }
+        updateProgress(progress, preferences, completionViews.length);
+    }
+
+    private void updateProgress(TextView progress, SharedPreferences preferences, int total) {
+        int completedCount = 0;
+        for (int i = 0; i < total; i++) {
+            if (preferences.getBoolean(KEY_COMPLETED_PREFIX + i, false)) {
+                completedCount++;
+            }
+        }
+        progress.setText(getString(R.string.wellness_progress, completedCount, total));
     }
 
     @Override
